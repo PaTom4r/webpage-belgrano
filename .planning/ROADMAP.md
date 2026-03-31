@@ -32,7 +32,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. GSAP plugins are registered once globally and `useGSAP()` is the only hook used for GSAP — no hydration errors in console
   4. `metadataBase` is set in root layout so OG image URLs resolve to absolute paths
   5. Layout is responsive: content reflows correctly at mobile, tablet, and desktop breakpoints
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Scaffold Next.js app, install deps, configure Tailwind v4 globals.css, create GSAP config module
+- [ ] 01-02-PLAN.md — Root layout with fonts + metadataBase + GSAP fix, Container/Section components, smoke test page
 **UI hint**: yes
 
 ### Phase 2: Landing Page
@@ -116,7 +119,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/2 | Not started | - |
 | 2. Landing Page | 0/TBD | Not started | - |
 | 3. Vertical Pages | 0/TBD | Not started | - |
 | 4. About Page | 0/TBD | Not started | - |
