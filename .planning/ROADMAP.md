@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Layout is responsive: content reflows correctly at mobile, tablet, and desktop breakpoints
 **Plans**: 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — Scaffold Next.js app, install deps, configure Tailwind v4 globals.css, create GSAP config module
+- [x] 01-01-PLAN.md — Scaffold Next.js app, install deps, configure Tailwind v4 globals.css, create GSAP config module
 - [ ] 01-02-PLAN.md — Root layout with fonts + metadataBase + GSAP fix, Container/Section components, smoke test page
 **UI hint**: yes
 
@@ -119,7 +119,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Not started | - |
+| 1. Foundation | 1/2 | In Progress|  |
 | 2. Landing Page | 0/TBD | Not started | - |
 | 3. Vertical Pages | 0/TBD | Not started | - |
 | 4. About Page | 0/TBD | Not started | - |
