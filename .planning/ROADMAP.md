@@ -12,7 +12,7 @@ Build Grupo Belgrano's corporate website from scratch — a multi-page B2B site 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project scaffold with design tokens, fonts, GSAP config, and layout shell
+- [x] **Phase 1: Foundation** - Project scaffold with design tokens, fonts, GSAP config, and layout shell (completed 2026-03-31)
 - [ ] **Phase 2: Landing Page** - All 8 landing sections with animations fully wired
 - [ ] **Phase 3: Vertical Pages** - 4 service vertical detail pages with proof, metrics, and FAQs
 - [ ] **Phase 4: About Page** - Company narrative, values, and team positioning
@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 Plans:
 - [x] 01-01-PLAN.md — Scaffold Next.js app, install deps, configure Tailwind v4 globals.css, create GSAP config module
-- [ ] 01-02-PLAN.md — Root layout with fonts + metadataBase + GSAP fix, Container/Section components, smoke test page
+- [x] 01-02-PLAN.md — Root layout with fonts + metadataBase + GSAP fix, Container/Section components, smoke test page
 **UI hint**: yes
 
 ### Phase 2: Landing Page
@@ -119,7 +119,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In Progress|  |
+| 1. Foundation | 2/2 | Complete   | 2026-03-31 |
 | 2. Landing Page | 0/TBD | Not started | - |
 | 3. Vertical Pages | 0/TBD | Not started | - |
 | 4. About Page | 0/TBD | Not started | - |

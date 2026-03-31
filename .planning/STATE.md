@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 01-foundation-01-PLAN.md — scaffold, Tailwind v4 tokens, GSAP config
-last_updated: "2026-03-31T23:23:30.203Z"
+status: verifying
+stopped_at: Completed 01-foundation-02-PLAN.md — root layout, Container, Section, smoke test page
+last_updated: "2026-03-31T23:28:52.026Z"
 last_activity: 2026-03-31
 progress:
   total_phases: 7
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 
 Phase: 01 (foundation) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-03-31
 
 Progress: [░░░░░░░░░░] 0%
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 9 | 3 tasks | 10 files |
+| Phase 01-foundation P02 | 5 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -67,6 +68,8 @@ Recent decisions affecting current work:
 - [Init]: metadataBase must be set in root layout during Phase 1
 - [Phase 01-foundation]: Manual scaffold instead of create-next-app — project directory had existing .planning/ and CLAUDE.md files that create-next-app refused to overwrite
 - [Phase 01-foundation]: ESLint 9 flat config (eslint.config.mjs) — next lint removed from Next.js 16, replaced with eslint src using @eslint/js + typescript-eslint flat config
+- [Phase 01-foundation]: Container max-w-7xl matches whitespace-heavy B2B design; Section composes Container internally for clean page usage
+- [Phase 01-foundation]: Inter uses display: swap to prevent FOUT; GSAP body borderTopStyle fix is permanent and must not be removed
 
 ### Pending Todos
 
@@ -80,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-31T23:23:30.201Z
-Stopped at: Completed 01-foundation-01-PLAN.md — scaffold, Tailwind v4 tokens, GSAP config
+Last session: 2026-03-31T23:28:52.024Z
+Stopped at: Completed 01-foundation-02-PLAN.md — root layout, Container, Section, smoke test page
 Resume file: None

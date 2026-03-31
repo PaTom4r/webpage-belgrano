@@ -9,10 +9,10 @@
 
 - [x] **FOUND-01**: Project scaffolded with Next.js 16, Tailwind CSS v4, Framer Motion, GSAP
 - [x] **FOUND-02**: Brand tokens defined in Tailwind v4 @theme (colors, typography, spacing)
-- [ ] **FOUND-03**: Geist Sans loaded via next/font with proper fallbacks
+- [x] **FOUND-03**: Geist Sans loaded via next/font with proper fallbacks
 - [x] **FOUND-04**: GSAP centralized config with useGSAP() hook and hydration fix
-- [ ] **FOUND-05**: metadataBase configured in root layout for OG image resolution
-- [ ] **FOUND-06**: Responsive layout system (mobile-first breakpoints)
+- [x] **FOUND-05**: metadataBase configured in root layout for OG image resolution
+- [x] **FOUND-06**: Responsive layout system (mobile-first breakpoints)
 
 ### Landing Page
 
@@ -110,10 +110,10 @@
 |-------------|-------|--------|
 | FOUND-01 | Phase 1 | Complete |
 | FOUND-02 | Phase 1 | Complete |
-| FOUND-03 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 1 | Complete |
-| FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Complete |
+| FOUND-06 | Phase 1 | Complete |
 | LAND-01 | Phase 2 | Pending |
 | LAND-02 | Phase 2 | Pending |
 | LAND-03 | Phase 2 | Pending |
