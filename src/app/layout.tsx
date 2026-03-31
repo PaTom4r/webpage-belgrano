@@ -1,0 +1,40 @@
+import type { Metadata } from 'next'
+import { Geist, Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
+import './globals.css'
+
+const geistSans = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://belgrano.cl'),
+  title: {
+    template: '%s | Belgrano',
+    default: 'Belgrano — IA, Marketing & Estrategia',
+  },
+  description: 'Agencia chilena de IA aplicada, marketing digital y estrategia de negocio.',
+  openGraph: {
+    siteName: 'Belgrano',
+    locale: 'es_CL',
+    type: 'website',
+  },
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="es" className={`${geistSans.variable} ${inter.variable}`}>
+      {/* GSAP hydration fix: borderTopStyle pre-matches what ScrollTrigger injects */}
+      <body style={{ borderTopStyle: 'solid' }}>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  )
+}

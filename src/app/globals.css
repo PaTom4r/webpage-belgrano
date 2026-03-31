@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors — Minimalist black/white/grey palette */
+  --color-bg: #ffffff;
+  --color-bg-section: #f9fafb;
+  --color-dark: #09090b;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-accent: #000000;
+  --color-border: #e5e7eb;
+
+  /* Typography — chain to next/font CSS variables injected at runtime */
+  --font-sans: var(--font-geist), 'Inter', system-ui, sans-serif;
+  --font-fallback: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', monospace;
+
+  /* Font weights for headline-heavy design */
+  --font-weight-heading: 800;
+  --font-weight-subheading: 700;
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing scale for section padding */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  /* Breakpoints (mobile-first, explicit for clarity) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* Base layer: sensible defaults for the minimalist design */
+@layer base {
+  html {
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+}
