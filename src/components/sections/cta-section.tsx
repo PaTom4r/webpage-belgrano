@@ -63,7 +63,7 @@ export function CtaSection() {
             </p>
           </ScrollReveal>
           <div className="overflow-hidden rounded-2xl bg-white">
-            <CalendlyEmbed className="min-h-[700px]" />
+            <CalendlyEmbed />
           </div>
         </div>
       </div>

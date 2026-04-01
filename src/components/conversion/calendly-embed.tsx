@@ -62,15 +62,14 @@ export function CalendlyEmbed({
     <div ref={containerRef} className={className}>
       {shouldLoad && (
         <div
-          className="calendly-inline-widget min-h-[630px] w-full"
+          className="calendly-inline-widget w-full"
           data-url={url}
-          style={{ minWidth: '320px' }}
+          style={{ minWidth: '320px', height: '700px' }}
         />
       )}
       {!shouldLoad && (
-        // Placeholder with same minimum height so layout doesn't shift when Calendly loads
-        <div className="min-h-[630px] w-full flex items-center justify-center bg-gray-50 rounded-lg">
-          <div className="text-gray-400 text-sm">Cargando calendario...</div>
+        <div className="flex w-full items-center justify-center rounded-lg bg-gray-50" style={{ height: '700px' }}>
+          <div className="text-sm text-gray-400">Cargando calendario...</div>
         </div>
       )}
     </div>
