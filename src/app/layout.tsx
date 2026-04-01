@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import { ClientProviders } from '@/components/client-providers'
 import './globals.css'
 
 const geistSans = Geist({
@@ -31,9 +32,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${geistSans.variable} ${inter.variable}`}>
-      {/* GSAP hydration fix: borderTopStyle pre-matches what ScrollTrigger injects */}
+      {/* GSAP hydration fix: borderTopStyle pre-matches what ScrollTrigger injects — do not remove */}
       <body style={{ borderTopStyle: 'solid' }}>
-        {children}
+        <ClientProviders>
+          {children}
+        </ClientProviders>
         <Analytics />
       </body>
     </html>
