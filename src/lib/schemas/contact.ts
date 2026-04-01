@@ -21,6 +21,7 @@ export const contactSchema = z.object({
     .string()
     .min(10, 'El mensaje debe tener al menos 10 caracteres')
     .max(2000, 'El mensaje es demasiado largo (máximo 2000 caracteres)'),
+  honeypot: z.string().max(0, 'Bot detected').optional(),
 })
 
 export type ContactFormData = z.infer<typeof contactSchema>
