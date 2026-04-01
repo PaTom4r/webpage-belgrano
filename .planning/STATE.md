@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 07-deploy-01-PLAN.md — pre-deploy prep, .env.example, GitHub push
-last_updated: "2026-04-01T03:26:05.089Z"
+status: verifying
+stopped_at: Completed 07-02-PLAN.md — Vercel deploy live, Lighthouse score 92
+last_updated: "2026-04-01T03:55:58.574Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 17
-  completed_plans: 16
+  completed_plans: 17
   percent: 0
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 
 Phase: 07 (deploy) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-01
 
 Progress: [░░░░░░░░░░] 0%
@@ -67,6 +67,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 06-seo-pass P01 | 2 | 2 tasks | 12 files |
 | Phase 06-seo-pass P02 | 4 | 2 tasks | 13 files |
 | Phase 07-deploy P01 | 2 | 2 tasks | 3 files |
+| Phase 07-deploy P02 | 26 | 4 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -111,6 +112,9 @@ Recent decisions affecting current work:
 - [Phase 06-seo-pass]: React fragment wraps script + main — sibling pattern for script injection without wrapping div
 - [Phase 06-seo-pass]: Section layout component extended with aria-labelledby prop — reusable pattern, zero visual change
 - [Phase 07-deploy]: Committed .env.example (not gitignored) as documentation artifact for Vercel setup — contains no real credentials
+- [Phase 07-deploy]: Downgraded @eslint/js ^10 → ^9.39.4 to fix Vercel build peer dep conflict
+- [Phase 07-deploy]: Lazy-load Calendly via IntersectionObserver — 13MB bundle was blocking LCP to 10.2s
+- [Phase 07-deploy]: Hero h1 uses headlineFade (opacity:1 initial) for LCP measurability — not fadeUp (opacity:0)
 
 ### Pending Todos
 
@@ -124,6 +128,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T03:26:05.086Z
-Stopped at: Completed 07-deploy-01-PLAN.md — pre-deploy prep, .env.example, GitHub push
+Last session: 2026-04-01T03:55:58.571Z
+Stopped at: Completed 07-02-PLAN.md — Vercel deploy live, Lighthouse score 92
 Resume file: None

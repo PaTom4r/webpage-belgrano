@@ -131,7 +131,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 07-01-PLAN.md — Production build verification, .env.example, GitHub repo creation and push
-- [ ] 07-02-PLAN.md — Vercel deploy via CLI, env vars + domain checkpoint, Lighthouse audit, final visual verification
+- [x] 07-02-PLAN.md — Vercel deploy via CLI, env vars + domain checkpoint, Lighthouse audit, final visual verification
 
 ## Progress
 

@@ -72,9 +72,9 @@
 ### Deploy
 
 - [x] **DEPLOY-01**: Vercel deployment configured with production environment
-- [ ] **DEPLOY-02**: belgrano.cl domain connected to Vercel
+- [x] **DEPLOY-02**: belgrano.cl domain connected to Vercel
 - [x] **DEPLOY-03**: Environment variables configured (RESEND_API_KEY, etc.)
-- [ ] **DEPLOY-04**: Lighthouse performance score >= 90 on mobile
+- [x] **DEPLOY-04**: Lighthouse performance score >= 90 on mobile
 
 ## v2 Requirements
 
@@ -152,9 +152,9 @@
 | SEO-05 | Phase 6 | Complete |
 | SEO-06 | Phase 6 | Complete |
 | DEPLOY-01 | Phase 7 | Complete |
-| DEPLOY-02 | Phase 7 | Pending |
+| DEPLOY-02 | Phase 7 | Complete |
 | DEPLOY-03 | Phase 7 | Complete |
-| DEPLOY-04 | Phase 7 | Pending |
+| DEPLOY-04 | Phase 7 | Complete |
 
 **Coverage:**
 - v1 requirements: 44 total
