@@ -82,7 +82,9 @@ Plans:
   1. The About page loads at `/nosotros` and shows a company narrative section with history and mission
   2. A values/differentiators section communicates what makes Belgrano distinct from generic agencies
   3. A team positioning section explains the expertise and working model (visible on mobile without truncation)
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 04-01-PLAN.md — Content data file (about.ts) + 3 section components (narrative, values, team) + /nosotros page route
 **UI hint**: yes
 
 ### Phase 5: Contact & Conversion
@@ -132,7 +134,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Foundation | 2/2 | Complete   | 2026-03-31 |
 | 2. Landing Page | 5/5 | Complete   | 2026-04-01 |
 | 3. Vertical Pages | 2/3 | In Progress|  |
-| 4. About Page | 0/TBD | Not started | - |
+| 4. About Page | 0/1 | Not started | - |
 | 5. Contact & Conversion | 0/TBD | Not started | - |
 | 6. SEO Pass | 0/TBD | Not started | - |
 | 7. Deploy | 0/TBD | Not started | - |
