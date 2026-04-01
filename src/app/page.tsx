@@ -1,6 +1,7 @@
 // Home page — composes all 8 landing sections.
 // Navbar and Footer are in layout.tsx (persistent across all pages).
 import type { Metadata } from 'next'
+import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
 import { MarqueeSection } from '@/components/sections/marquee-section'
 import { VerticalesSection } from '@/components/sections/verticales-section'
@@ -30,14 +31,43 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': ['Organization', 'LocalBusiness'],
+    name: 'Grupo Belgrano',
+    alternateName: 'Belgrano',
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/og/og-default.png`,
+    description: siteConfig.description,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Santiago',
+      addressRegion: 'Región Metropolitana',
+      addressCountry: 'CL',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      email: siteConfig.email,
+      availableLanguage: 'Spanish',
+    },
+    sameAs: [siteConfig.url],
+  }
+
   return (
-    <main>
-      <HeroSection />
-      <MarqueeSection />
-      <VerticalesSection />
-      <HowItWorksSection />
-      <StatsSection />
-      <CtaSection />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <main>
+        <HeroSection />
+        <MarqueeSection />
+        <VerticalesSection />
+        <HowItWorksSection />
+        <StatsSection />
+        <CtaSection />
+      </main>
+    </>
   )
 }

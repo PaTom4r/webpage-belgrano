@@ -65,8 +65,31 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
     notFound()
   }
 
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: vertical.name,
+    description: vertical.description,
+    url: `https://belgrano.cl/verticales/${slug}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Grupo Belgrano',
+      url: 'https://belgrano.cl',
+    },
+    serviceType: vertical.name,
+    areaServed: {
+      '@type': 'Country',
+      name: 'Chile',
+    },
+  }
+
   return (
-    <main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <main>
       {/* Breadcrumb — inside a light bg container above the dark hero */}
       <div className="bg-bg border-b border-border">
         <Container>
@@ -106,5 +129,6 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
       {/* CTA — reuse landing CTA section as-is */}
       <CtaSection />
     </main>
+    </>
   )
 }
