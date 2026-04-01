@@ -8,7 +8,7 @@ interface CalendlyEmbedProps {
 }
 
 export function CalendlyEmbed({
-  url = 'https://calendly.com/belgrano/reunion-estrategica', // TODO before launch: replace with real Calendly event URL
+  url = 'https://calendly.com/belgrano/30min',
   className,
 }: CalendlyEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null)

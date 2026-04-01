@@ -9,7 +9,7 @@ export const siteConfig = {
     'Agencia chilena de IA aplicada, marketing digital y producción de contenido para empresas que quieren crecer en serio.',
   url: 'https://belgrano.cl',
   email: 'hola@belgrano.cl',
-  whatsapp: '+56912345678', // placeholder — update before Phase 5
+  whatsapp: '+56965360205',
 }
 
 export interface NavLink {

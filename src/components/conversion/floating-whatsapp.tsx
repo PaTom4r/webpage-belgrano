@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-const WHATSAPP_NUMBER = '56912345678' // TODO before launch: replace with Belgrano's real WhatsApp Business number (format: 569XXXXXXXX)
+const WHATSAPP_NUMBER = '56965360205'
 const WHATSAPP_MESSAGE = 'Hola, quisiera saber más sobre Belgrano'
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 
