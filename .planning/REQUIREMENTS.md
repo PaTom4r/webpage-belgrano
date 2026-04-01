@@ -16,8 +16,8 @@
 
 ### Landing Page
 
-- [ ] **LAND-01**: Sticky navbar with logo, navigation links, CTA button, and backdrop blur on scroll
-- [ ] **LAND-02**: Hero section with headline, subtitle, primary CTA, and fade-in/slide-up animations
+- [x] **LAND-01**: Sticky navbar with logo, navigation links, CTA button, and backdrop blur on scroll
+- [x] **LAND-02**: Hero section with headline, subtitle, primary CTA, and fade-in/slide-up animations
 - [x] **LAND-03**: Client logo marquee with infinite horizontal scroll (CLC, Seguros CLC, TNT Sports/Warner Bros)
 - [x] **LAND-04**: Verticales section with 4 cards (icon, name, description, "Saber mas" link to detail page)
 - [x] **LAND-05**: HowItWorks section with 3-step visual timeline (Diagnostico, Estrategia, Ejecucion)
@@ -114,8 +114,8 @@
 | FOUND-04 | Phase 1 | Complete |
 | FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Complete |
-| LAND-01 | Phase 2 | Pending |
-| LAND-02 | Phase 2 | Pending |
+| LAND-01 | Phase 2 | Complete |
+| LAND-02 | Phase 2 | Complete |
 | LAND-03 | Phase 2 | Complete |
 | LAND-04 | Phase 2 | Complete |
 | LAND-05 | Phase 2 | Complete |

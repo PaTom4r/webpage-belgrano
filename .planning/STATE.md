@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-landing-page-03-PLAN.md — VerticalesSection, VerticalCard, CtaSection, ContactForm, contactSchema
-last_updated: "2026-04-01T00:43:26.113Z"
+stopped_at: Completed 02-landing-page-02-PLAN.md — Navbar, Hero, Marquee, Footer components
+last_updated: "2026-04-01T00:44:43.434Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 ## Current Position
 
 Phase: 02 (landing-page) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 Status: Ready to execute
 Last activity: 2026-04-01
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-landing-page P01 | 13 | 3 tasks | 8 files |
 | Phase 02-landing-page P04 | 127 | 2 tasks | 2 files |
 | Phase 02-landing-page P03 | 4 | 2 tasks | 5 files |
+| Phase 02-landing-page P02 | 5 | 3 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [Phase 02-landing-page]: StatsSection is Server Component — AnimatedCounter provides own 'use client' boundary, no duplication in parent
 - [Phase 02-landing-page]: Inline SVG icons for 4 verticals instead of lucide-react — avoids full library for 4 icons
 - [Phase 02-landing-page]: CtaSection is a Server Component — ContactForm handles its own client boundary via use client
+- [Phase 02-landing-page]: Use framer-motion (not motion/react) for all animation imports — motion package not installed
+- [Phase 02-landing-page]: Hero uses initial/animate (not whileInView) — above-fold content must fire on mount
 
 ### Pending Todos
 
@@ -92,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T00:43:26.110Z
-Stopped at: Completed 02-landing-page-03-PLAN.md — VerticalesSection, VerticalCard, CtaSection, ContactForm, contactSchema
+Last session: 2026-04-01T00:44:43.431Z
+Stopped at: Completed 02-landing-page-02-PLAN.md — Navbar, Hero, Marquee, Footer components
 Resume file: None
