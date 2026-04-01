@@ -97,8 +97,11 @@ Plans:
   3. The contact lead also receives a branded confirmation email
   4. A Calendly embed is visible on the contact page and opens a booking flow without leaving the site
   5. A floating WhatsApp button is visible on all pages and opens a pre-filled WhatsApp chat
-  6. Submitting the form more than 3 times in a short window is silently blocked (rate limiting active)
-**Plans**: TBD
+  6. Submitting the form more than 5 times in a short window is silently blocked (rate limiting active)
+**Plans**: 2 plans
+Plans:
+- [ ] 05-01-PLAN.md — Install resend + react-email, rate limiter, extend contactSchema with honeypot, Server Action (submitContact), 2 email templates, wire form
+- [ ] 05-02-PLAN.md — CalendlyEmbed client component in CtaSection, FloatingWhatsApp button in root layout
 **UI hint**: yes
 
 ### Phase 6: SEO Pass
@@ -135,6 +138,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Landing Page | 5/5 | Complete   | 2026-04-01 |
 | 3. Vertical Pages | 2/3 | In Progress|  |
 | 4. About Page | 1/1 | Complete   | 2026-04-01 |
-| 5. Contact & Conversion | 0/TBD | Not started | - |
+| 5. Contact & Conversion | 0/2 | Not started | - |
 | 6. SEO Pass | 0/TBD | Not started | - |
 | 7. Deploy | 0/TBD | Not started | - |
