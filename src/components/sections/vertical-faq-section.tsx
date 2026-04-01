@@ -13,7 +13,7 @@ interface VerticalFaqSectionProps {
 
 export function VerticalFaqSection({ items, verticalName }: VerticalFaqSectionProps) {
   return (
-    <section className="bg-bg py-16 sm:py-20 lg:py-24">
+    <section aria-labelledby="faq-heading" className="bg-bg py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="mx-auto max-w-3xl">
           <ScrollReveal>
@@ -22,7 +22,7 @@ export function VerticalFaqSection({ items, verticalName }: VerticalFaqSectionPr
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.05}>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+            <h2 id="faq-heading" className="mt-4 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
               Todo lo que querias saber sobre {verticalName}
             </h2>
           </ScrollReveal>

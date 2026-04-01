@@ -96,6 +96,7 @@ export function HowItWorksSection() {
     <section
       ref={sectionRef}
       id="how-it-works"
+      aria-labelledby="how-it-works-heading"
       className="bg-bg py-16 sm:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -106,7 +107,7 @@ export function HowItWorksSection() {
           </span>
         </ScrollReveal>
         <ScrollReveal delay={0.05} className="mb-16 text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-text sm:text-5xl">
+          <h2 id="how-it-works-heading" className="text-4xl font-extrabold tracking-tight text-text sm:text-5xl">
             Tres pasos.{' '}
             <br className="hidden sm:block" />
             Resultados reales.

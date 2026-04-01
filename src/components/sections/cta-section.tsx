@@ -7,7 +7,7 @@ import { CalendlyEmbed } from '@/components/conversion/calendly-embed'
 
 export function CtaSection() {
   return (
-    <section id="cta" className="bg-dark py-16 sm:py-20 lg:py-24">
+    <section id="cta" aria-labelledby="cta-heading" className="bg-dark py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Left: headline and value prop */}
@@ -18,7 +18,7 @@ export function CtaSection() {
               </span>
             </ScrollReveal>
             <ScrollReveal delay={0.05}>
-              <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-bg sm:text-5xl">
+              <h2 id="cta-heading" className="mt-4 text-4xl font-extrabold tracking-tight text-bg sm:text-5xl">
                 ¿Listo para crecer{' '}
                 <br className="hidden sm:block" />
                 con IA?

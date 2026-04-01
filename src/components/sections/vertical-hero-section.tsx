@@ -38,7 +38,7 @@ interface VerticalHeroSectionProps {
 
 export function VerticalHeroSection({ vertical }: VerticalHeroSectionProps) {
   return (
-    <section className="bg-dark py-20 sm:py-24 lg:py-32">
+    <section aria-labelledby="vertical-hero-heading" className="bg-dark py-20 sm:py-24 lg:py-32">
       <Container>
         <ScrollReveal>
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 text-bg/70">
@@ -46,7 +46,7 @@ export function VerticalHeroSection({ vertical }: VerticalHeroSectionProps) {
           </div>
         </ScrollReveal>
         <ScrollReveal delay={0.05}>
-          <h1 className="mt-8 text-5xl font-extrabold tracking-tight text-bg sm:text-6xl lg:text-7xl">
+          <h1 id="vertical-hero-heading" className="mt-8 text-5xl font-extrabold tracking-tight text-bg sm:text-6xl lg:text-7xl">
             {vertical.name}
           </h1>
         </ScrollReveal>

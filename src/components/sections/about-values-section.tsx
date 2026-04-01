@@ -65,10 +65,10 @@ export function AboutValuesSection() {
   const { values } = aboutContent
 
   return (
-    <Section dark={true}>
+    <Section dark={true} aria-labelledby="about-values-heading">
       {/* Heading — centered, text-bg because dark section */}
       <div className="text-center">
-        <h2 className="-tracking-tighter text-4xl font-black text-bg sm:text-5xl">
+        <h2 id="about-values-heading" className="-tracking-tighter text-4xl font-black text-bg sm:text-5xl">
           {values.headline}
         </h2>
         <p className="mt-4 text-xl text-bg/70">{values.subheadline}</p>

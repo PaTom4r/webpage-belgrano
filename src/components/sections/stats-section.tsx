@@ -38,7 +38,7 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section id="stats" className="bg-dark py-16 sm:py-20 lg:py-24">
+    <section id="stats" aria-labelledby="stats-heading" className="bg-dark py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <ScrollReveal className="mb-4 text-center">
@@ -47,7 +47,7 @@ export function StatsSection() {
           </span>
         </ScrollReveal>
         <ScrollReveal delay={0.05} className="mb-16 text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-bg sm:text-5xl">
+          <h2 id="stats-heading" className="text-4xl font-extrabold tracking-tight text-bg sm:text-5xl">
             Números que hablan.
           </h2>
         </ScrollReveal>

@@ -27,6 +27,7 @@ export function VerticalesSection() {
   return (
     <section
       id="what-we-do"
+      aria-labelledby="what-we-do-heading"
       className="bg-bg-section py-16 sm:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -37,7 +38,7 @@ export function VerticalesSection() {
           </span>
         </ScrollReveal>
         <ScrollReveal delay={0.05} className="text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-text sm:text-5xl">
+          <h2 id="what-we-do-heading" className="text-4xl font-extrabold tracking-tight text-text sm:text-5xl">
             Cuatro verticales.{' '}
             <br className="hidden sm:block" />
             Un solo equipo.

@@ -9,10 +9,10 @@ export function AboutNarrativeSection() {
   const { narrative } = aboutContent
 
   return (
-    <Section dark={false}>
+    <Section dark={false} aria-labelledby="about-heading">
       {/* Heading — centered */}
       <div className="text-center">
-        <h1 className="-tracking-tighter text-4xl font-black sm:text-5xl">
+        <h1 id="about-heading" className="-tracking-tighter text-4xl font-black sm:text-5xl">
           {narrative.headline}
         </h1>
         <p className="mt-4 text-xl text-text-secondary">{narrative.subheadline}</p>

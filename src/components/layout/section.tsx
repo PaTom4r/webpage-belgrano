@@ -9,15 +9,18 @@ export function Section({
   className = '',
   dark = false,
   id,
+  'aria-labelledby': ariaLabelledby,
 }: {
   children: React.ReactNode
   className?: string
   dark?: boolean
   id?: string
+  'aria-labelledby'?: string
 }) {
   return (
     <section
       id={id}
+      aria-labelledby={ariaLabelledby}
       className={`py-16 sm:py-20 lg:py-24 ${
         dark ? 'bg-dark text-bg' : 'bg-bg text-text'
       } ${className}`}

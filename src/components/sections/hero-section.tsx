@@ -18,6 +18,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
+      aria-labelledby="hero-heading"
       className="relative flex min-h-svh items-center justify-center overflow-hidden bg-bg pt-16"
     >
       {/* Subtle grid background decoration */}
@@ -36,6 +37,7 @@ export function HeroSection() {
 
         {/* Main headline */}
         <motion.h1
+          id="hero-heading"
           {...fadeUp(0.1)}
           className="mt-8 text-5xl font-extrabold leading-tight tracking-tight text-text sm:text-6xl lg:text-7xl xl:text-8xl"
         >

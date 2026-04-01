@@ -9,10 +9,10 @@ export function AboutTeamSection() {
   const { team } = aboutContent
 
   return (
-    <Section dark={false} className="bg-bg-section">
+    <Section dark={false} className="bg-bg-section" aria-labelledby="about-team-heading">
       {/* Heading — centered */}
       <div className="text-center">
-        <h2 className="-tracking-tighter text-4xl font-black sm:text-5xl">{team.headline}</h2>
+        <h2 id="about-team-heading" className="-tracking-tighter text-4xl font-black sm:text-5xl">{team.headline}</h2>
         <p className="mt-4 text-xl text-text-secondary">{team.subheadline}</p>
       </div>
 
