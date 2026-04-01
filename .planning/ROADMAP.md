@@ -48,7 +48,13 @@ Plans:
   3. HowItWorks timeline scrubs as the user scrolls through it
   4. Clicking a vertical card ("Saber mas") navigates to the correct vertical detail page URL
   5. On a device with prefers-reduced-motion enabled, animations are disabled or simplified with no visual glitches
-**Plans**: TBD
+**Plans**: 5 plans
+Plans:
+- [ ] 02-01-PLAN.md — Install deps, create content data files (site.ts, verticales.ts), animation primitives (ScrollReveal, AnimatedCounter), MotionConfig in layout
+- [ ] 02-02-PLAN.md — Navbar (scroll glass), Hero (Framer animate), Marquee (CSS infinite), Footer (Server Component)
+- [ ] 02-03-PLAN.md — Verticales section (4 cards, stagger, hover), CTA section (dark bg, form UI + Zod validation)
+- [ ] 02-04-PLAN.md — HowItWorks (GSAP pin+scrub), Stats section (dark bg, animated counters)
+- [ ] 02-05-PLAN.md — Compose all sections in page.tsx, wire Navbar+Footer in layout.tsx, visual verification
 **UI hint**: yes
 
 ### Phase 3: Vertical Pages
