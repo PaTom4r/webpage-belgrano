@@ -114,7 +114,10 @@ Plans:
   3. `belgrano.cl/sitemap.xml` returns a valid XML file listing all public routes
   4. `belgrano.cl/robots.txt` returns a valid file allowing all crawlers
   5. A JSON-LD Organization schema block is present on the homepage (verifiable via Google Rich Results Test)
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 06-01-PLAN.md — Per-page metadata + OG images (static PNGs via sharp) + sitemap.ts + robots.ts
+- [ ] 06-02-PLAN.md — JSON-LD Organization on homepage, Service schema on vertical pages, semantic HTML audit
 
 ### Phase 7: Deploy
 **Goal**: The site is live at belgrano.cl with all environment variables configured, passing a Lighthouse mobile score of 90+ and loading in under 2 seconds
@@ -139,5 +142,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. Vertical Pages | 2/3 | In Progress|  |
 | 4. About Page | 1/1 | Complete   | 2026-04-01 |
 | 5. Contact & Conversion | 2/2 | Complete   | 2026-04-01 |
-| 6. SEO Pass | 0/TBD | Not started | - |
+| 6. SEO Pass | 0/2 | Not started | - |
 | 7. Deploy | 0/TBD | Not started | - |
