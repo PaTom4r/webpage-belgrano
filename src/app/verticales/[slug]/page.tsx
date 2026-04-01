@@ -19,6 +19,13 @@ interface VerticalPageProps {
   params: Promise<{ slug: string }>
 }
 
+const ogImages: Record<string, string> = {
+  bots: '/og/og-bots.png',
+  dooh: '/og/og-dooh.png',
+  producciones: '/og/og-producciones.png',
+  academy: '/og/og-academy.png',
+}
+
 export async function generateStaticParams() {
   return verticales.map((v) => ({ slug: v.slug }))
 }
@@ -28,9 +35,25 @@ export async function generateMetadata({ params }: VerticalPageProps): Promise<M
   const vertical = verticales.find((v) => v.slug === slug)
   if (!vertical) return {}
 
+  const descriptionText = `${vertical.tagline} ${vertical.description.slice(0, 120)}`
+
   return {
-    title: `${vertical.name} - Belgrano`,
-    description: vertical.description,
+    title: vertical.name,
+    description: descriptionText,
+    openGraph: {
+      title: `${vertical.name} | Belgrano`,
+      description: descriptionText,
+      url: `https://belgrano.cl/verticales/${slug}`,
+      images: [
+        {
+          url: ogImages[slug] ?? '/og/og-default.png',
+          width: 1200,
+          height: 630,
+          alt: `${vertical.name} — Belgrano`,
+        },
+      ],
+    },
+    alternates: { canonical: `https://belgrano.cl/verticales/${slug}` },
   }
 }
 

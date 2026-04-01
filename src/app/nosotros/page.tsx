@@ -13,6 +13,21 @@ export const metadata: Metadata = {
   title: 'Nosotros',
   description:
     'Conoce a Grupo Belgrano: agencia chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
+  openGraph: {
+    title: 'Nosotros | Belgrano',
+    description:
+      'Conoce a Grupo Belgrano: agencia chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
+    url: 'https://belgrano.cl/nosotros',
+    images: [
+      {
+        url: '/og/og-nosotros.png',
+        width: 1200,
+        height: 630,
+        alt: 'Nosotros — Grupo Belgrano',
+      },
+    ],
+  },
+  alternates: { canonical: 'https://belgrano.cl/nosotros' },
 }
 
 export default function NosotrosPage() {
