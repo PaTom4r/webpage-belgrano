@@ -71,7 +71,7 @@ Plans:
 Plans:
 - [x] 03-01-PLAN.md — Extend verticales.ts with full content (longDescription, structured metrics, FAQ per vertical) + FaqAccordion component
 - [x] 03-02-PLAN.md — Dynamic route page.tsx with generateStaticParams + all vertical section components (hero, metrics, clients, faq, cta) wired together
-- [ ] 03-03-PLAN.md — Human visual verification of all 4 pages
+- [x] 03-03-PLAN.md — Human visual verification of all 4 pages
 **UI hint**: yes
 
 ### Phase 4: About Page
