@@ -62,9 +62,7 @@ export function CtaSection() {
               O agenda directo
             </p>
           </ScrollReveal>
-          <div className="overflow-hidden rounded-2xl bg-white">
-            <CalendlyEmbed />
-          </div>
+          <CalendlyEmbed />
         </div>
       </div>
     </section>
