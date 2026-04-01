@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     default: 'Belgrano — IA, Marketing & Estrategia',
   },
   description: 'Agencia chilena de IA aplicada, marketing digital y estrategia de negocio.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+  },
   openGraph: {
     siteName: 'Belgrano',
     locale: 'es_CL',

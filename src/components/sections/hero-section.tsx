@@ -14,6 +14,14 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] as const },
 })
 
+// LCP-safe variant: headline starts visible so Lighthouse can measure it immediately.
+// We still do a subtle lift animation but not from opacity:0, which would hide the LCP element.
+const headlineFade = {
+  initial: { opacity: 1, y: 8 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+}
+
 export function HeroSection() {
   return (
     <section
@@ -35,10 +43,10 @@ export function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Main headline */}
+        {/* Main headline — uses headlineFade (starts visible) so Lighthouse LCP measures it immediately */}
         <motion.h1
           id="hero-heading"
-          {...fadeUp(0.1)}
+          {...headlineFade}
           className="mt-8 text-5xl font-extrabold leading-tight tracking-tight text-text sm:text-6xl lg:text-7xl xl:text-8xl"
         >
           Tu negocio.{' '}
