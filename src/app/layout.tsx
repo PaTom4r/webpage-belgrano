@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { ClientProviders } from '@/components/client-providers'
+import { Navbar } from '@/components/layout/navbar'
+import { Footer } from '@/components/layout/footer'
 import './globals.css'
 
 const geistSans = Geist({
@@ -35,7 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       {/* GSAP hydration fix: borderTopStyle pre-matches what ScrollTrigger injects — do not remove */}
       <body style={{ borderTopStyle: 'solid' }}>
         <ClientProviders>
+          <Navbar />
           {children}
+          <Footer />
         </ClientProviders>
         <Analytics />
       </body>
