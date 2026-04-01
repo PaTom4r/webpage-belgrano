@@ -62,10 +62,10 @@
 
 ### SEO
 
-- [ ] **SEO-01**: Unique title and description meta tags per page
-- [ ] **SEO-02**: Open Graph images per page (static PNGs for v1)
-- [ ] **SEO-03**: Automatic sitemap.xml generation via Next.js sitemap.ts
-- [ ] **SEO-04**: robots.txt configuration
+- [x] **SEO-01**: Unique title and description meta tags per page
+- [x] **SEO-02**: Open Graph images per page (static PNGs for v1)
+- [x] **SEO-03**: Automatic sitemap.xml generation via Next.js sitemap.ts
+- [x] **SEO-04**: robots.txt configuration
 - [ ] **SEO-05**: JSON-LD structured data (Organization + LocalBusiness schema)
 - [ ] **SEO-06**: Semantic HTML (proper heading hierarchy, landmark elements)
 
@@ -145,10 +145,10 @@
 | ANIM-04 | Phase 2 | Complete |
 | ANIM-05 | Phase 2 | Complete |
 | ANIM-06 | Phase 2 | Complete |
-| SEO-01 | Phase 6 | Pending |
-| SEO-02 | Phase 6 | Pending |
-| SEO-03 | Phase 6 | Pending |
-| SEO-04 | Phase 6 | Pending |
+| SEO-01 | Phase 6 | Complete |
+| SEO-02 | Phase 6 | Complete |
+| SEO-03 | Phase 6 | Complete |
+| SEO-04 | Phase 6 | Complete |
 | SEO-05 | Phase 6 | Pending |
 | SEO-06 | Phase 6 | Pending |
 | DEPLOY-01 | Phase 7 | Pending |

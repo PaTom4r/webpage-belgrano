@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 05-contact-conversion-02-PLAN.md — Calendly embed + floating WhatsApp button
-last_updated: "2026-04-01T02:25:46.390Z"
+status: executing
+stopped_at: Completed 06-seo-pass-01-PLAN.md — per-page metadata, OG images, sitemap.xml, robots.txt
+last_updated: "2026-04-01T02:40:36.643Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
   completed_phases: 5
-  total_plans: 13
-  completed_plans: 13
+  total_plans: 15
+  completed_plans: 14
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-31)
 
 **Core value:** The website must clearly communicate what Belgrano does across its 4 verticals and convert visitors into leads through strategic CTAs — if the site doesn't generate meetings, nothing else matters.
-**Current focus:** Phase 05 — contact-conversion
+**Current focus:** Phase 06 — seo-pass
 
 ## Current Position
 
-Phase: 6
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 06 (seo-pass) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-04-01
 
 Progress: [░░░░░░░░░░] 0%
@@ -64,6 +64,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 04-about-page P01 | 3 | 2 tasks | 5 files |
 | Phase 05-contact-conversion P01 | 18 | 2 tasks | 6 files |
 | Phase 05-contact-conversion P02 | 13 | 2 tasks | 4 files |
+| Phase 06-seo-pass P01 | 2 | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,8 @@ Recent decisions affecting current work:
 - [Phase 05-contact-conversion]: CalendlyEmbed uses useEffect script loader to avoid SSR issues with third-party widgets
 - [Phase 05-contact-conversion]: FloatingWhatsApp placed inside ClientProviders after Footer for global presence on all pages
 - [Phase 05-contact-conversion]: Placeholder WhatsApp number documented with TODO — must be replaced before production deploy
+- [Phase 06-seo-pass]: Static OG images via sharp SVG-to-PNG — no dynamic OG generation needed for v1 static placeholder images
+- [Phase 06-seo-pass]: Home page title as plain string to prevent layout template double-appending brand name
 
 ### Pending Todos
 
@@ -115,6 +118,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T02:25:08.501Z
-Stopped at: Completed 05-contact-conversion-02-PLAN.md — Calendly embed + floating WhatsApp button
+Last session: 2026-04-01T02:40:36.641Z
+Stopped at: Completed 06-seo-pass-01-PLAN.md — per-page metadata, OG images, sitemap.xml, robots.txt
 Resume file: None
