@@ -32,8 +32,8 @@
 - [ ] **VERT-03**: DOOH page with hero, expanded description, metrics, client references
 - [ ] **VERT-04**: Producciones page with hero, expanded description, metrics
 - [ ] **VERT-05**: Academy page with hero, expanded description, metrics, client references
-- [ ] **VERT-06**: FAQ section per vertical (5-7 questions addressing common objections)
-- [ ] **VERT-07**: Content stored as TypeScript data files (lib/content/verticales.ts)
+- [x] **VERT-06**: FAQ section per vertical (5-7 questions addressing common objections)
+- [x] **VERT-07**: Content stored as TypeScript data files (lib/content/verticales.ts)
 
 ### About Page
 
@@ -127,8 +127,8 @@
 | VERT-03 | Phase 3 | Pending |
 | VERT-04 | Phase 3 | Pending |
 | VERT-05 | Phase 3 | Pending |
-| VERT-06 | Phase 3 | Pending |
-| VERT-07 | Phase 3 | Pending |
+| VERT-06 | Phase 3 | Complete |
+| VERT-07 | Phase 3 | Complete |
 | ABOUT-01 | Phase 4 | Pending |
 | ABOUT-02 | Phase 4 | Pending |
 | ABOUT-03 | Phase 4 | Pending |
