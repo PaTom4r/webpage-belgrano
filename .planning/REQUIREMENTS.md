@@ -20,7 +20,7 @@
 - [ ] **LAND-02**: Hero section with headline, subtitle, primary CTA, and fade-in/slide-up animations
 - [x] **LAND-03**: Client logo marquee with infinite horizontal scroll (CLC, Seguros CLC, TNT Sports/Warner Bros)
 - [x] **LAND-04**: Verticales section with 4 cards (icon, name, description, "Saber mas" link to detail page)
-- [ ] **LAND-05**: HowItWorks section with 3-step visual timeline (Diagnostico, Estrategia, Ejecucion)
+- [x] **LAND-05**: HowItWorks section with 3-step visual timeline (Diagnostico, Estrategia, Ejecucion)
 - [x] **LAND-06**: Stats section with GSAP-animated counters (4 key metrics)
 - [x] **LAND-07**: CTA section with contact form and meeting scheduling option
 - [x] **LAND-08**: Footer with logo, tagline, navigation links, and copyright
@@ -55,10 +55,10 @@
 
 - [x] **ANIM-01**: Framer Motion scroll-triggered entrance animations (fade-in, slide-up, stagger)
 - [x] **ANIM-02**: GSAP-powered counter animations for Stats section
-- [ ] **ANIM-03**: GSAP scroll-scrubbed animation for HowItWorks timeline
-- [ ] **ANIM-04**: Smooth hover/interaction micro-animations on cards and buttons
+- [x] **ANIM-03**: GSAP scroll-scrubbed animation for HowItWorks timeline
+- [x] **ANIM-04**: Smooth hover/interaction micro-animations on cards and buttons
 - [x] **ANIM-05**: prefers-reduced-motion support (disable/simplify animations when requested)
-- [ ] **ANIM-06**: Mobile animation budget (simplified animations on smaller viewports)
+- [x] **ANIM-06**: Mobile animation budget (simplified animations on smaller viewports)
 
 ### SEO
 
@@ -118,7 +118,7 @@
 | LAND-02 | Phase 2 | Pending |
 | LAND-03 | Phase 2 | Complete |
 | LAND-04 | Phase 2 | Complete |
-| LAND-05 | Phase 2 | Pending |
+| LAND-05 | Phase 2 | Complete |
 | LAND-06 | Phase 2 | Complete |
 | LAND-07 | Phase 2 | Complete |
 | LAND-08 | Phase 2 | Complete |
@@ -141,10 +141,10 @@
 | CONV-07 | Phase 5 | Pending |
 | ANIM-01 | Phase 2 | Complete |
 | ANIM-02 | Phase 2 | Complete |
-| ANIM-03 | Phase 2 | Pending |
-| ANIM-04 | Phase 2 | Pending |
+| ANIM-03 | Phase 2 | Complete |
+| ANIM-04 | Phase 2 | Complete |
 | ANIM-05 | Phase 2 | Complete |
-| ANIM-06 | Phase 2 | Pending |
+| ANIM-06 | Phase 2 | Complete |
 | SEO-01 | Phase 6 | Pending |
 | SEO-02 | Phase 6 | Pending |
 | SEO-03 | Phase 6 | Pending |

@@ -52,7 +52,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Install deps, create content data files (site.ts, verticales.ts), animation primitives (ScrollReveal, AnimatedCounter), MotionConfig in layout
 - [ ] 02-02-PLAN.md — Navbar (scroll glass), Hero (Framer animate), Marquee (CSS infinite), Footer (Server Component)
-- [ ] 02-03-PLAN.md — Verticales section (4 cards, stagger, hover), CTA section (dark bg, form UI + Zod validation)
+- [x] 02-03-PLAN.md — Verticales section (4 cards, stagger, hover), CTA section (dark bg, form UI + Zod validation)
 - [x] 02-04-PLAN.md — HowItWorks (GSAP pin+scrub), Stats section (dark bg, animated counters)
 - [ ] 02-05-PLAN.md — Compose all sections in page.tsx, wire Navbar+Footer in layout.tsx, visual verification
 **UI hint**: yes
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-31 |
-| 2. Landing Page | 1/5 | In Progress|  |
+| 2. Landing Page | 3/5 | In Progress|  |
 | 3. Vertical Pages | 0/TBD | Not started | - |
 | 4. About Page | 0/TBD | Not started | - |
 | 5. Contact & Conversion | 0/TBD | Not started | - |
