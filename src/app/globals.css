@@ -47,3 +47,19 @@
     border-color: var(--color-border);
   }
 }
+
+/* Marquee animation — runs on compositor thread, no JS, pauses on prefers-reduced-motion */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 25s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
