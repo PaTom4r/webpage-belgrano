@@ -75,7 +75,7 @@ export const aboutContent: AboutContent = {
         icon: 'users',
         title: 'Tu equipo, no solo tu agencia',
         description:
-          'Formamos a tu gente a través de Belgrano Academy. Cuando terminamos, tu equipo sabe usar las herramientas que instalamos. El conocimiento se queda.',
+          'Formamos a tu gente a través de nuestra Academy. Cuando terminamos, tu equipo sabe usar las herramientas que instalamos. El conocimiento se queda.',
       },
     ],
   },

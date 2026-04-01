@@ -52,7 +52,7 @@ export function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:flex">
           <Link
-            href="#cta"
+            href="/#cta"
             className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
           >
             Hablemos

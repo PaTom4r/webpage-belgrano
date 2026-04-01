@@ -18,19 +18,19 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Qué hacemos', href: '#what-we-do' },
-  { label: 'Cómo trabajamos', href: '#how-it-works' },
-  { label: 'Resultados', href: '#stats' },
-  { label: 'Contacto', href: '#cta' },
+  { label: 'Cómo trabajamos', href: '/#how-it-works' },
+  { label: 'Resultados', href: '/#stats' },
+  { label: 'Nosotros', href: '/nosotros' },
+  { label: 'Contacto', href: '/#cta' },
 ]
 
 export const footerData = {
   tagline: 'Hacemos que la IA trabaje para tu negocio.',
   links: [
-    { label: 'Bots Conversacionales', href: '/verticales/bots' },
-    { label: 'DOOH & Señalética', href: '/verticales/dooh' },
-    { label: 'Producciones Digitales', href: '/verticales/producciones' },
-    { label: 'Belgrano Academy', href: '/verticales/academy' },
+    { label: 'Smart Agents', href: '/verticales/bots' },
+    { label: 'Digital Media', href: '/verticales/dooh' },
+    { label: 'Creative Studio', href: '/verticales/producciones' },
+    { label: 'Academy', href: '/verticales/academy' },
     { label: 'Nosotros', href: '/nosotros' },
     { label: 'Contacto', href: '#cta' },
   ],

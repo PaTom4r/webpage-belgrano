@@ -5,10 +5,12 @@
 import Image from 'next/image'
 
 const logos = [
-  { id: 'clc', name: 'Clínica Las Condes', src: '/logos/clc.svg', width: 120, height: 40 },
-  { id: 'seguros-clc', name: 'Seguros CLC', src: '/logos/seguros-clc.svg', width: 140, height: 40 },
-  { id: 'tnt-sports', name: 'TNT Sports / Warner Bros.', src: '/logos/tnt-sports.svg', width: 130, height: 40 },
-  { id: 'afp-modelo', name: 'AFP Modelo', src: '/logos/afp-modelo.svg', width: 140, height: 40 },
+  { id: 'clc', name: 'Clínica Las Condes', src: '/logos/clc.svg', width: 190, height: 45 },
+  { id: 'seguros-clc', name: 'Seguros CLC', src: '/logos/seguros-clc.svg', width: 155, height: 30 },
+  { id: 'tnt-sports', name: 'TNT Sports', src: '/logos/tnt-sports.svg', width: 130, height: 40 },
+  { id: 'warner-bros', name: 'Warner Bros.', src: '/logos/warner-bros.svg', width: 50, height: 46 },
+  { id: 'hbo', name: 'HBO', src: '/logos/hbo.svg', width: 100, height: 40 },
+  { id: 'point-cola', name: 'Point Cola', src: '/logos/point-cola.png', width: 120, height: 40 },
 ]
 
 // Duplicate for seamless infinite loop

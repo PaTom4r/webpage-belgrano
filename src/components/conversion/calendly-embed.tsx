@@ -52,9 +52,9 @@ export function CalendlyEmbed({
       script.src = 'https://assets.calendly.com/assets/external/widget.js'
       script.async = true
       document.head.appendChild(script)
-    } else if (typeof (window as any).Calendly !== 'undefined') {
-      // Already loaded — re-initialize inline widgets
-      ;(window as any).Calendly.initInlineWidgets()
+    } else if (typeof (window as any).Calendly?.initInlineWidget === 'function') {
+      // Already loaded — re-initialize
+      ;(window as any).Calendly.initInlineWidget({ url, parentElement: containerRef.current })
     }
   }, [shouldLoad])
 
