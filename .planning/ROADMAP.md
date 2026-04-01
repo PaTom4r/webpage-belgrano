@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Vertical Pages** - 4 service vertical detail pages with proof, metrics, and FAQs
 - [x] **Phase 4: About Page** - Company narrative, values, and team positioning (completed 2026-04-01)
 - [x] **Phase 5: Contact & Conversion** - Contact form, Resend email delivery, Calendly, WhatsApp CTA (completed 2026-04-01)
-- [ ] **Phase 6: SEO Pass** - Per-page metadata, OG images, sitemap, robots, structured data
+- [x] **Phase 6: SEO Pass** - Per-page metadata, OG images, sitemap, robots, structured data (completed 2026-04-01)
 - [ ] **Phase 7: Deploy** - Vercel production deploy with belgrano.cl domain and Lighthouse audit
 
 ## Phase Details
@@ -117,7 +117,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 06-01-PLAN.md — Per-page metadata + OG images (static PNGs via sharp) + sitemap.ts + robots.ts
-- [ ] 06-02-PLAN.md — JSON-LD Organization on homepage, Service schema on vertical pages, semantic HTML audit
+- [x] 06-02-PLAN.md — JSON-LD Organization on homepage, Service schema on vertical pages, semantic HTML audit
 
 ### Phase 7: Deploy
 **Goal**: The site is live at belgrano.cl with all environment variables configured, passing a Lighthouse mobile score of 90+ and loading in under 2 seconds
@@ -142,5 +142,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. Vertical Pages | 2/3 | In Progress|  |
 | 4. About Page | 1/1 | Complete   | 2026-04-01 |
 | 5. Contact & Conversion | 2/2 | Complete   | 2026-04-01 |
-| 6. SEO Pass | 1/2 | In Progress|  |
+| 6. SEO Pass | 2/2 | Complete   | 2026-04-01 |
 | 7. Deploy | 0/TBD | Not started | - |

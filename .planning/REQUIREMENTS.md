@@ -66,8 +66,8 @@
 - [x] **SEO-02**: Open Graph images per page (static PNGs for v1)
 - [x] **SEO-03**: Automatic sitemap.xml generation via Next.js sitemap.ts
 - [x] **SEO-04**: robots.txt configuration
-- [ ] **SEO-05**: JSON-LD structured data (Organization + LocalBusiness schema)
-- [ ] **SEO-06**: Semantic HTML (proper heading hierarchy, landmark elements)
+- [x] **SEO-05**: JSON-LD structured data (Organization + LocalBusiness schema)
+- [x] **SEO-06**: Semantic HTML (proper heading hierarchy, landmark elements)
 
 ### Deploy
 
@@ -149,8 +149,8 @@
 | SEO-02 | Phase 6 | Complete |
 | SEO-03 | Phase 6 | Complete |
 | SEO-04 | Phase 6 | Complete |
-| SEO-05 | Phase 6 | Pending |
-| SEO-06 | Phase 6 | Pending |
+| SEO-05 | Phase 6 | Complete |
+| SEO-06 | Phase 6 | Complete |
 | DEPLOY-01 | Phase 7 | Pending |
 | DEPLOY-02 | Phase 7 | Pending |
 | DEPLOY-03 | Phase 7 | Pending |
