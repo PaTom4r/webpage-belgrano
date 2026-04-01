@@ -69,9 +69,9 @@ export function VerticalCard({ vertical }: VerticalCardProps) {
       {vertical.metrics && vertical.metrics.length > 0 && (
         <ul className="mt-5 flex flex-col gap-1.5">
           {vertical.metrics.map((m) => (
-            <li key={m} className="flex items-center gap-2 text-xs text-text-secondary">
+            <li key={m.value} className="flex items-center gap-2 text-xs text-text-secondary">
               <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-              {m}
+              <span className="font-semibold">{m.value}</span>&nbsp;{m.label}
             </li>
           ))}
         </ul>
