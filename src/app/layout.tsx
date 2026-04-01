@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { ClientProviders } from '@/components/client-providers'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
+import { FloatingWhatsApp } from '@/components/conversion/floating-whatsapp'
 import './globals.css'
 
 const geistSans = Geist({
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
           <Footer />
+          <FloatingWhatsApp />
         </ClientProviders>
         <Analytics />
       </body>
