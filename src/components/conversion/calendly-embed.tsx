@@ -54,15 +54,15 @@ export function CalendlyEmbed({
 
   return (
     <div ref={containerRef} className={className}>
-      <div className="overflow-hidden rounded-2xl bg-white">
+      <div className="overflow-clip rounded-2xl bg-white">
         {shouldLoad ? (
           <div
             className="calendly-inline-widget w-full"
             data-url={url}
-            style={{ minWidth: '320px', height: '660px' }}
+            style={{ minWidth: '320px', height: '700px', overflowY: 'hidden' }}
           />
         ) : (
-          <div className="flex w-full items-center justify-center" style={{ height: '660px' }}>
+          <div className="flex w-full items-center justify-center" style={{ height: '700px' }}>
             <div className="text-sm text-gray-400">Cargando calendario...</div>
           </div>
         )}
