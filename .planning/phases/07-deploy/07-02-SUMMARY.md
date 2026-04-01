@@ -186,6 +186,19 @@ Phase 07 is complete. The site is live at https://webpage-belgrano.vercel.app wi
 3. Replace Calendly URL placeholder with real event URL
 4. Replace WhatsApp number placeholder with real Grupo Belgrano number
 
+## Self-Check: PASSED
+
+- FOUND: .planning/phases/07-deploy/07-02-SUMMARY.md
+- FOUND: .planning/phases/07-deploy/lighthouse-report.json
+- FOUND: src/app/icon.svg
+- FOUND: src/components/conversion/calendly-embed.tsx
+- FOUND: commit 1577466 (dep fix)
+- FOUND: commit 22e5bc8 (task 1)
+- FOUND: commit fe48600 (calendly fix)
+- FOUND: commit a703bb9 (lcp + favicon)
+- FOUND: commit 22fdacf (task 3)
+- FOUND: commit 33df993 (metadata/summary)
+
 ---
 *Phase: 07-deploy*
 *Completed: 2026-04-01*
