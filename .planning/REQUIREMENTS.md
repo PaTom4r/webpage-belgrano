@@ -37,9 +37,9 @@
 
 ### About Page
 
-- [ ] **ABOUT-01**: Company narrative section (history, mission, what Belgrano is)
-- [ ] **ABOUT-02**: Values/differentiators section (AI-native, integrated services)
-- [ ] **ABOUT-03**: Team positioning section (how the team works, expertise areas)
+- [x] **ABOUT-01**: Company narrative section (history, mission, what Belgrano is)
+- [x] **ABOUT-02**: Values/differentiators section (AI-native, integrated services)
+- [x] **ABOUT-03**: Team positioning section (how the team works, expertise areas)
 
 ### Conversion
 
@@ -129,9 +129,9 @@
 | VERT-05 | Phase 3 | Complete |
 | VERT-06 | Phase 3 | Complete |
 | VERT-07 | Phase 3 | Complete |
-| ABOUT-01 | Phase 4 | Pending |
-| ABOUT-02 | Phase 4 | Pending |
-| ABOUT-03 | Phase 4 | Pending |
+| ABOUT-01 | Phase 4 | Complete |
+| ABOUT-02 | Phase 4 | Complete |
+| ABOUT-03 | Phase 4 | Complete |
 | CONV-01 | Phase 5 | Pending |
 | CONV-02 | Phase 5 | Pending |
 | CONV-03 | Phase 5 | Pending |
