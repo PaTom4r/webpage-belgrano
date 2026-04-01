@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-vertical-pages-01-PLAN.md — extended Vertical interface and FaqAccordion component
-last_updated: "2026-04-01T01:21:52.667Z"
+stopped_at: Completed 03-vertical-pages-02-PLAN.md — 4 static vertical detail pages at /verticales/[slug]
+last_updated: "2026-04-01T01:28:17.511Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
   completed_phases: 2
   total_plans: 10
-  completed_plans: 8
+  completed_plans: 9
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 ## Current Position
 
 Phase: 03 (vertical-pages) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-04-01
 
@@ -60,6 +60,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-landing-page P02 | 5 | 3 tasks | 10 files |
 | Phase 02-landing-page P05 | 2 | 1 tasks | 2 files |
 | Phase 03-vertical-pages P01 | 8 | 2 tasks | 3 files |
+| Phase 03-vertical-pages P02 | 3 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - [Phase 02-landing-page]: Navbar and Footer placed in layout.tsx not page.tsx — persistent across all route navigations
 - [Phase 03-vertical-pages]: VerticalMetric as {value, label} object — enables separate styling of metric value vs label in card UI
 - [Phase 03-vertical-pages]: FaqAccordion uses dl/dt/dd semantic structure — correct HTML for Q&A content, accessibility benefit
+- [Phase 03-vertical-pages]: await params before slug destructuring — Next.js 15+ makes params a Promise, required for correct SSG behavior
+- [Phase 03-vertical-pages]: Inline SVG icons in VerticalHeroSection instead of lucide-react — consistent with VerticalesSection pattern from Phase 02, avoids extra dependency
+- [Phase 03-vertical-pages]: VerticalClientsSection returns null for empty clients array — Producciones has no clients, conditional rendering is cleaner than empty section
 
 ### Pending Todos
 
@@ -100,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T01:21:52.664Z
-Stopped at: Completed 03-vertical-pages-01-PLAN.md — extended Vertical interface and FaqAccordion component
+Last session: 2026-04-01T01:28:17.508Z
+Stopped at: Completed 03-vertical-pages-02-PLAN.md — 4 static vertical detail pages at /verticales/[slug]
 Resume file: None

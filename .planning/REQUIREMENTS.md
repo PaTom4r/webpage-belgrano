@@ -27,11 +27,11 @@
 
 ### Vertical Pages
 
-- [ ] **VERT-01**: Dynamic route for vertical detail pages (/verticales/[slug])
-- [ ] **VERT-02**: Bots Conversacionales page with hero, expanded description, metrics, client references
-- [ ] **VERT-03**: DOOH page with hero, expanded description, metrics, client references
-- [ ] **VERT-04**: Producciones page with hero, expanded description, metrics
-- [ ] **VERT-05**: Academy page with hero, expanded description, metrics, client references
+- [x] **VERT-01**: Dynamic route for vertical detail pages (/verticales/[slug])
+- [x] **VERT-02**: Bots Conversacionales page with hero, expanded description, metrics, client references
+- [x] **VERT-03**: DOOH page with hero, expanded description, metrics, client references
+- [x] **VERT-04**: Producciones page with hero, expanded description, metrics
+- [x] **VERT-05**: Academy page with hero, expanded description, metrics, client references
 - [x] **VERT-06**: FAQ section per vertical (5-7 questions addressing common objections)
 - [x] **VERT-07**: Content stored as TypeScript data files (lib/content/verticales.ts)
 
@@ -122,11 +122,11 @@
 | LAND-06 | Phase 2 | Complete |
 | LAND-07 | Phase 2 | Complete |
 | LAND-08 | Phase 2 | Complete |
-| VERT-01 | Phase 3 | Pending |
-| VERT-02 | Phase 3 | Pending |
-| VERT-03 | Phase 3 | Pending |
-| VERT-04 | Phase 3 | Pending |
-| VERT-05 | Phase 3 | Pending |
+| VERT-01 | Phase 3 | Complete |
+| VERT-02 | Phase 3 | Complete |
+| VERT-03 | Phase 3 | Complete |
+| VERT-04 | Phase 3 | Complete |
+| VERT-05 | Phase 3 | Complete |
 | VERT-06 | Phase 3 | Complete |
 | VERT-07 | Phase 3 | Complete |
 | ABOUT-01 | Phase 4 | Pending |
