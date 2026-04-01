@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { InlineWidget } from 'react-calendly'
 
 interface CalendlyEmbedProps {
   url?: string
@@ -14,6 +15,7 @@ export function CalendlyEmbed({
   const containerRef = useRef<HTMLDivElement>(null)
   const [shouldLoad, setShouldLoad] = useState(false)
 
+  // Lazy-load: only render the widget when it scrolls into the viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -32,41 +34,18 @@ export function CalendlyEmbed({
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    if (!shouldLoad) return
-
-    if (!document.querySelector('link[href*="calendly.com/assets/external/widget.css"]')) {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = 'https://assets.calendly.com/assets/external/widget.css'
-      document.head.appendChild(link)
-    }
-
-    if (!document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')) {
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
-      script.async = true
-      document.head.appendChild(script)
-    } else if (typeof (window as any).Calendly?.initInlineWidget === 'function') {
-      ;(window as any).Calendly.initInlineWidget({ url, parentElement: containerRef.current })
-    }
-  }, [shouldLoad, url])
-
   return (
     <div ref={containerRef} className={className}>
-      <div className="overflow-clip rounded-2xl bg-white">
-        {shouldLoad ? (
-          <div
-            className="calendly-inline-widget w-full"
-            data-url={url}
-            style={{ minWidth: '320px', height: '700px', overflowY: 'hidden' }}
-          />
-        ) : (
-          <div className="flex w-full items-center justify-center" style={{ height: '700px' }}>
-            <div className="text-sm text-gray-400">Cargando calendario...</div>
-          </div>
-        )}
-      </div>
+      {shouldLoad ? (
+        <InlineWidget
+          url={url}
+          styles={{ height: '700px', minWidth: '320px' }}
+        />
+      ) : (
+        <div className="flex w-full items-center justify-center rounded-2xl bg-white/5" style={{ height: '700px' }}>
+          <div className="text-sm text-gray-400">Cargando calendario...</div>
+        </div>
+      )}
     </div>
   )
 }
