@@ -67,7 +67,11 @@ Plans:
   3. Each vertical page has a FAQ section with 5-7 questions visible and expandable
   4. Each vertical page has a dedicated CTA section linking to the contact form
   5. All vertical content is editable from a single TypeScript data file without touching page components
-**Plans**: TBD
+**Plans**: 3 plans
+Plans:
+- [ ] 03-01-PLAN.md — Extend verticales.ts with full content (longDescription, structured metrics, FAQ per vertical) + FaqAccordion component
+- [ ] 03-02-PLAN.md — Dynamic route page.tsx with generateStaticParams + all vertical section components (hero, metrics, clients, faq, cta) wired together
+- [ ] 03-03-PLAN.md — Human visual verification of all 4 pages
 **UI hint**: yes
 
 ### Phase 4: About Page
@@ -127,7 +131,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-31 |
 | 2. Landing Page | 5/5 | Complete   | 2026-04-01 |
-| 3. Vertical Pages | 0/TBD | Not started | - |
+| 3. Vertical Pages | 0/3 | Not started | - |
 | 4. About Page | 0/TBD | Not started | - |
 | 5. Contact & Conversion | 0/TBD | Not started | - |
 | 6. SEO Pass | 0/TBD | Not started | - |
