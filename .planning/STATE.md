@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 05-contact-conversion-01-PLAN.md — Resend email delivery wired to contact form via Server Action with rate limiting and honeypot
-last_updated: "2026-04-01T02:06:17.574Z"
+status: verifying
+stopped_at: Completed 05-contact-conversion-02-PLAN.md — Calendly embed + floating WhatsApp button
+last_updated: "2026-04-01T02:25:08.504Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 13
-  completed_plans: 12
+  completed_plans: 13
   percent: 0
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 
 Phase: 05 (contact-conversion) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-01
 
 Progress: [░░░░░░░░░░] 0%
@@ -63,6 +63,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-vertical-pages P02 | 3 | 2 tasks | 6 files |
 | Phase 04-about-page P01 | 3 | 2 tasks | 5 files |
 | Phase 05-contact-conversion P01 | 18 | 2 tasks | 6 files |
+| Phase 05-contact-conversion P02 | 13 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -98,6 +99,9 @@ Recent decisions affecting current work:
 - [Phase 04-about-page]: Section color alternation: narrative (light) → values (dark) → team (light-alternate) → CTA (dark) for visual rhythm
 - [Phase 05-contact-conversion]: In-memory rate limiter chosen over Upstash Redis — resets on redeploy, acceptable for low-volume agency contact form
 - [Phase 05-contact-conversion]: Server Action in src/app/actions/: 'use server' directive, typed return { success: boolean; error?: string }
+- [Phase 05-contact-conversion]: CalendlyEmbed uses useEffect script loader to avoid SSR issues with third-party widgets
+- [Phase 05-contact-conversion]: FloatingWhatsApp placed inside ClientProviders after Footer for global presence on all pages
+- [Phase 05-contact-conversion]: Placeholder WhatsApp number documented with TODO — must be replaced before production deploy
 
 ### Pending Todos
 
@@ -111,6 +115,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T02:06:17.572Z
-Stopped at: Completed 05-contact-conversion-01-PLAN.md — Resend email delivery wired to contact form via Server Action with rate limiting and honeypot
+Last session: 2026-04-01T02:25:08.501Z
+Stopped at: Completed 05-contact-conversion-02-PLAN.md — Calendly embed + floating WhatsApp button
 Resume file: None

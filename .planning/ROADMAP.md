@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Landing Page** - All 8 landing sections with animations fully wired (completed 2026-04-01)
 - [ ] **Phase 3: Vertical Pages** - 4 service vertical detail pages with proof, metrics, and FAQs
 - [x] **Phase 4: About Page** - Company narrative, values, and team positioning (completed 2026-04-01)
-- [ ] **Phase 5: Contact & Conversion** - Contact form, Resend email delivery, Calendly, WhatsApp CTA
+- [x] **Phase 5: Contact & Conversion** - Contact form, Resend email delivery, Calendly, WhatsApp CTA (completed 2026-04-01)
 - [ ] **Phase 6: SEO Pass** - Per-page metadata, OG images, sitemap, robots, structured data
 - [ ] **Phase 7: Deploy** - Vercel production deploy with belgrano.cl domain and Lighthouse audit
 
@@ -101,7 +101,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 05-01-PLAN.md — Install resend + react-email, rate limiter, extend contactSchema with honeypot, Server Action (submitContact), 2 email templates, wire form
-- [ ] 05-02-PLAN.md — CalendlyEmbed client component in CtaSection, FloatingWhatsApp button in root layout
+- [x] 05-02-PLAN.md — CalendlyEmbed client component in CtaSection, FloatingWhatsApp button in root layout
 **UI hint**: yes
 
 ### Phase 6: SEO Pass
@@ -138,6 +138,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Landing Page | 5/5 | Complete   | 2026-04-01 |
 | 3. Vertical Pages | 2/3 | In Progress|  |
 | 4. About Page | 1/1 | Complete   | 2026-04-01 |
-| 5. Contact & Conversion | 1/2 | In Progress|  |
+| 5. Contact & Conversion | 2/2 | Complete   | 2026-04-01 |
 | 6. SEO Pass | 0/TBD | Not started | - |
 | 7. Deploy | 0/TBD | Not started | - |

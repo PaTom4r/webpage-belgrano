@@ -46,8 +46,8 @@
 - [x] **CONV-01**: Contact form with name, email, company, message fields
 - [x] **CONV-02**: Form submission via Server Action with Zod validation
 - [x] **CONV-03**: Email delivery via Resend (branded HTML templates for lead + team notification)
-- [ ] **CONV-04**: Calendly embed for direct meeting scheduling alongside contact form
-- [ ] **CONV-05**: Floating WhatsApp CTA button (links to Belgrano's WA Business)
+- [x] **CONV-04**: Calendly embed for direct meeting scheduling alongside contact form
+- [x] **CONV-05**: Floating WhatsApp CTA button (links to Belgrano's WA Business)
 - [x] **CONV-06**: Rate limiting on form submission (honeypot field + IP-based)
 - [x] **CONV-07**: Form success/error states with user feedback
 
@@ -135,8 +135,8 @@
 | CONV-01 | Phase 5 | Complete |
 | CONV-02 | Phase 5 | Complete |
 | CONV-03 | Phase 5 | Complete |
-| CONV-04 | Phase 5 | Pending |
-| CONV-05 | Phase 5 | Pending |
+| CONV-04 | Phase 5 | Complete |
+| CONV-05 | Phase 5 | Complete |
 | CONV-06 | Phase 5 | Complete |
 | CONV-07 | Phase 5 | Complete |
 | ANIM-01 | Phase 2 | Complete |
