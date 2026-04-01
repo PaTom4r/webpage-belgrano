@@ -1,9 +1,9 @@
 // src/components/sections/cta-section.tsx
-// Dark-background CTA section with contact form.
+// Dark-background CTA section with contact form and Calendly booking widget.
 // Per CONTEXT.md locked decision: dark bg (#09090B) for Stats + CTA sections.
-// Form submission integration deferred to Phase 5.
 import { ContactForm } from '@/components/forms/contact-form'
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
+import { CalendlyEmbed } from '@/components/conversion/calendly-embed'
 
 export function CtaSection() {
   return (
@@ -53,6 +53,16 @@ export function CtaSection() {
           <ScrollReveal delay={0.1} className="w-full">
             <ContactForm />
           </ScrollReveal>
+        </div>
+
+        {/* Calendly inline booking widget */}
+        <div className="mt-16 border-t border-white/10 pt-16">
+          <ScrollReveal>
+            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-bg/40">
+              O agenda directo
+            </p>
+          </ScrollReveal>
+          <CalendlyEmbed />
         </div>
       </div>
     </section>
