@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface CalendlyEmbedProps {
   url?: string
@@ -11,32 +11,68 @@ export function CalendlyEmbed({
   url = 'https://calendly.com/belgrano/reunion-estrategica', // TODO before launch: replace with real Calendly event URL
   className,
 }: CalendlyEmbedProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  // Only load Calendly resources when the widget scrolls into the viewport.
+  // This prevents the ~13 MB Calendly bundle from blocking LCP on initial page load.
   useEffect(() => {
-    // Load Calendly widget script once
-    if (document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')) {
-      // Already loaded — trigger init if needed
-      if (typeof (window as any).Calendly !== 'undefined') {
-        (window as any).Calendly.initInlineWidgets()
-      }
-      return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShouldLoad(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' } // start loading 200px before visible
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
     }
-    const script = document.createElement('script')
-    script.src = 'https://assets.calendly.com/assets/external/widget.js'
-    script.async = true
-    document.head.appendChild(script)
+
+    return () => observer.disconnect()
   }, [])
 
+  // Once in view, inject CSS and script
+  useEffect(() => {
+    if (!shouldLoad) return
+
+    // Inject Calendly CSS only once
+    if (!document.querySelector('link[href*="calendly.com/assets/external/widget.css"]')) {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = 'https://assets.calendly.com/assets/external/widget.css'
+      document.head.appendChild(link)
+    }
+
+    // Inject Calendly script only once
+    if (!document.querySelector('script[src*="calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script')
+      script.src = 'https://assets.calendly.com/assets/external/widget.js'
+      script.async = true
+      document.head.appendChild(script)
+    } else if (typeof (window as any).Calendly !== 'undefined') {
+      // Already loaded — re-initialize inline widgets
+      ;(window as any).Calendly.initInlineWidgets()
+    }
+  }, [shouldLoad])
+
   return (
-    <div className={className}>
-      <link
-        href="https://assets.calendly.com/assets/external/widget.css"
-        rel="stylesheet"
-      />
-      <div
-        className="calendly-inline-widget min-h-[630px] w-full"
-        data-url={url}
-        style={{ minWidth: '320px' }}
-      />
+    <div ref={containerRef} className={className}>
+      {shouldLoad && (
+        <div
+          className="calendly-inline-widget min-h-[630px] w-full"
+          data-url={url}
+          style={{ minWidth: '320px' }}
+        />
+      )}
+      {!shouldLoad && (
+        // Placeholder with same minimum height so layout doesn't shift when Calendly loads
+        <div className="min-h-[630px] w-full flex items-center justify-center bg-gray-50 rounded-lg">
+          <div className="text-gray-400 text-sm">Cargando calendario...</div>
+        </div>
+      )}
     </div>
   )
 }
