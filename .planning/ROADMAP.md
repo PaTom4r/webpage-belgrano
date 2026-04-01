@@ -50,7 +50,7 @@ Plans:
   5. On a device with prefers-reduced-motion enabled, animations are disabled or simplified with no visual glitches
 **Plans**: 5 plans
 Plans:
-- [ ] 02-01-PLAN.md — Install deps, create content data files (site.ts, verticales.ts), animation primitives (ScrollReveal, AnimatedCounter), MotionConfig in layout
+- [x] 02-01-PLAN.md — Install deps, create content data files (site.ts, verticales.ts), animation primitives (ScrollReveal, AnimatedCounter), MotionConfig in layout
 - [ ] 02-02-PLAN.md — Navbar (scroll glass), Hero (Framer animate), Marquee (CSS infinite), Footer (Server Component)
 - [ ] 02-03-PLAN.md — Verticales section (4 cards, stagger, hover), CTA section (dark bg, form UI + Zod validation)
 - [ ] 02-04-PLAN.md — HowItWorks (GSAP pin+scrub), Stats section (dark bg, animated counters)
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-31 |
-| 2. Landing Page | 0/TBD | Not started | - |
+| 2. Landing Page | 1/5 | In Progress|  |
 | 3. Vertical Pages | 0/TBD | Not started | - |
 | 4. About Page | 0/TBD | Not started | - |
 | 5. Contact & Conversion | 0/TBD | Not started | - |
