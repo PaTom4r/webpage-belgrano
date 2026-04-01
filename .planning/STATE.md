@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-landing-page-01-PLAN.md — content data files, animation primitives, MotionConfig
-last_updated: "2026-04-01T00:38:04.249Z"
+stopped_at: Completed 02-landing-page-04-PLAN.md — HowItWorks section (GSAP pin+scrub) + Stats section (AnimatedCounter dark)
+last_updated: "2026-04-01T00:42:27.606Z"
 last_activity: 2026-04-01
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 7
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 ## Current Position
 
 Phase: 02 (landing-page) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
 Last activity: 2026-04-01
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P01 | 9 | 3 tasks | 10 files |
 | Phase 01-foundation P02 | 5 | 3 tasks | 4 files |
 | Phase 02-landing-page P01 | 13 | 3 tasks | 8 files |
+| Phase 02-landing-page P04 | 127 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: Inter uses display: swap to prevent FOUT; GSAP body borderTopStyle fix is permanent and must not be removed
 - [Phase 02-landing-page]: Import from framer-motion (not motion/react) — motion package not installed, framer-motion v12 is the installed package
 - [Phase 02-landing-page]: ClientProviders thin wrapper keeps layout.tsx as Server Component while enabling MotionConfig client context
+- [Phase 02-landing-page]: gsap.matchMedia() with two exclusive conditions cleanly separates desktop pin+scrub from mobile static display without runtime branching
+- [Phase 02-landing-page]: StatsSection is Server Component — AnimatedCounter provides own 'use client' boundary, no duplication in parent
 
 ### Pending Todos
 
@@ -86,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-01T00:38:04.247Z
-Stopped at: Completed 02-landing-page-01-PLAN.md — content data files, animation primitives, MotionConfig
+Last session: 2026-04-01T00:42:27.603Z
+Stopped at: Completed 02-landing-page-04-PLAN.md — HowItWorks section (GSAP pin+scrub) + Stats section (AnimatedCounter dark)
 Resume file: None

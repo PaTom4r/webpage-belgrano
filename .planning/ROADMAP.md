@@ -53,7 +53,7 @@ Plans:
 - [x] 02-01-PLAN.md — Install deps, create content data files (site.ts, verticales.ts), animation primitives (ScrollReveal, AnimatedCounter), MotionConfig in layout
 - [ ] 02-02-PLAN.md — Navbar (scroll glass), Hero (Framer animate), Marquee (CSS infinite), Footer (Server Component)
 - [ ] 02-03-PLAN.md — Verticales section (4 cards, stagger, hover), CTA section (dark bg, form UI + Zod validation)
-- [ ] 02-04-PLAN.md — HowItWorks (GSAP pin+scrub), Stats section (dark bg, animated counters)
+- [x] 02-04-PLAN.md — HowItWorks (GSAP pin+scrub), Stats section (dark bg, animated counters)
 - [ ] 02-05-PLAN.md — Compose all sections in page.tsx, wire Navbar+Footer in layout.tsx, visual verification
 **UI hint**: yes
 
