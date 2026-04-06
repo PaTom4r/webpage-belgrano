@@ -26,7 +26,7 @@ export default function LeadConfirmationEmail({ name }: LeadConfirmationEmailPro
         <Container style={{ maxWidth: '600px', margin: '0 auto' }}>
           {/* Header */}
           <Section style={{ backgroundColor: '#09090B', padding: '24px 32px', borderRadius: '8px 8px 0 0' }}>
-            <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: '20px', margin: '0' }}>
+            <Text style={{ color: '#ffffff', fontWeight: '900', fontSize: '20px', margin: '0', textTransform: 'uppercase' as const, letterSpacing: '-0.05em' }}>
               Belgrano
             </Text>
           </Section>
