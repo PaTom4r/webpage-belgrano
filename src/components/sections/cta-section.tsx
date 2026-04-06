@@ -26,7 +26,7 @@ export function CtaSection() {
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
               <p className="mt-6 text-lg leading-relaxed text-bg/70">
-                Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial — sin compromiso.
+                Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial.
               </p>
             </ScrollReveal>
 

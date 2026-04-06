@@ -82,7 +82,7 @@ export const aboutContent: AboutContent = {
 
   team: {
     headline: 'Cómo trabajamos',
-    subheadline: 'Un equipo pequeño, capaz de moverse rápido.',
+    subheadline: 'Agilidad, integración y ejecución sin intermediarios.',
     paragraphs: [
       'Belgrano opera con un modelo de equipo integrado: estrategas, productores, desarrolladores y especialistas en IA trabajando en el mismo proyecto, sin silos. Cada vertical tiene su líder técnico, y todos reportan a un solo punto de contacto.',
       'No tercerizamos la parte crítica. Las herramientas que te recomendamos son las que usamos todos los días. Si algo no funciona, somos los primeros en saberlo — y los primeros en arreglarlo.',

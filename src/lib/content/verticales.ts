@@ -89,12 +89,12 @@ export const verticales: Vertical[] = [
       { value: '20–40 min', label: 'tiempo promedio de exposición en espacios médicos' },
       { value: '3–5x', label: 'CPM más alto que OOH estático por calidad de audiencia' },
     ],
-    clients: ['TNT Sports', 'Warner Bros.', 'AFP Modelo'],
+    clients: ['TNT Sports', 'Warner Bros.'],
     faq: [
       {
         question: '¿Qué espacios forman parte de la red?',
         answer:
-          'Operamos pantallas en clínicas, estadios deportivos y espacios corporativos en Santiago. TNT Sports y Warner Bros. son clientes activos en el vertical de estadios. AFP Modelo en el vertical corporativo.',
+          'Operamos pantallas en clínicas y espacios corporativos en Santiago. Gestionamos la intermediación entre los espacios y los canales de televisión para la exhibición de publicidad en sus pantallas. TNT Sports y Warner Bros. son clientes activos.',
       },
       {
         question: '¿Cómo funciona el modelo de revenue share para espacios?',
