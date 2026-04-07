@@ -118,13 +118,20 @@ Corporate website for Grupo Belgrano, a Chilean AI, marketing, and business stra
 <!-- GSD:conventions-start source:CONVENTIONS.md -->
 ## Conventions
 
-Conventions not yet established. Will populate as patterns emerge during development.
+- `framer-motion` import from `'framer-motion'` (not `'motion/react'` — not installed)
+- Hero cards: `src/components/ui/hero-mockups.tsx` + `src/components/ui/vertical-mockups.tsx`
+- Vertical slugs: `bots`, `dooh`, `producciones`, `academy`
+- Mockup components are `aria-hidden` decorative elements, no images/SVGs — pure Tailwind divs
+- Cards use `items-stretch` + `h-full flex-col` for equal heights; CTA pinned bottom with `mt-auto`
 <!-- GSD:conventions-end -->
 
 <!-- GSD:architecture-start source:ARCHITECTURE.md -->
 ## Architecture
 
-Architecture not yet mapped. Follow existing patterns found in the codebase.
+- `src/components/ui/hero-mockups.tsx` — 4 hero cards grid (HeroMockups)
+- `src/components/ui/vertical-mockups.tsx` — HTML/CSS product mockups per vertical (ChatMockup, ScreenMockup, VideoMockup, SlideMockup)
+- `src/components/ui/vertical-icon.tsx` — Lucide icon resolver, still used in other sections
+- `src/lib/content/verticales.ts` — source of truth for all vertical content (slug, name, benefitHeadline, tagline, tags, faq, clients)
 <!-- GSD:architecture-end -->
 
 <!-- GSD:workflow-start source:GSD defaults -->
