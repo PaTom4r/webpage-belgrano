@@ -35,21 +35,21 @@ export function HeroMockups() {
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      className="mx-auto grid w-full max-w-7xl grid-cols-2 items-start gap-4 px-6 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-12"
+      className="mx-auto grid w-full max-w-7xl grid-cols-2 items-stretch gap-4 px-6 sm:px-8 lg:grid-cols-4 lg:gap-5 lg:px-12"
     >
       {verticales.map((vertical) => (
-        <motion.div key={vertical.slug} variants={mockupVariants}>
-          <Link href={`/verticales/${vertical.slug}`} className="group block">
+        <motion.div key={vertical.slug} variants={mockupVariants} className="h-full">
+          <Link href={`/verticales/${vertical.slug}`} className="group block h-full">
             <motion.div
               whileHover={{ y: -4, scale: 1.02 }}
               transition={{ duration: 0.2, ease: easing }}
-              className="overflow-hidden rounded-xl border border-white/10 bg-gray-950 shadow-lg shadow-black/20 transition-all duration-200 group-hover:border-white/25 group-hover:shadow-xl group-hover:shadow-black/30"
+              className="flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-gray-950 shadow-lg shadow-black/20 transition-all duration-200 group-hover:border-white/25 group-hover:shadow-xl group-hover:shadow-black/30"
             >
-              {/* Mockup area — edge-to-edge, top 50% of card */}
+              {/* Mockup area — edge-to-edge, top ~50% of card */}
               <VerticalMockup slug={vertical.slug} />
 
-              {/* Text content — left-aligned */}
-              <div className="p-5">
+              {/* Text content — left-aligned, stretches to fill remaining height */}
+              <div className="flex flex-1 flex-col p-5">
                 {/* Brand label */}
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-500">
                   {vertical.name}
@@ -65,8 +65,8 @@ export function HeroMockups() {
                   {vertical.tagline}
                 </p>
 
-                {/* CTA pill */}
-                <div className="mt-4">
+                {/* CTA pill — pushed to bottom */}
+                <div className="mt-auto pt-4">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black">
                     Saber más →
                   </span>
