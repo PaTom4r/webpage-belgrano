@@ -20,6 +20,7 @@ export interface Vertical {
   description: string       // short (used by landing cards — keep existing)
   longDescription: string   // 2-3 paragraph expanded copy for detail page
   icon: string              // Lucide icon name (used as string label — actual icon rendered by section component)
+  tags?: string[]           // Capability chips shown on hero cards (channels, spaces, formats, modalities)
   metrics?: VerticalMetric[]
   clients?: string[]
   faq: FaqItem[]            // 5-7 items per vertical, addressing sales objections
@@ -36,12 +37,8 @@ export const verticales: Vertical[] = [
     longDescription:
       'Construimos chatbots con IA que atienden, califican y derivan leads en WhatsApp, web y redes sociales — las 24 horas, los 7 días de la semana, sin costo operacional adicional. A diferencia de las plataformas SaaS genéricas, cada bot que construimos está integrado a los sistemas internos de tu empresa: CRM, agendas médicas, bases de clientes, pasarelas de pago.\n\nNuestras implementaciones en industrias reguladas (salud, seguros, AFP) resuelven desafíos que las soluciones estándar no pueden: flujos de derivación complejos, cumplimiento normativo, manejo de datos sensibles. El resultado: tu equipo se enfoca en cerrar, no en contestar.\n\nRespuesta en menos de 2 minutos aumenta 10 veces la probabilidad de conversión. Con un bot bien implementado, eso pasa automáticamente.',
     icon: 'MessageCircle',
-    metrics: [
-      { value: '70–85%', label: 'consultas resueltas sin intervención humana' },
-      { value: '30–50%', label: 'reducción en costos de atención al cliente' },
-      { value: '10x', label: 'más conversión cuando se responde en menos de 2 minutos' },
-      { value: '24/7', label: 'disponibilidad sin costo incremental' },
-    ],
+    tags: ['WhatsApp', 'Web', 'Instagram'],
+    metrics: [],
     clients: ['Clínica Las Condes', 'Seguros CLC'],
     faq: [
       {
@@ -86,12 +83,8 @@ export const verticales: Vertical[] = [
     longDescription:
       'Operamos redes de pantallas digitales en espacios cautivos de alto valor: clínicas, estadios, corporativos y centros comerciales. A diferencia de la publicidad exterior tradicional (carteles estáticos), nuestras pantallas entregan contenido dinámico, actualizable en tiempo real y segmentado por horario o contexto.\n\nPara las marcas que se anuncian: acceso a audiencias con alta receptividad y tiempo de atención. Una sala de espera médica promedia 20-40 minutos de exposición. Eso no lo tiene ningún otro canal.\n\nPara los espacios que se suman a nuestra red: instalamos y operamos la infraestructura sin costo. El modelo de revenue share convierte metros cuadrados subutilizados en un activo que genera ingresos pasivos — sin esfuerzo operativo de tu parte.',
     icon: 'Monitor',
-    metrics: [
-      { value: '500+', label: 'pantallas gestionadas en la red' },
-      { value: '2–3x', label: 'mayor recall vs. señalética estática' },
-      { value: '20–40 min', label: 'tiempo promedio de exposición en espacios médicos' },
-      { value: '3–5x', label: 'CPM más alto que OOH estático por calidad de audiencia' },
-    ],
+    tags: ['Clínicas', 'Estadios', 'Corporativos'],
+    metrics: [],
     clients: ['TNT Sports', 'Warner Bros.'],
     faq: [
       {
@@ -136,11 +129,8 @@ export const verticales: Vertical[] = [
     longDescription:
       'Producimos video, motion graphics, fotografía y assets digitales potenciados por inteligencia artificial. La diferencia con una agencia de producción tradicional: velocidad, costo y volumen.\n\nUna producción tradicional tarda semanas y cuesta miles de dólares. Con nuestro proceso IA-asistido, producimos contenido de calidad profesional en días — no semanas — a un costo 40-60% menor. Eso permite escalar tu estrategia de contenido sin escalar tu presupuesto.\n\nEl contenido producido se integra directamente con las otras verticales de Belgrano: creatividades para pantallas DOOH, materiales de formación para la Academy, y assets para campañas de chatbot. Un solo proveedor para todo el ecosistema de contenido.',
     icon: 'Film',
-    metrics: [
-      { value: '3x', label: 'velocidad vs. producción audiovisual tradicional' },
-      { value: '40–60%', label: 'reducción de costo vs. agencia tradicional' },
-      { value: '1–3', label: 'días de turnaround para reels y contenido redes sociales' },
-    ],
+    tags: ['Video', 'Motion', 'Fotografía'],
+    metrics: [],
     clients: [],
     faq: [
       {
@@ -180,12 +170,8 @@ export const verticales: Vertical[] = [
     longDescription:
       'Capacitamos equipos corporativos para adoptar inteligencia artificial de forma práctica y medible — no solo hablar de ella. Nuestros programas están diseñados desde casos reales: los mismos contextos de salud, seguros, AFP y marketing que ya implementamos en las otras verticales de Belgrano.\n\nLa diferencia con los cursos del mercado: no enseñamos teoría genérica. Enseñamos cómo usar IA en el trabajo específico de tu equipo — ya sea médicos, ejecutivos de ventas, equipo de RRHH o gerentes. El resultado es medible: productividad real, no solo certificados.\n\nTrabajamos con SENCE para capacitaciones acreditadas y ofrecemos formatos presenciales, online sincrónico y taller in-company. Desde fundamentos hasta automatización avanzada con n8n.',
     icon: 'GraduationCap',
-    metrics: [
-      { value: '200+', label: 'profesionales formados en empresas chilenas' },
-      { value: '98%', label: 'satisfacción en evaluaciones post-taller' },
-      { value: '20–40%', label: 'ganancia de productividad reportada por equipos capacitados' },
-      { value: '2–3h', label: 'ahorro semanal por persona con Copilot bien implementado' },
-    ],
+    tags: ['In-company', 'Online', 'SENCE'],
+    metrics: [],
     clients: ['Clínica Las Condes', 'AFP Modelo'],
     faq: [
       {
