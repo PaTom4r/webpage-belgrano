@@ -31,7 +31,7 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-black uppercase tracking-tighter text-accent transition-opacity hover:opacity-70"
+          className="text-3xl font-black uppercase tracking-tighter text-accent transition-opacity hover:opacity-70"
         >
           {siteConfig.name}
         </Link>

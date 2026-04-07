@@ -15,6 +15,7 @@ export interface VerticalMetric {
 export interface Vertical {
   slug: string
   name: string
+  benefitHeadline: string    // Benefit-oriented headline shown big on hero cards
   tagline: string
   description: string       // short (used by landing cards — keep existing)
   longDescription: string   // 2-3 paragraph expanded copy for detail page
@@ -28,6 +29,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'bots',
     name: 'Smart Agents',
+    benefitHeadline: 'Automatiza tu atención',
     tagline: 'Tu negocio responde solo. Siempre.',
     description:
       'Chatbots con IA que atienden, califican y derivan leads en WhatsApp, web y redes sociales — 24/7, sin costo operacional adicional. Automatizamos la primera línea de atención para que tu equipo se enfoque en cerrar, no en contestar.',
@@ -77,6 +79,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'dooh',
     name: 'Digital Media',
+    benefitHeadline: 'Llega donde están tus clientes',
     tagline: 'Tu marca en movimiento, donde importa.',
     description:
       'Diseñamos, producimos y operamos redes de pantallas digitales en puntos de alto tráfico — malls, clínicas, corporativos y espacios públicos. Contenido dinámico, actualizable en tiempo real, con métricas de impacto.',
@@ -126,6 +129,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'producciones',
     name: 'Creative Studio',
+    benefitHeadline: 'Contenido que convierte',
     tagline: 'Contenido que convierte, no solo impresiona.',
     description:
       'Videos, motion graphics, fotografía y assets digitales producidos con IA y talento humano. Desde reels de producto hasta campañas integradas. Velocidad de agencia boutique, calidad de producción profesional.',
@@ -169,6 +173,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'academy',
     name: 'Academy',
+    benefitHeadline: 'Entrena a tu equipo con IA',
     tagline: 'Tu equipo con superpoderes de IA.',
     description:
       'Programas de formación y talleres prácticos para equipos de marketing, ventas y operaciones que quieren incorporar IA de verdad — no solo hablar de ella. Desde fundamentos hasta implementación de herramientas.',

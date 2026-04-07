@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
           <div>
-            <p className="text-xl font-black uppercase tracking-tighter text-accent">
+            <p className="text-2xl font-black uppercase tracking-tighter text-accent">
               {siteConfig.name}
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-text-secondary">
