@@ -45,25 +45,25 @@ export const aboutContent: AboutContent = {
     paragraphs: [
       'Grupo Belgrano nació en Santiago con una convicción clara: la inteligencia artificial no es una moda — es la herramienta más poderosa que una empresa puede poner a trabajar hoy. Desde el primer día, construimos todo en torno a esa idea.',
       'Somos una agencia integrada de marketing, IA y estrategia de negocios. Esto significa que no derivamos a terceros: el mismo equipo que diseña la estrategia, la ejecuta. Sin teléfono descompuesto, sin pérdida de contexto.',
-      'Nuestros clientes incluyen aseguradoras, canales de televisión y empresas de servicios que eligieron crecer de forma inteligente. Hoy los acompañamos en automatización de conversaciones, presencia digital en pantallas, producción de contenido y formación de equipos.',
+      'Nuestros clientes incluyen aseguradoras, canales de televisión y empresas de servicios que eligieron crecer de forma inteligente. Hoy los acompañamos con planificación y compra de medios tradicionales y digitales, inteligencia artificial aplicada a sus procesos y experiencias de marca que conectan con su audiencia.',
     ],
   },
 
   values: {
     headline: 'Por qué Belgrano',
-    subheadline: 'Cuatro verticales. Un solo equipo. Ningún intermediario.',
+    subheadline: 'Tres verticales. Una sola inteligencia.',
     items: [
       {
         icon: 'bot',
         title: 'IA aplicada desde el día uno',
         description:
-          'No usamos IA como buzz word. Construimos bots reales, flujos de automatización y sistemas que tu equipo puede operar desde mañana.',
+          'Belgrano Intelligence es el tronco tecnológico del grupo. Construimos agentes, modelos y automatizaciones reales — y formamos a tu equipo para que los opere.',
       },
       {
         icon: 'layers',
-        title: 'Servicios integrados',
+        title: 'Tres verticales integradas',
         description:
-          'Bots + pantallas + contenido + formación. Somos la única agencia que cubre todos estos frentes sin subcontratar ni fragmentar la estrategia.',
+          'Belgrano Media, Intelligence y Brand: medios tradicionales y digitales, inteligencia artificial aplicada y experiencias de marca. Un solo equipo, sin intermediarios.',
       },
       {
         icon: 'map-pin',
@@ -75,7 +75,7 @@ export const aboutContent: AboutContent = {
         icon: 'users',
         title: 'Tu equipo, no solo tu agencia',
         description:
-          'Formamos a tu gente a través de nuestra Academy. Cuando terminamos, tu equipo sabe usar las herramientas que instalamos. El conocimiento se queda.',
+          'A través de Academy — la rama formativa de Intelligence — capacitamos a tu gente para operar lo que construimos. El conocimiento se queda en tu empresa.',
       },
     ],
   },

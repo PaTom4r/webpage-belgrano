@@ -39,14 +39,14 @@ export function VerticalesSection() {
         </ScrollReveal>
         <ScrollReveal delay={0.05} className="text-center">
           <h2 id="what-we-do-heading" className="text-4xl font-extrabold tracking-tight text-text sm:text-5xl">
-            Cuatro verticales.{' '}
+            Tres verticales.{' '}
             <br className="hidden sm:block" />
-            Un solo equipo.
+            Una sola inteligencia.
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.1} className="mb-16 text-center">
           <p className="mx-auto mt-4 max-w-2xl text-lg text-text-secondary">
-            Automatización conversacional, señalética digital, producción de contenido y formación en IA — todo integrado.
+            Belgrano Media, Intelligence y Brand: medios tradicionales y digitales, IA aplicada y experiencias de marca — todo integrado en un solo equipo.
           </p>
         </ScrollReveal>
 
@@ -56,7 +56,7 @@ export function VerticalesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {verticales.map((vertical) => (
             <motion.div key={vertical.slug} variants={itemVariants}>

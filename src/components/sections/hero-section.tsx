@@ -50,8 +50,8 @@ export function HeroSection() {
             {...fadeUp(0.15)}
             className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg"
           >
-            Automatizamos ventas, amplificamos tu marca y formamos a tu equipo —
-            todo con IA aplicada y resultados medibles.
+            Medios tradicionales con IA, soluciones inteligentes para tu empresa
+            y experiencias de marca que conectan — todo Belgrano.
           </motion.p>
         </div>
       </div>

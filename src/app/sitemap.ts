@@ -18,25 +18,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/verticales/bots`,
+      url: `${baseUrl}/verticales/media`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/verticales/dooh`,
+      url: `${baseUrl}/verticales/intelligence`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/verticales/producciones`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/verticales/academy`,
+      url: `${baseUrl}/verticales/brand`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,

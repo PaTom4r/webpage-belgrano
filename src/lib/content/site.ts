@@ -27,10 +27,9 @@ export const navLinks: NavLink[] = [
 export const footerData = {
   tagline: 'Hacemos que la IA trabaje para tu negocio.',
   links: [
-    { label: 'Smart Agents', href: '/verticales/bots' },
-    { label: 'Digital Media', href: '/verticales/dooh' },
-    { label: 'Creative Studio', href: '/verticales/producciones' },
-    { label: 'Academy', href: '/verticales/academy' },
+    { label: 'Belgrano Media', href: '/verticales/media' },
+    { label: 'Belgrano Intelligence', href: '/verticales/intelligence' },
+    { label: 'Belgrano Brand', href: '/verticales/brand' },
     { label: 'Nosotros', href: '/nosotros' },
     { label: 'Contacto', href: '#cta' },
   ],

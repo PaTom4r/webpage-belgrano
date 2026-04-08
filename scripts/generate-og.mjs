@@ -6,11 +6,10 @@ import sharp from 'sharp'
 import { mkdir } from 'fs/promises'
 
 const pages = [
-  { file: 'og-default.png', title: 'Belgrano', subtitle: 'IA, Marketing &amp; Estrategia' },
-  { file: 'og-bots.png', title: 'Bots Conversacionales', subtitle: 'Tu negocio responde solo. Siempre.' },
-  { file: 'og-dooh.png', title: 'DOOH &amp; Se&#xF1;al&#xE9;tica Digital', subtitle: 'Tu marca en movimiento, donde importa.' },
-  { file: 'og-producciones.png', title: 'Producciones Digitales', subtitle: 'Contenido que convierte, no solo impresiona.' },
-  { file: 'og-academy.png', title: 'Belgrano Academy', subtitle: 'Tu equipo con superpoderes de IA.' },
+  { file: 'og-default.png', title: 'Belgrano', subtitle: 'Media, Intelligence &amp; Brand' },
+  { file: 'og-media.png', title: 'Belgrano Media', subtitle: 'Tu marca presente donde tu audiencia vive.' },
+  { file: 'og-intelligence.png', title: 'Belgrano Intelligence', subtitle: 'La inteligencia que impulsa tu negocio.' },
+  { file: 'og-brand.png', title: 'Belgrano Brand', subtitle: 'Experiencias de marca que activan, conectan y venden.' },
   { file: 'og-nosotros.png', title: 'Nosotros', subtitle: 'Grupo Belgrano — Santiago, Chile' },
 ]
 
@@ -29,4 +28,4 @@ for (const page of pages) {
   console.log(`Generated: public/og/${page.file}`)
 }
 
-console.log('Done — 6 OG images created in public/og/')
+console.log('Done — 5 OG images created in public/og/')

@@ -1,7 +1,7 @@
 // src/app/verticales/[slug]/page.tsx
-// Dynamic vertical detail pages: /verticales/bots, /verticales/dooh,
-//   /verticales/producciones, /verticales/academy
-// generateStaticParams() ensures static generation of all 4 routes.
+// Dynamic vertical detail pages: /verticales/media, /verticales/intelligence,
+//   /verticales/brand
+// generateStaticParams() ensures static generation of all 3 routes.
 // notFound() handles invalid slugs.
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -11,6 +11,7 @@ import { VerticalHeroSection } from '@/components/sections/vertical-hero-section
 import { VerticalMetricsSection } from '@/components/sections/vertical-metrics-section'
 import { VerticalClientsSection } from '@/components/sections/vertical-clients-section'
 import { VerticalFaqSection } from '@/components/sections/vertical-faq-section'
+import { VerticalBranchesSection } from '@/components/sections/vertical-branches-section'
 import { CtaSection } from '@/components/sections/cta-section'
 import { Container } from '@/components/layout/container'
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
@@ -20,10 +21,9 @@ interface VerticalPageProps {
 }
 
 const ogImages: Record<string, string> = {
-  bots: '/og/og-bots.png',
-  dooh: '/og/og-dooh.png',
-  producciones: '/og/og-producciones.png',
-  academy: '/og/og-academy.png',
+  media: '/og/og-media.png',
+  intelligence: '/og/og-intelligence.png',
+  brand: '/og/og-brand.png',
 }
 
 export async function generateStaticParams() {
@@ -114,6 +114,11 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
           </div>
         </Container>
       </section>
+
+      {/* Branches — only for verticals with internal sub-divisions (Intelligence) */}
+      {vertical.branches && vertical.branches.length > 0 && (
+        <VerticalBranchesSection branches={vertical.branches} />
+      )}
 
       {/* Metrics — dark bg grid of value+label pairs */}
       {vertical.metrics && vertical.metrics.length > 0 && (

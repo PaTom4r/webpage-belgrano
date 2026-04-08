@@ -1,6 +1,6 @@
 // src/components/sections/vertical-clients-section.tsx
 // Client references section. Only renders when clients array has items.
-// Producciones has no clients — this component returns null in that case.
+// Brand has no clients by default — this component returns null in that case.
 // Server Component.
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
 import { Container } from '@/components/layout/container'

@@ -42,7 +42,7 @@ export default function LeadConfirmationEmail({ name }: LeadConfirmationEmailPro
             </Text>
 
             <Text style={{ fontSize: '15px', color: '#374151', lineHeight: '1.6' }}>
-              En Belgrano ayudamos a empresas a crecer con IA conversacional, publicidad digital DOOH, producción de contenido y capacitación en inteligencia artificial.
+              En Belgrano ayudamos a empresas a crecer con medios tradicionales, inteligencia artificial aplicada y experiencias de marca para impulsar tu negocio.
             </Text>
 
             <Hr style={{ borderColor: '#e5e7eb', margin: '24px 0' }} />

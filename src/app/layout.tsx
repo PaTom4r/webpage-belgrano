@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | Belgrano',
     default: 'Belgrano — IA, Marketing & Estrategia',
   },
-  description: 'Agencia chilena de IA aplicada, marketing digital y estrategia de negocio.',
+  description: 'Grupo Belgrano: Media, Intelligence y Brand. Medios tradicionales, inteligencia artificial aplicada y experiencias de marca en Chile.',
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',
