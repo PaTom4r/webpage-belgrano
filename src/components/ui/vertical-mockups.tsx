@@ -47,39 +47,81 @@ export function MediaMockup() {
 }
 
 export function IntelligenceMockup() {
+  const courses = [
+    { name: 'IA para ventas', pct: 87 },
+    { name: 'Copilot 365', pct: 64 },
+    { name: 'n8n avanzado', pct: 41 },
+  ]
+
   return (
     <div
       aria-hidden="true"
-      className="w-full aspect-[2/1] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
+      className="w-full h-[220px] md:h-[260px] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
     >
       {/* Header */}
-      <div className="flex items-center gap-1.5 pb-2 border-b border-white/10 mb-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-        <span className="text-[11px] font-semibold text-white tracking-tight">Belgrano Intelligence</span>
+      <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3 flex-shrink-0">
+        <div className="flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+          <span className="text-[11px] font-semibold text-white tracking-tight">Belgrano Intelligence</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[9px] font-semibold text-green-400 uppercase tracking-widest">AI Activo</span>
+        </div>
       </div>
 
-      {/* Diagram: central AI Engine + 2 branches */}
-      <div className="flex-1 flex flex-col items-center justify-center gap-2 relative">
-        {/* Central node */}
-        <div className="rounded-md border border-white/30 bg-white/10 px-3 py-1.5 relative z-10">
-          <p className="text-[10px] font-bold text-white tracking-wide">AI Engine</p>
-        </div>
-
-        {/* Connector lines */}
-        <div className="relative w-full h-3">
-          <div className="absolute left-1/2 top-0 h-3 w-px bg-white/30" />
-          <div className="absolute left-1/4 top-3 right-1/4 h-px bg-white/30" />
-          <div className="absolute left-1/4 top-3 h-2 w-px bg-white/30" />
-          <div className="absolute right-1/4 top-3 h-2 w-px bg-white/30" />
-        </div>
-
-        {/* Two branches */}
-        <div className="flex items-center justify-between w-full px-1 gap-2">
-          <div className="flex-1 rounded-md border border-white/15 bg-gray-950 px-2 py-1 text-center">
-            <p className="text-[9px] font-semibold text-white leading-tight">AI Solutions</p>
+      {/* Body — two-column split */}
+      <div className="flex flex-1 gap-3 overflow-hidden min-h-0">
+        {/* Left column — AI Solutions */}
+        <div className="flex-1 flex flex-col gap-1.5 min-w-0">
+          <span className="text-[9px] font-semibold text-gray-500 uppercase tracking-widest flex-shrink-0">
+            AI Solutions
+          </span>
+          {/* KPI tiles */}
+          <div className="flex flex-col gap-1.5 flex-1 justify-center">
+            <div className="flex items-center justify-between rounded-md border border-white/10 bg-white/5 px-2 py-1.5">
+              <span className="text-[10px] text-gray-400">Agentes activos</span>
+              <span className="text-[13px] font-black text-white tabular-nums">12</span>
+            </div>
+            <div className="flex items-center justify-between rounded-md border border-white/10 bg-white/5 px-2 py-1.5">
+              <span className="text-[10px] text-gray-400">Tareas / día</span>
+              <span className="text-[13px] font-black text-white tabular-nums">4.2k</span>
+            </div>
+            <div className="flex flex-col gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-gray-400">Precisión</span>
+                <span className="text-[13px] font-black text-white tabular-nums">94%</span>
+              </div>
+              <div className="h-1 w-full rounded-full bg-gray-800 overflow-hidden">
+                <div className="h-full rounded-full bg-white transition-all duration-700 w-[40%] group-hover:w-[94%]" />
+              </div>
+            </div>
           </div>
-          <div className="flex-1 rounded-md border border-white/15 bg-gray-950 px-2 py-1 text-center">
-            <p className="text-[9px] font-semibold text-white leading-tight">Academy</p>
+        </div>
+
+        {/* Divider */}
+        <div className="w-px bg-white/10 flex-shrink-0" />
+
+        {/* Right column — Academy */}
+        <div className="flex-1 flex flex-col gap-1.5 min-w-0">
+          <span className="text-[9px] font-semibold text-gray-500 uppercase tracking-widest flex-shrink-0">
+            Academy
+          </span>
+          <div className="flex flex-col gap-2 flex-1 justify-center">
+            {courses.map((c) => (
+              <div key={c.name} className="flex flex-col gap-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-gray-300 truncate pr-1">{c.name}</span>
+                  <span className="text-[9px] font-semibold text-gray-500 flex-shrink-0">{c.pct}%</span>
+                </div>
+                <div className="h-1 w-full rounded-full bg-gray-800 overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-white/70 transition-all duration-700"
+                    style={{ width: `${c.pct}%` }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

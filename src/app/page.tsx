@@ -3,7 +3,7 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
-import { MarqueeSection } from '@/components/sections/marquee-section'
+// import { MarqueeSection } from '@/components/sections/marquee-section' — oculto temporalmente
 import { HowItWorksSection } from '@/components/sections/how-it-works-section'
 import { StatsSection } from '@/components/sections/stats-section'
 import { CtaSection } from '@/components/sections/cta-section'
@@ -61,7 +61,7 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
-        <MarqueeSection />
+        {/* <MarqueeSection /> — oculto temporalmente, mantener import y componente para retomar */}
         <HowItWorksSection />
         <StatsSection />
         <CtaSection />

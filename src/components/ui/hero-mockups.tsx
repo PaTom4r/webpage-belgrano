@@ -50,13 +50,13 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
         <VerticalMockup slug={slug} />
 
         <div className="flex flex-1 flex-col p-4">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-500">
+          <p className={`font-bold uppercase tracking-[0.2em] text-white/80 ${featured ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>
             {name}
           </p>
 
           <h3
             className={`mt-1.5 font-black leading-tight tracking-tight text-white ${
-              featured ? 'text-lg sm:text-xl lg:text-2xl' : 'text-base sm:text-lg'
+              featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-base sm:text-lg'
             }`}
           >
             {benefitHeadline}
@@ -64,7 +64,7 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
 
           <p
             className={`mt-2 leading-relaxed text-gray-400 ${
-              featured ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'
+              featured ? 'text-base sm:text-lg' : 'text-xs sm:text-sm'
             }`}
           >
             {tagline}
@@ -76,7 +76,7 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
               {branches.map((b) => (
                 <span
                   key={b.name}
-                  className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white"
+                  className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white"
                 >
                   {b.name}
                 </span>
@@ -85,7 +85,7 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
           )}
 
           <div className="mt-auto pt-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black">
+            <span className={`inline-flex items-center gap-1.5 rounded-full border border-white/20 font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black ${featured ? 'px-5 py-2.5 text-sm' : 'px-4 py-2 text-xs'}`}>
               Saber más →
             </span>
           </div>
