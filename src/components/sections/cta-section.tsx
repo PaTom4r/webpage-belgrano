@@ -62,15 +62,15 @@ export function CtaSection() {
           </ScrollReveal>
         </div>
 
-        {/* Calendly inline booking widget */}
-        <div className="mt-16 border-t border-white/10 pt-16">
+        {/* Calendly inline booking widget — desactivado temporalmente, reactivar quitando el comentario */}
+        {/* <div className="mt-16 border-t border-white/10 pt-16">
           <ScrollReveal>
             <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-bg/40">
               O agenda directo
             </p>
           </ScrollReveal>
           <CalendlyEmbed />
-        </div>
+        </div> */}
       </div>
     </section>
   )
