@@ -7,18 +7,18 @@ import { ScrollReveal } from '@/components/animations/scroll-reveal'
 
 const stats = [
   {
-    target: 200,
-    prefix: '+',
-    suffix: '',
-    label: 'Empresas atendidas',
-    detail: 'en Chile y LATAM',
+    target: 750,
+    prefix: '$',
+    suffix: 'MM+',
+    label: 'Generados para clientes',
+    detail: 'en ventas atribuidas a campañas',
   },
   {
-    target: 10,
+    target: 289,
     prefix: '',
     suffix: 'x',
-    label: 'ROI promedio',
-    detail: 'en automatización de atención',
+    label: 'ROI en campañas',
+    detail: 'caso Clínica Las Condes',
   },
   {
     target: 98,
@@ -26,13 +26,6 @@ const stats = [
     suffix: '%',
     label: 'Satisfacción',
     detail: 'en encuestas post-proyecto',
-  },
-  {
-    target: 80,
-    prefix: '$',
-    suffix: 'M+',
-    label: 'Generados para clientes',
-    detail: 'en ventas e impacto medible',
   },
 ]
 
@@ -48,12 +41,12 @@ export function StatsSection() {
         </ScrollReveal>
         <ScrollReveal delay={0.05} className="mb-16 text-center">
           <h2 id="stats-heading" className="text-4xl font-extrabold tracking-tight text-bg sm:text-5xl">
-            Números que hablan.
+            Resultados que hablan.
           </h2>
         </ScrollReveal>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-12">
           {stats.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 0.08}>
               <div className="flex flex-col items-center text-center">
