@@ -63,10 +63,10 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
-        <MarqueeSection />
         <HowItWorksSection />
         <ServicesBentoSection />
         <StatsSection />
+        <MarqueeSection />
         <FaqLandingSection />
         <CtaSection />
       </main>
