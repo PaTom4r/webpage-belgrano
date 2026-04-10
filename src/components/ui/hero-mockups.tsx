@@ -50,12 +50,8 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
         <VerticalMockup slug={slug} />
 
         <div className="flex flex-1 flex-col p-4">
-          <p className={`font-bold uppercase tracking-[0.2em] text-white/80 ${featured ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>
-            {name}
-          </p>
-
           <h3
-            className={`mt-1.5 font-black leading-tight tracking-tight text-white ${
+            className={`mt-0 font-black leading-tight tracking-tight text-white ${
               featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-base sm:text-lg'
             }`}
           >

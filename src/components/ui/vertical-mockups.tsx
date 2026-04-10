@@ -3,6 +3,8 @@
 // Each mockup is purely decorative — aria-hidden.
 'use client'
 
+import { VerticalIcon } from '@/components/ui/vertical-icon'
+
 export function MediaMockup() {
   const channels = [
     { label: 'TV', share: 35 },
@@ -19,8 +21,14 @@ export function MediaMockup() {
     >
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
-        <span className="text-[11px] font-semibold text-white tracking-tight">Media Planning</span>
-        <span className="text-[9px] text-gray-500 uppercase tracking-widest">Q2</span>
+        <div className="flex items-center gap-1.5">
+          <VerticalIcon name="Monitor" className="h-3 w-3 text-white" />
+          <span className="flex items-baseline gap-1">
+            <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
+            <span className="text-sm font-extrabold text-white tracking-tight">Media</span>
+          </span>
+        </div>
+        <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">Planificación de medios</span>
       </div>
 
       {/* Channel bars */}
@@ -61,13 +69,13 @@ export function IntelligenceMockup() {
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3 flex-shrink-0">
         <div className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-          <span className="text-[11px] font-semibold text-white tracking-tight">Belgrano Intelligence</span>
+          <VerticalIcon name="Brain" className="h-3 w-3 text-white" />
+          <span className="flex items-baseline gap-1">
+            <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
+            <span className="text-sm font-extrabold text-white tracking-tight">Intelligence</span>
+          </span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-[9px] font-semibold text-green-400 uppercase tracking-widest">AI Activo</span>
-        </div>
+        <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">IA + Academy</span>
       </div>
 
       {/* Body — two-column split */}
@@ -137,8 +145,14 @@ export function BrandMockup() {
     >
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
-        <span className="text-[11px] font-semibold text-white tracking-tight">Brand Activation</span>
-        <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+        <div className="flex items-center gap-1.5">
+          <VerticalIcon name="Megaphone" className="h-3 w-3 text-white" />
+          <span className="flex items-baseline gap-1">
+            <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
+            <span className="text-sm font-extrabold text-white tracking-tight">Brand</span>
+          </span>
+        </div>
+        <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">Trade marketing</span>
       </div>
 
       {/* Stand scene */}

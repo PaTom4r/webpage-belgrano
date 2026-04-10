@@ -41,7 +41,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'media',
     name: 'Belgrano Media',
-    benefitHeadline: 'Tu marca presente donde tu audiencia vive',
+    benefitHeadline: 'Compramos y operamos tu pauta en TV, radio, vía pública, DOOH y digital.',
     tagline: 'Medios tradicionales y digitales, planificados con cabeza.',
     description:
       'Planificación, compra y gestión de espacios publicitarios: TV, radio, vía pública, DOOH y digital. Diseñamos mixes de medios que llegan donde tu audiencia realmente está — con data, relación directa con los canales y foco en resultados medibles.',
@@ -91,7 +91,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'intelligence',
     name: 'Belgrano Intelligence',
-    benefitHeadline: 'IA aplicada que transforma cómo opera tu negocio',
+    benefitHeadline: 'IA a medida integrada a tus sistemas. Capacitamos a tu equipo para operarla.',
     tagline: 'La inteligencia artificial puesta a trabajar por tu empresa.',
     description:
       'IA aplicada a problemas reales de tu negocio: agentes conversacionales, análisis de clientes, automatización de procesos y capacitación para que tu equipo se apropie de la tecnología. El tronco inteligente que potencia a Media y Brand.',
@@ -215,7 +215,7 @@ export const verticales: Vertical[] = [
   {
     slug: 'brand',
     name: 'Belgrano Brand',
-    benefitHeadline: 'Experiencias de marca que activan, conectan y venden',
+    benefitHeadline: 'Activaciones BTL, stands y experiencias que venden en terreno.',
     tagline: 'Trade marketing y acciones creativas que dejan huella.',
     description:
       'Trade marketing, activaciones BTL, stands, eventos y desarrollo creativo para marcas que quieren presencia real donde están sus clientes. Diseñamos experiencias que integran presencia física, contenido y — cuando suma — tecnología inteligente.',
