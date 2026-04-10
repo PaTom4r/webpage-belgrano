@@ -7,7 +7,14 @@ import { CalendlyEmbed } from '@/components/conversion/calendly-embed'
 
 export function CtaSection() {
   return (
-    <section id="cta" aria-labelledby="cta-heading" className="bg-dark py-16 sm:py-20 lg:py-24">
+    <section id="cta" aria-labelledby="cta-heading" className="relative overflow-hidden bg-dark py-16 sm:py-20 lg:py-24">
+      {/* Radial glow — centro de la sección */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      >
+        <div className="h-[600px] w-[900px] rounded-full bg-white/[0.03] blur-[120px]" />
+      </div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Left: headline and value prop */}

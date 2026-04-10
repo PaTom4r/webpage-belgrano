@@ -38,11 +38,15 @@ export function HeroSection() {
           <motion.h1
             id="hero-heading"
             {...headlineFade}
-            className="text-4xl font-extrabold leading-[1.1] tracking-tight text-text sm:text-5xl lg:text-6xl xl:text-7xl"
+            className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
           >
-            Tu negocio.{' '}
+            <span className="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500 bg-clip-text text-transparent">
+              Tu negocio.
+            </span>
             <br className="hidden sm:block" />
-            <span className="text-accent">Nuestra inteligencia.</span>
+            <span className="bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              Nuestra inteligencia.
+            </span>
           </motion.h1>
 
           {/* Subtitle */}

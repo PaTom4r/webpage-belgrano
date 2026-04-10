@@ -3,9 +3,11 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
-// import { MarqueeSection } from '@/components/sections/marquee-section' — oculto temporalmente
+import { MarqueeSection } from '@/components/sections/marquee-section'
 import { HowItWorksSection } from '@/components/sections/how-it-works-section'
+import { ServicesBentoSection } from '@/components/sections/services-bento-section'
 import { StatsSection } from '@/components/sections/stats-section'
+import { FaqLandingSection } from '@/components/sections/faq-landing-section'
 import { CtaSection } from '@/components/sections/cta-section'
 
 export const metadata: Metadata = {
@@ -61,9 +63,11 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
-        {/* <MarqueeSection /> — oculto temporalmente, mantener import y componente para retomar */}
+        <MarqueeSection />
         <HowItWorksSection />
+        <ServicesBentoSection />
         <StatsSection />
+        <FaqLandingSection />
         <CtaSection />
       </main>
     </>
