@@ -21,6 +21,13 @@ const stats = [
     detail: 'caso Clínica Las Condes',
   },
   {
+    target: 500,
+    prefix: '',
+    suffix: 'K+',
+    label: 'Personas alcanzadas',
+    detail: 'en campañas digitales y terreno',
+  },
+  {
     target: 98,
     prefix: '',
     suffix: '%',
@@ -46,7 +53,7 @@ export function StatsSection() {
         </ScrollReveal>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-12">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-12">
           {stats.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 0.08}>
               <div className="flex flex-col items-center text-center">

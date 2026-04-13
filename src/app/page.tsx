@@ -1,23 +1,20 @@
-// Home page — composes all 8 landing sections.
+// Home page — composes 4 landing sections.
 // Navbar and Footer are in layout.tsx (persistent across all pages).
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
 import { MarqueeSection } from '@/components/sections/marquee-section'
-import { HowItWorksSection } from '@/components/sections/how-it-works-section'
-import { ServicesBentoSection } from '@/components/sections/services-bento-section'
 import { StatsSection } from '@/components/sections/stats-section'
-import { FaqLandingSection } from '@/components/sections/faq-landing-section'
 import { CtaSection } from '@/components/sections/cta-section'
 
 export const metadata: Metadata = {
-  title: 'Belgrano — IA, Marketing & Estrategia',
+  title: 'Belgrano Group — Operamos el crecimiento de tu marca',
   description:
-    'Grupo Belgrano: Media, Intelligence y Brand. Planificación de medios tradicionales y digitales, inteligencia artificial aplicada y experiencias de marca para empresas que quieren crecer en serio.',
+    'Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.',
   openGraph: {
-    title: 'Belgrano — IA, Marketing & Estrategia',
+    title: 'Belgrano Group — Operamos el crecimiento de tu marca',
     description:
-      'Grupo Belgrano: Media, Intelligence y Brand. Planificación de medios tradicionales y digitales, inteligencia artificial aplicada y experiencias de marca para empresas que quieren crecer en serio.',
+      'Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.',
     url: 'https://belgrano.cl',
     images: [
       {
@@ -35,7 +32,7 @@ export default function HomePage() {
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'LocalBusiness'],
-    name: 'Grupo Belgrano',
+    name: 'Belgrano Group',
     alternateName: 'Belgrano',
     url: siteConfig.url,
     logo: `${siteConfig.url}/og/og-default.png`,
@@ -63,11 +60,8 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
-        <HowItWorksSection />
-        <ServicesBentoSection />
         <StatsSection />
         <MarqueeSection />
-        <FaqLandingSection />
         <CtaSection />
       </main>
     </>

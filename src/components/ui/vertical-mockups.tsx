@@ -66,7 +66,7 @@ export function IntelligenceMockup() {
   return (
     <div
       aria-hidden="true"
-      className="w-full h-[220px] md:h-[260px] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
+      className="w-full h-[180px] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
     >
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3 flex-shrink-0">

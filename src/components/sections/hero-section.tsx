@@ -41,11 +41,11 @@ export function HeroSection() {
             className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
           >
             <span className="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500 bg-clip-text text-transparent">
-              Potenciamos tu marca
+              Operamos el crecimiento
             </span>
             <br className="hidden sm:block" />
             <span className="bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              con inteligencia artificial.
+              de tu marca.
             </span>
           </motion.h1>
 
@@ -54,7 +54,7 @@ export function HeroSection() {
             {...fadeUp(0.15)}
             className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg"
           >
-            Medios, inteligencia artificial y activaciones de marca — todo en un equipo que trabaja junto para hacer crecer tu negocio.
+            Integramos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.
           </motion.p>
         </div>
       </div>

@@ -4,9 +4,9 @@
 
 export const siteConfig = {
   name: 'Belgrano',
-  tagline: 'IA, Marketing & Estrategia',
+  tagline: 'Operamos el crecimiento de tu marca',
   description:
-    'Agencia chilena de IA aplicada, marketing digital y producción de contenido para empresas que quieren crecer en serio.',
+    'Somos un operador de crecimiento de marca. Conectamos IA, medios y experiencias para que las marcas crezcan y vendan.',
   url: 'https://belgrano.cl',
   email: 'hola@belgrano.cl',
   whatsapp: '+56965360205',
@@ -18,10 +18,9 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Cómo trabajamos', href: '/#how-it-works' },
-  { label: 'Resultados', href: '/#stats' },
-  { label: 'Nosotros', href: '/nosotros' },
-  { label: 'Contacto', href: '/#cta' },
+  { label: 'Intelligence', href: '/verticales/intelligence' },
+  { label: 'Media',        href: '/verticales/media' },
+  { label: 'Brand',        href: '/verticales/brand' },
 ]
 
 export const footerData = {
