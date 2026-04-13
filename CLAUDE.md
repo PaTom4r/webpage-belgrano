@@ -155,3 +155,18 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 > Profile not yet configured. Run `/gsd:profile-user` to generate your developer profile.
 > This section is managed by `generate-claude-profile` -- do not edit manually.
 <!-- GSD:profile-end -->
+
+## Estado actual (2026-04-13)
+
+- **Branch activa**: `feature/21st-dev-ui-improvements` — pendiente merge a `main`
+- **Rebrand completado**: Belgrano Group, slogan "Operamos el crecimiento de tu marca"
+- **Navbar**: Intelligence / Media / Brand + botón Hablemos (ya no apunta a secciones anchor)
+- **Hero**: 3 cards iguales con expand-from-top hover (sin card featured asimétrica)
+- **Stats**: 4 métricas — $750MM+, 289x ROI, 500K+ Personas alcanzadas, 98% Satisfacción
+- **Landing simplificada**: Hero → Stats → Marquee → CTA (eliminadas HowItWorks, ServicesBento, FAQ)
+
+## Próximo
+
+- **Merge `feature/21st-dev-ui-improvements` → `main`** — listo para PR, Vercel autodeploy
+- **Sección testimoniales** — requiere contenido real (nombre, cargo, empresa, cita)
+- **Color terciario indigo #635BFF** — deferido por Pato, para después
