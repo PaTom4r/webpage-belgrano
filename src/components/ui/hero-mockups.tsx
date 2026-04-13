@@ -74,9 +74,9 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
             transition={{ duration: 0.35 }}
             style={{ pointerEvents: 'none' }}
           >
-            {/* Mockup fills card */}
+            {/* Mockup fills card — header hidden to avoid duplicate title */}
             <div className="h-full w-full [&>*]:h-full [&>*]:aspect-auto">
-              <VerticalMockup slug={slug} />
+              <VerticalMockup slug={slug} hideHeader />
             </div>
             {/* Dark gradient so text stays readable */}
             <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-gray-950/20" />
@@ -86,9 +86,9 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, bran
         {/* ── BODY — always on top via z-10 ── */}
         <div className="relative z-10 flex flex-1 flex-col p-5">
 
-          {/* Title — shifts from center to top on hover */}
+          {/* Title — featured: shifts up on hover; small cards: always at top */}
           <motion.div
-            animate={isHovered ? { y: 0 } : { y: featured ? '30%' : '15%' }}
+            animate={featured ? (isHovered ? { y: 0 } : { y: '30%' }) : { y: 0 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
           >
             <p className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
