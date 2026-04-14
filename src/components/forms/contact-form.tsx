@@ -33,10 +33,10 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+      <div className="rounded-2xl border border-black/10 bg-black/5 p-8 text-center">
         <div className="mb-3 text-3xl" aria-hidden="true">&#10003;</div>
-        <h3 className="text-lg font-bold text-bg">¡Mensaje recibido!</h3>
-        <p className="mt-2 text-sm text-bg/70">
+        <h3 className="text-lg font-bold text-text">¡Mensaje recibido!</h3>
+        <p className="mt-2 text-sm text-gray-700">
           Nos pondremos en contacto contigo en las próximas 24 horas.
         </p>
       </div>
@@ -48,19 +48,19 @@ export function ContactForm() {
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-bg/80">
-            Nombre completo <span aria-hidden="true" className="text-bg/40">*</span>
+          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-text">
+            Nombre completo <span aria-hidden="true" className="text-text-secondary">*</span>
           </label>
           <input
             id="name"
             type="text"
             autoComplete="name"
             {...register('name')}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-bg placeholder:text-bg/30 focus:border-white/30 focus:outline-none focus:ring-0"
+            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
             placeholder="Nombre Apellido"
           />
           {errors.name && (
-            <p role="alert" className="mt-1.5 text-xs text-red-400">
+            <p role="alert" className="mt-1.5 text-xs text-red-500">
               {errors.name.message}
             </p>
           )}
@@ -68,19 +68,19 @@ export function ContactForm() {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-bg/80">
-            Email <span aria-hidden="true" className="text-bg/40">*</span>
+          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-text">
+            Email <span aria-hidden="true" className="text-text-secondary">*</span>
           </label>
           <input
             id="email"
             type="email"
             autoComplete="email"
             {...register('email')}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-bg placeholder:text-bg/30 focus:border-white/30 focus:outline-none focus:ring-0"
+            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
             placeholder="tu@empresa.cl"
           />
           {errors.email && (
-            <p role="alert" className="mt-1.5 text-xs text-red-400">
+            <p role="alert" className="mt-1.5 text-xs text-red-500">
               {errors.email.message}
             </p>
           )}
@@ -88,19 +88,19 @@ export function ContactForm() {
 
         {/* Company */}
         <div>
-          <label htmlFor="company" className="mb-1.5 block text-sm font-medium text-bg/80">
-            Empresa <span aria-hidden="true" className="text-bg/40">*</span>
+          <label htmlFor="company" className="mb-1.5 block text-sm font-medium text-text">
+            Empresa <span aria-hidden="true" className="text-text-secondary">*</span>
           </label>
           <input
             id="company"
             type="text"
             autoComplete="organization"
             {...register('company')}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-bg placeholder:text-bg/30 focus:border-white/30 focus:outline-none focus:ring-0"
+            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
             placeholder="Nombre de tu empresa"
           />
           {errors.company && (
-            <p role="alert" className="mt-1.5 text-xs text-red-400">
+            <p role="alert" className="mt-1.5 text-xs text-red-500">
               {errors.company.message}
             </p>
           )}
@@ -108,18 +108,18 @@ export function ContactForm() {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-bg/80">
-            Mensaje <span aria-hidden="true" className="text-bg/40">*</span>
+          <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-text">
+            Mensaje <span aria-hidden="true" className="text-text-secondary">*</span>
           </label>
           <textarea
             id="message"
             rows={4}
             {...register('message')}
-            className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-bg placeholder:text-bg/30 focus:border-white/30 focus:outline-none focus:ring-0"
+            className="w-full resize-none rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
             placeholder="¿En qué podemos ayudarte?"
           />
           {errors.message && (
-            <p role="alert" className="mt-1.5 text-xs text-red-400">
+            <p role="alert" className="mt-1.5 text-xs text-red-500">
               {errors.message.message}
             </p>
           )}
@@ -138,13 +138,13 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-white px-6 py-4 text-sm font-bold text-dark transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg bg-dark px-6 py-4 text-sm font-bold text-bg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Enviando...' : 'Enviar mensaje \u2192'}
         </button>
 
         {errorMessage && (
-          <p role="alert" className="mt-3 text-center text-sm text-red-400">
+          <p role="alert" className="mt-3 text-center text-sm text-red-500">
             {errorMessage}
           </p>
         )}

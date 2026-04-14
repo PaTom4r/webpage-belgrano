@@ -3,7 +3,7 @@
 // All cards: mockup expands from top on hover, title shifts up, description fades in.
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { verticales } from '@/lib/content/verticales'
@@ -36,8 +36,26 @@ interface CardProps {
 
 function VerticalHeroCard({ slug, name, benefitHeadline, tagline, branches }: CardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [spotlight, setSpotlight] = useState({ x: '50%', y: '50%' })
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 })
+
   const onEnter = useCallback(() => setIsHovered(true), [])
-  const onLeave = useCallback(() => setIsHovered(false), [])
+  const onLeave = useCallback(() => {
+    setIsHovered(false)
+    setTilt({ rx: 0, ry: 0 })
+  }, [])
+  const onMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    setSpotlight({ x: `${x}px`, y: `${y}px` })
+    // Normalized -0.5..0.5 → rotate up to 8deg
+    const nx = x / rect.width - 0.5
+    const ny = y / rect.height - 0.5
+    setTilt({ rx: -ny * 8, ry: nx * 8 })
+  }, [])
 
   const [prefix, ...rest] = name.split(' ')
   const verticalName = rest.join(' ')
@@ -48,8 +66,25 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, branches }: Ca
       className="group block h-full"
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
+      onMouseMove={onMouseMove}
+      style={{ perspective: '1000px' }}
     >
-      <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-gray-950 shadow-lg shadow-black/20 transition-all duration-200 group-hover:border-white/25 group-hover:shadow-xl group-hover:shadow-black/30">
+      <motion.div
+        ref={cardRef}
+        animate={{ rotateX: tilt.rx, rotateY: tilt.ry }}
+        transition={{ type: 'spring', stiffness: 200, damping: 20, mass: 0.5 }}
+        style={{ transformStyle: 'preserve-3d' }}
+        className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-gray-950 shadow-lg shadow-black/20 transition-[border-color,box-shadow] duration-200 group-hover:border-white/25 group-hover:shadow-xl group-hover:shadow-black/30"
+      >
+        {/* Spotlight glow that follows cursor */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 rounded-xl transition-opacity duration-300"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            background: `radial-gradient(600px circle at ${spotlight.x} ${spotlight.y}, rgba(255,255,255,0.07), transparent 40%)`,
+          }}
+        />
 
         {/* Mockup expands from top on hover */}
         <motion.div
@@ -110,7 +145,7 @@ function VerticalHeroCard({ slug, name, benefitHeadline, tagline, branches }: Ca
             </span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Link>
   )
 }

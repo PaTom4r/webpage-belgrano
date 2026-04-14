@@ -4,10 +4,44 @@
 // Added to app/layout.tsx in Plan 05 — built here as isolated component.
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { navLinks, siteConfig } from '@/lib/content/site'
 import { MobileMenu } from './mobile-menu'
+
+function MagneticCTA() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+
+  const onMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    const dx = (e.clientX - cx) / rect.width
+    const dy = (e.clientY - cy) / rect.height
+    setPos({ x: dx * 12, y: dy * 12 })
+  }, [])
+
+  const onMouseLeave = useCallback(() => setPos({ x: 0, y: 0 }), [])
+
+  return (
+    <div ref={ref} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
+      <motion.div
+        animate={{ x: pos.x, y: pos.y }}
+        transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+      >
+        <Link
+          href="/#cta"
+          className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+        >
+          Hablemos
+        </Link>
+      </motion.div>
+    </div>
+  )
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -51,12 +85,7 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex">
-          <Link
-            href="/#cta"
-            className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
-          >
-            Hablemos
-          </Link>
+          <MagneticCTA />
         </div>
 
         {/* Mobile hamburger */}

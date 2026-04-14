@@ -7,32 +7,32 @@ import { CalendlyEmbed } from '@/components/conversion/calendly-embed'
 
 export function CtaSection() {
   return (
-    <section id="cta" aria-labelledby="cta-heading" className="relative overflow-hidden bg-dark py-16 sm:py-20 lg:py-24">
+    <section id="cta" aria-labelledby="cta-heading" className="relative overflow-hidden bg-bg py-16 sm:py-20 lg:py-24">
       {/* Radial glow — centro de la sección */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
-        <div className="h-[600px] w-[900px] rounded-full bg-white/[0.03] blur-[120px]" />
+        <div className="h-[600px] w-[900px] rounded-full bg-black/[0.03] blur-[120px]" />
       </div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Left: headline and value prop */}
           <div>
             <ScrollReveal>
-              <span className="text-xs font-semibold uppercase tracking-widest text-bg/40">
+              <span className="text-xs font-semibold uppercase tracking-widest text-text-secondary">
                 Hablemos
               </span>
             </ScrollReveal>
             <ScrollReveal delay={0.05}>
-              <h2 id="cta-heading" className="mt-4 text-4xl font-extrabold tracking-tight text-bg sm:text-5xl">
+              <h2 id="cta-heading" className="mt-4 text-4xl font-extrabold tracking-tight text-text sm:text-5xl">
                 ¿Listo para crecer{' '}
                 <br className="hidden sm:block" />
                 con IA?
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <p className="mt-6 text-lg leading-relaxed text-bg/70">
+              <p className="mt-6 text-lg leading-relaxed text-gray-700">
                 Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial.
               </p>
             </ScrollReveal>
@@ -45,8 +45,8 @@ export function CtaSection() {
                   'Propuesta en 48 horas',
                   'Sin costos ocultos ni contratos largos',
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-bg/70">
-                    <span aria-hidden="true" className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-white/20 text-xs text-bg/50">
+                  <li key={item} className="flex items-center gap-3 text-sm text-gray-700">
+                    <span aria-hidden="true" className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-black/20 text-xs text-text-secondary">
                       &#10003;
                     </span>
                     {item}
@@ -63,9 +63,9 @@ export function CtaSection() {
         </div>
 
         {/* Calendly inline booking widget — desactivado temporalmente, reactivar quitando el comentario */}
-        {/* <div className="mt-16 border-t border-white/10 pt-16">
+        {/* <div className="mt-16 border-t border-black/10 pt-16">
           <ScrollReveal>
-            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-bg/40">
+            <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-text-secondary">
               O agenda directo
             </p>
           </ScrollReveal>

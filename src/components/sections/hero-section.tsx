@@ -27,10 +27,14 @@ export function HeroSection() {
     <section id="hero" aria-labelledby="hero-heading" className="flex min-h-svh flex-col">
       {/* Zone 1: Headline — generous spacing like Linear */}
       <div className="relative overflow-hidden bg-bg pt-28 pb-6 sm:pt-32 sm:pb-8 lg:pt-36 lg:pb-10">
-        {/* Subtle grid background decoration */}
+        {/* Subtle grid background decoration — radial mask so edges fade out naturally */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"
+          style={{
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%)',
+            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%)',
+          }}
         />
 
         <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
@@ -52,7 +56,7 @@ export function HeroSection() {
           {/* Subtitle */}
           <motion.p
             {...fadeUp(0.15)}
-            className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary sm:text-lg"
+            className="mt-5 max-w-xl text-base font-medium leading-relaxed text-gray-700 sm:text-lg"
           >
             Integramos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.
           </motion.p>
