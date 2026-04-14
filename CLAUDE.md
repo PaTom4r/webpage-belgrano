@@ -156,17 +156,22 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 > This section is managed by `generate-claude-profile` -- do not edit manually.
 <!-- GSD:profile-end -->
 
-## Estado actual (2026-04-13)
+## Estado actual (2026-04-14)
 
 - **Branch activa**: `feature/21st-dev-ui-improvements` — pendiente merge a `main`
 - **Rebrand completado**: Belgrano Group, slogan "Operamos el crecimiento de tu marca"
-- **Navbar**: Intelligence / Media / Brand + botón Hablemos (ya no apunta a secciones anchor)
-- **Hero**: 3 cards iguales con expand-from-top hover (sin card featured asimétrica)
+- **Navbar**: Intelligence / Media / Brand + botón Hablemos con efecto magnético (spring Framer Motion)
+- **Hero**: 3 cards con 3D tilt (±8°) + spotlight cursor glow (Aceternity) + grid radial mask
+- **Hero subtitle**: `gray-700 font-medium` (más contraste)
+- **CTA "Hablemos"**: fondo blanco, texto oscuro (invertido)
+- **Contact form**: inputs light (dark borders, dark submit btn)
+- **Footer**: fondo oscuro `bg-dark`, texto blanco (invertido)
 - **Stats**: 4 métricas — $750MM+, 289x ROI, 500K+ Personas alcanzadas, 98% Satisfacción
-- **Landing simplificada**: Hero → Stats → Marquee → CTA (eliminadas HowItWorks, ServicesBento, FAQ)
+- **Landing**: Hero → Stats → Marquee → CTA → Footer
 
 ## Próximo
 
-- **Merge `feature/21st-dev-ui-improvements` → `main`** — listo para PR, Vercel autodeploy
+- **Cambio drástico pendiente** — Pato tiene idea, se verá en próxima sesión
+- **Merge `feature/21st-dev-ui-improvements` → `main`** — pendiente PR + Vercel autodeploy
 - **Sección testimoniales** — requiere contenido real (nombre, cargo, empresa, cita)
 - **Color terciario indigo #635BFF** — deferido por Pato, para después
