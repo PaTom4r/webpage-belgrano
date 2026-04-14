@@ -1,0 +1,211 @@
+<h2>Hero + Verticales: Layout Options</h2>
+<p class="subtitle">3 enfoques para presentar las verticales. Todas usan scroll-triggered reveal y nombres reescritos orientados al beneficio.</p>
+
+<div class="cards">
+
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#09090B;border-radius:8px;padding:24px;color:white;font-family:system-ui;">
+        <!-- Hero zone -->
+        <div style="text-align:center;padding:40px 20px 30px;">
+          <div style="font-size:28px;font-weight:900;line-height:1.1;">Tu negocio.<br>Nuestra inteligencia.</div>
+          <div style="font-size:11px;color:#9CA3AF;margin-top:12px;">Subtitulo</div>
+        </div>
+        <!-- 4 vertical strips -->
+        <div style="display:flex;gap:8px;margin-top:16px;">
+          <div style="flex:1;background:#1a1a2e;border-radius:8px;padding:16px 8px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:6px;">💬</div>
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;">AUTOMATIZA TU ATENCIÓN</div>
+            <div style="font-size:8px;color:#9CA3AF;margin-top:4px;">Chatbots IA 24/7</div>
+          </div>
+          <div style="flex:1;background:#1a1a2e;border-radius:8px;padding:16px 8px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:6px;">📺</div>
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;">LLEGA DONDE ESTÁN</div>
+            <div style="font-size:8px;color:#9CA3AF;margin-top:4px;">Pantallas digitales</div>
+          </div>
+          <div style="flex:1;background:#1a1a2e;border-radius:8px;padding:16px 8px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:6px;">🎬</div>
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;">CONTENIDO QUE VENDE</div>
+            <div style="font-size:8px;color:#9CA3AF;margin-top:4px;">Producción audiovisual</div>
+          </div>
+          <div style="flex:1;background:#1a1a2e;border-radius:8px;padding:16px 8px;text-align:center;">
+            <div style="font-size:20px;margin-bottom:6px;">🎓</div>
+            <div style="font-size:11px;font-weight:800;letter-spacing:0.5px;">ENTRENA A TU EQUIPO</div>
+            <div style="font-size:8px;color:#9CA3AF;margin-top:4px;">Capacitación IA</div>
+          </div>
+        </div>
+        <!-- Scroll hint -->
+        <div style="text-align:center;margin-top:16px;font-size:9px;color:#6B7280;">
+          ↓ Scrollea para ver más de cada vertical ↓
+        </div>
+        <!-- Expanded card on scroll -->
+        <div style="margin-top:16px;background:#111;border:1px solid #333;border-radius:12px;padding:16px;">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div style="font-size:28px;">💬</div>
+            <div>
+              <div style="font-size:13px;font-weight:800;">AUTOMATIZA TU ATENCIÓN</div>
+              <div style="font-size:9px;color:#9CA3AF;">Tu negocio responde solo. Siempre.</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <div style="flex:1;background:#1a1a2e;border-radius:6px;padding:8px;text-align:center;">
+              <div style="font-size:14px;font-weight:700;">70-85%</div>
+              <div style="font-size:7px;color:#9CA3AF;">consultas resueltas sin intervención</div>
+            </div>
+            <div style="flex:1;background:#1a1a2e;border-radius:6px;padding:8px;text-align:center;">
+              <div style="font-size:14px;font-weight:700;">30-50%</div>
+              <div style="font-size:7px;color:#9CA3AF;">reducción en costos</div>
+            </div>
+          </div>
+          <div style="margin-top:10px;text-align:center;">
+            <span style="background:white;color:black;font-size:9px;font-weight:700;padding:6px 16px;border-radius:6px;">Saber más →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A) Strips compactos → expand on scroll</h3>
+      <p>Las 4 verticales se ven como columnas compactas con nombre grande. Al scrollear, cada una se expande mostrando métricas + CTA. Minimalista y rápido.</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#09090B;border-radius:8px;padding:24px;color:white;font-family:system-ui;">
+        <!-- Hero zone -->
+        <div style="text-align:center;padding:30px 20px 20px;">
+          <div style="font-size:28px;font-weight:900;line-height:1.1;">Tu negocio.<br>Nuestra inteligencia.</div>
+        </div>
+        <!-- Full-width vertical blocks stacked -->
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px;">
+          <!-- Collapsed state -->
+          <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:20px;">💬</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;">AUTOMATIZA TU ATENCIÓN</div>
+                <div style="font-size:8px;color:#6B7280;">Chatbots IA que responden 24/7</div>
+              </div>
+            </div>
+            <span style="font-size:10px;color:#6B7280;">↓</span>
+          </div>
+          <!-- Expanded state -->
+          <div style="background:#111;border:1px solid #444;border-radius:10px;padding:14px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+              <span style="font-size:20px;">📺</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;">LLEGA DONDE ESTÁN</div>
+                <div style="font-size:8px;color:#6B7280;">Red de pantallas en clínicas y espacios corporativos</div>
+              </div>
+            </div>
+            <!-- Visual element placeholder -->
+            <div style="background:#1a1a2e;border-radius:8px;height:60px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;">
+              <div style="font-size:8px;color:#6B7280;">[ Video demo / Screenshot mockup ]</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-bottom:10px;">
+              <div style="flex:1;background:#1a1a2e;border-radius:4px;padding:6px;text-align:center;">
+                <div style="font-size:12px;font-weight:700;">500+</div>
+                <div style="font-size:7px;color:#9CA3AF;">pantallas</div>
+              </div>
+              <div style="flex:1;background:#1a1a2e;border-radius:4px;padding:6px;text-align:center;">
+                <div style="font-size:12px;font-weight:700;">2-3x</div>
+                <div style="font-size:7px;color:#9CA3AF;">mayor recall</div>
+              </div>
+            </div>
+            <div style="text-align:center;">
+              <span style="background:white;color:black;font-size:9px;font-weight:700;padding:5px 14px;border-radius:6px;">Ver cómo funciona →</span>
+            </div>
+          </div>
+          <!-- More collapsed -->
+          <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:20px;">🎬</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;">CONTENIDO QUE VENDE</div>
+                <div style="font-size:8px;color:#6B7280;">Producción audiovisual con IA</div>
+              </div>
+            </div>
+            <span style="font-size:10px;color:#6B7280;">↓</span>
+          </div>
+          <div style="background:#111;border:1px solid #222;border-radius:10px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:20px;">🎓</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;">ENTRENA A TU EQUIPO</div>
+                <div style="font-size:8px;color:#6B7280;">Capacitación práctica en IA</div>
+              </div>
+            </div>
+            <span style="font-size:10px;color:#6B7280;">↓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B) Acordeón full-width</h3>
+      <p>Las 4 verticales apiladas como filas. Cada una se expande al scrollear revelando visual + métricas + CTA. Foco secuencial: el usuario las descubre una por una.</p>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#09090B;border-radius:8px;padding:24px;color:white;font-family:system-ui;">
+        <!-- Hero zone -->
+        <div style="text-align:center;padding:30px 20px 20px;">
+          <div style="font-size:28px;font-weight:900;line-height:1.1;">Tu negocio.<br>Nuestra inteligencia.</div>
+        </div>
+        <!-- Big name tiles - 2x2 grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;">
+          <div style="background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-radius:12px;padding:20px 14px;text-align:center;border:1px solid #222;">
+            <div style="font-size:24px;margin-bottom:8px;">💬</div>
+            <div style="font-size:14px;font-weight:900;line-height:1.2;">AUTOMATIZA<br>TU ATENCIÓN</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-radius:12px;padding:20px 14px;text-align:center;border:1px solid #222;">
+            <div style="font-size:24px;margin-bottom:8px;">📺</div>
+            <div style="font-size:14px;font-weight:900;line-height:1.2;">LLEGA<br>DONDE ESTÁN</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-radius:12px;padding:20px 14px;text-align:center;border:1px solid #222;">
+            <div style="font-size:24px;margin-bottom:8px;">🎬</div>
+            <div style="font-size:14px;font-weight:900;line-height:1.2;">CONTENIDO<br>QUE VENDE</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#111 0%,#1a1a2e 100%);border-radius:12px;padding:20px 14px;text-align:center;border:1px solid #222;">
+            <div style="font-size:24px;margin-bottom:8px;">🎓</div>
+            <div style="font-size:14px;font-weight:900;line-height:1.2;">ENTRENA<br>A TU EQUIPO</div>
+          </div>
+        </div>
+        <!-- Scroll hint -->
+        <div style="text-align:center;margin-top:14px;font-size:9px;color:#6B7280;">↓ Descubre cada solución ↓</div>
+        <!-- Below fold: expanded card -->
+        <div style="margin-top:16px;border-top:1px solid #222;padding-top:16px;">
+          <div style="display:flex;gap:16px;">
+            <!-- Left: visual -->
+            <div style="flex:1;background:#1a1a2e;border-radius:10px;height:100px;display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:9px;color:#6B7280;">[ Demo interactivo / Video ]</span>
+            </div>
+            <!-- Right: info -->
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:900;">💬 AUTOMATIZA TU ATENCIÓN</div>
+              <div style="font-size:8px;color:#9CA3AF;margin-top:4px;line-height:1.4;">Tu negocio responde solo. Chatbots con IA que resuelven el 70-85% de las consultas sin intervención humana.</div>
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                <div style="background:#1a1a2e;border-radius:4px;padding:4px 8px;">
+                  <span style="font-size:11px;font-weight:700;">30-50%</span>
+                  <span style="font-size:7px;color:#9CA3AF;"> menos costos</span>
+                </div>
+              </div>
+              <div style="margin-top:10px;">
+                <span style="background:white;color:black;font-size:9px;font-weight:700;padding:5px 14px;border-radius:6px;">Saber más →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C) Tiles grandes → sección detalle al scroll</h3>
+      <p>Grid 2x2 con nombres enormes e ícono. Al scrollear, se revela una sección por vertical con visual a la izquierda + info + CTA a la derecha. El nombre es lo primero que se lee.</p>
+    </div>
+  </div>
+
+</div>

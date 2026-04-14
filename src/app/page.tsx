@@ -1,11 +1,17 @@
-// Home page — composes 4 landing sections.
-// Navbar and Footer are in layout.tsx (persistent across all pages).
+// Home page — Landing v2, template-1 style.
+// Navbar and FloatingWhatsApp are in layout.tsx. Footer lives here (BigFooter).
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
-import { HeroSection } from '@/components/sections/hero-section'
+import { HeroV2 } from '@/components/sections/hero-v2'
+import { PillsSectionV2 } from '@/components/sections/pills-section-v2'
+import { ProductShowcaseSection } from '@/components/sections/product-showcase-section'
+import { FeaturesGridSection } from '@/components/sections/features-grid-section'
+import { StatsV2Section } from '@/components/sections/stats-v2-section'
 import { MarqueeSection } from '@/components/sections/marquee-section'
-import { StatsSection } from '@/components/sections/stats-section'
-import { CtaSection } from '@/components/sections/cta-section'
+import { ComparisonSection } from '@/components/sections/comparison-section'
+import { TestimonialsSection } from '@/components/sections/testimonials-section'
+import { FooterCtaSection } from '@/components/sections/footer-cta-section'
+import { BigFooter } from '@/components/layout/big-footer'
 
 export const metadata: Metadata = {
   title: 'Belgrano Group — Operamos el crecimiento de tu marca',
@@ -59,11 +65,17 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <main>
-        <HeroSection />
-        <StatsSection />
+        <HeroV2 />
+        <PillsSectionV2 />
+        <ProductShowcaseSection />
+        <FeaturesGridSection />
+        <StatsV2Section />
         <MarqueeSection />
-        <CtaSection />
+        <ComparisonSection />
+        <TestimonialsSection />
+        <FooterCtaSection />
       </main>
+      <BigFooter />
     </>
   )
 }

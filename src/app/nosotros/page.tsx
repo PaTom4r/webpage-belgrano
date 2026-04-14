@@ -8,6 +8,7 @@ import { AboutNarrativeSection } from '@/components/sections/about-narrative-sec
 import { AboutValuesSection } from '@/components/sections/about-values-section'
 import { AboutTeamSection } from '@/components/sections/about-team-section'
 import { CtaSection } from '@/components/sections/cta-section'
+import { Footer } from '@/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'Nosotros',
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 
 export default function NosotrosPage() {
   return (
+    <>
     <main>
       {/* Breadcrumb bar — same pattern as vertical pages */}
       <div className="border-b border-border bg-bg">
@@ -66,5 +68,7 @@ export default function NosotrosPage() {
       {/* Consistent conversion point reused from landing */}
       <CtaSection />
     </main>
+    <Footer />
+    </>
   )
 }

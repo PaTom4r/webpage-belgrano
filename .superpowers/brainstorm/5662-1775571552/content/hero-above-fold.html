@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Above Fold — Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #09090B; font-family: 'Inter', system-ui, sans-serif; color: white; }
+
+  /* NAVBAR */
+  .navbar {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { font-size: 18px; font-weight: 900; letter-spacing: -1px; color: #000; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 28px; font-size: 12px; color: #6B7280; }
+  .nav-cta { background: #000; color: #fff; font-size: 12px; font-weight: 600; padding: 7px 18px; border-radius: 6px; }
+
+  /* HERO: compact top bar */
+  .hero-top {
+    background: #ffffff;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .hero-top h1 {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: #111827;
+    letter-spacing: -2px;
+    flex-shrink: 0;
+  }
+  .hero-top p {
+    font-size: 13px;
+    color: #6B7280;
+    max-width: 340px;
+    line-height: 1.6;
+    align-self: flex-end;
+    padding-bottom: 4px;
+  }
+  .hero-top .cta {
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 8px;
+    white-space: nowrap;
+    align-self: flex-end;
+    margin-bottom: 2px;
+  }
+
+  /* ZONE 2: 4 STRIPS — big, above fold */
+  .zone2 {
+    background: #09090B;
+    padding: 36px 48px 40px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #6B7280;
+    margin-bottom: 20px;
+  }
+  .strips {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .strip {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 14px;
+    padding: 32px 20px 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .strip:hover { border-color: #3f3f3f; transform: translateY(-2px); }
+
+  .strip-icon {
+    width: 48px; height: 48px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .strip-name {
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+    color: #fff;
+  }
+  .strip-tagline {
+    font-size: 11px;
+    color: #6B7280;
+    line-height: 1.5;
+  }
+  .strip-arrow {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    font-size: 13px;
+    color: #333;
+  }
+
+  /* SCROLL CUE */
+  .scroll-cue {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 10px;
+    color: #6B7280;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .scroll-cue span { display: block; margin-top: 6px; font-size: 18px; animation: bounce 1.5s infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+  /* VIEWPORT LABEL */
+  .fold-line {
+    border: none;
+    border-top: 2px dashed #2a2a2a;
+    margin: 0 48px;
+    position: relative;
+  }
+  .fold-label {
+    text-align: center;
+    padding: 8px;
+    font-size: 9px;
+    color: #3a3a3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: #09090B;
+  }
+
+  /* VERTICAL DETAIL SECTIONS */
+  .vertical-detail {
+    background: #09090B;
+    padding: 72px 48px;
+  }
+  .detail-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .detail-inner.reverse { direction: rtl; }
+  .detail-inner.reverse > * { direction: ltr; }
+
+  .visual-box {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 16px;
+    height: 240px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+  }
+  .visual-box .vi { font-size: 44px; }
+  .visual-box p { font-size: 10px; color: #444; letter-spacing: 1px; text-transform: uppercase; text-align: center; line-height: 1.6; }
+
+  .detail-sublabel { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #6B7280; text-transform: uppercase; margin-bottom: 10px; }
+  .detail-title { font-size: 32px; font-weight: 900; line-height: 1.1; letter-spacing: -0.8px; }
+  .detail-desc { margin-top: 14px; font-size: 13px; color: #9CA3AF; line-height: 1.75; }
+  .metrics { display: flex; gap: 10px; margin-top: 22px; }
+  .metric { background: #111; border: 1px solid #1f1f1f; border-radius: 10px; padding: 12px 16px; flex: 1; }
+  .metric-val { font-size: 22px; font-weight: 800; }
+  .metric-lbl { font-size: 9px; color: #6B7280; margin-top: 3px; line-height: 1.4; }
+  .detail-cta {
+    margin-top: 26px;
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 26px;
+    border-radius: 8px;
+  }
+  .section-divider { border: none; border-top: 1px solid #141414; margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <span class="nav-logo">BELGRANO</span>
+  <div class="nav-links">
+    <span>Cómo trabajamos</span><span>Resultados</span><span>Nosotros</span><span>Contacto</span>
+  </div>
+  <span class="nav-cta">Hablemos</span>
+</div>
+
+<!-- HERO TOP — compact -->
+<div class="hero-top">
+  <h1>Tu negocio.<br>Nuestra inteligencia.</h1>
+  <p>Automatizamos ventas, amplificamos tu marca y formamos a tu equipo — todo con IA aplicada y resultados medibles.</p>
+  <span class="cta">Hablemos →</span>
+</div>
+
+<!-- ZONE 2: VERTICALES — above fold, big -->
+<div class="zone2">
+  <div class="section-label">¿Qué necesita tu negocio?</div>
+  <div class="strips">
+
+    <div class="strip">
+      <div class="strip-icon">💬</div>
+      <div class="strip-name">AUTOMATIZA<br>TU ATENCIÓN</div>
+      <div class="strip-tagline">Chatbots con IA que responden 24/7 sin intervención humana</div>
+      <span class="strip-arrow">↓</span>
+    </div>
+
+    <div class="strip">
+      <div class="strip-icon">📺</div>
+      <div class="strip-name">LLEGA DONDE<br>ESTÁN TUS CLIENTES</div>
+      <div class="strip-tagline">Red de pantallas digitales en espacios de alto tráfico</div>
+      <span class="strip-arrow">↓</span>
+    </div>
+
+    <div class="strip">
+      <div class="strip-icon">🎬</div>
+      <div class="strip-name">CONTENIDO<br>QUE CONVIERTE</div>
+      <div class="strip-tagline">Producción audiovisual que vende, no solo impresiona</div>
+      <span class="strip-arrow">↓</span>
+    </div>
+
+    <div class="strip">
+      <div class="strip-icon">🎓</div>
+      <div class="strip-name">ENTRENA A TU<br>EQUIPO CON IA</div>
+      <div class="strip-tagline">Capacitación práctica para equipos que quieren crecer</div>
+      <span class="strip-arrow">↓</span>
+    </div>
+
+  </div>
+  <div class="scroll-cue">
+    Descubre cada solución
+    <span>↓</span>
+  </div>
+</div>
+
+<!-- FOLD INDICATOR -->
+<div class="fold-label">─── fin del viewport (above the fold) ───</div>
+
+<!-- ── DETALLE POR VERTICAL AL SCROLLEAR ── -->
+
+<!-- 1: Smart Agents -->
+<div class="vertical-detail">
+  <div class="detail-inner">
+    <div class="visual-box">
+      <div class="vi">💬</div>
+      <p>Demo chatbot<br>GIF / video interactivo</p>
+    </div>
+    <div>
+      <div class="detail-sublabel">Smart Agents</div>
+      <div class="detail-title">Automatiza<br>tu atención</div>
+      <div class="detail-desc">Tu negocio responde solo. Chatbots con IA integrados en WhatsApp, web o cualquier canal — resuelven el 70–85% de las consultas sin intervención humana.</div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">70–85%</div><div class="metric-lbl">consultas resueltas sin intervención</div></div>
+        <div class="metric"><div class="metric-val">30–50%</div><div class="metric-lbl">reducción en costos de atención</div></div>
+      </div>
+      <a class="detail-cta">Ver cómo funciona →</a>
+    </div>
+  </div>
+</div>
+<div class="section-divider"></div>
+
+<!-- 2: Digital Media -->
+<div class="vertical-detail">
+  <div class="detail-inner reverse">
+    <div class="visual-box">
+      <div class="vi">📺</div>
+      <p>Mapa / mockup<br>red de pantallas</p>
+    </div>
+    <div>
+      <div class="detail-sublabel">Digital Media</div>
+      <div class="detail-title">Llega donde<br>están tus clientes</div>
+      <div class="detail-desc">Gestionamos publicidad en pantallas digitales en clínicas y espacios corporativos — audiencia cautiva con 20–40 minutos de exposición promedio.</div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">500+</div><div class="metric-lbl">pantallas en la red</div></div>
+        <div class="metric"><div class="metric-val">2–3x</div><div class="metric-lbl">mayor recall vs. OOH estático</div></div>
+      </div>
+      <a class="detail-cta">Conocer la red →</a>
+    </div>
+  </div>
+</div>
+<div class="section-divider"></div>
+
+<!-- 3: Creative Studio -->
+<div class="vertical-detail">
+  <div class="detail-inner">
+    <div class="visual-box">
+      <div class="vi">🎬</div>
+      <p>Showreel / portfolio<br>video loop</p>
+    </div>
+    <div>
+      <div class="detail-sublabel">Creative Studio</div>
+      <div class="detail-title">Contenido<br>que convierte</div>
+      <div class="detail-desc">Producimos video, foto y contenido digital con IA. Más rápido que una agencia tradicional, con resultados medibles desde el primer mes.</div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">3x</div><div class="metric-lbl">velocidad vs. producción tradicional</div></div>
+        <div class="metric"><div class="metric-val">40–60%</div><div class="metric-lbl">reducción de costo vs. agencia</div></div>
+      </div>
+      <a class="detail-cta">Ver nuestro trabajo →</a>
+    </div>
+  </div>
+</div>
+<div class="section-divider"></div>
+
+<!-- 4: Academy -->
+<div class="vertical-detail" style="padding-bottom:80px;">
+  <div class="detail-inner reverse">
+    <div class="visual-box">
+      <div class="vi">🎓</div>
+      <p>Screenshot plataforma<br>o testimonios</p>
+    </div>
+    <div>
+      <div class="detail-sublabel">Academy</div>
+      <div class="detail-title">Entrena a tu<br>equipo con IA</div>
+      <div class="detail-desc">Formación práctica para equipos de trabajo. Tus colaboradores aprenden a usar IA en su trabajo real, con herramientas aplicables desde el día uno.</div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-val">200+</div><div class="metric-lbl">profesionales formados</div></div>
+        <div class="metric"><div class="metric-val">98%</div><div class="metric-lbl">satisfacción post-formación</div></div>
+      </div>
+      <a class="detail-cta">Ver programas →</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

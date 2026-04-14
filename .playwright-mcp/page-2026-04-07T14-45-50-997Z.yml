@@ -1,0 +1,210 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Belgrano" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Cómo trabajamos" [ref=e6] [cursor=pointer]:
+          - /url: /#how-it-works
+        - link "Resultados" [ref=e7] [cursor=pointer]:
+          - /url: /#stats
+        - link "Nosotros" [ref=e8] [cursor=pointer]:
+          - /url: /nosotros
+        - link "Contacto" [ref=e9] [cursor=pointer]:
+          - /url: /#cta
+      - link "Hablemos" [ref=e11] [cursor=pointer]:
+        - /url: /#cta
+  - main [ref=e12]:
+    - region "Tu negocio. Nuestra inteligencia." [ref=e13]:
+      - generic [ref=e15]:
+        - heading "Tu negocio. Nuestra inteligencia." [level=1] [ref=e16]:
+          - text: Tu negocio.
+          - text: Nuestra inteligencia.
+        - paragraph [ref=e17]: Automatizamos ventas, amplificamos tu marca y formamos a tu equipo — todo con IA aplicada y resultados medibles.
+      - generic [ref=e22]:
+        - link "Automatiza tu atención Smart Agents Tu negocio responde solo. Siempre. 70–85% consultas resueltas sin intervención humana 30–50% reducción en costos de atención al cliente Saber más →" [ref=e24] [cursor=pointer]:
+          - /url: /verticales/bots
+          - generic [ref=e26]:
+            - img [ref=e28]
+            - heading "Automatiza tu atención" [level=3] [ref=e30]
+            - paragraph [ref=e31]: Smart Agents
+            - paragraph [ref=e32]: Tu negocio responde solo. Siempre.
+            - list [ref=e33]:
+              - listitem [ref=e34]:
+                - generic [ref=e36]: 70–85%
+                - generic [ref=e37]: consultas resueltas sin intervención humana
+              - listitem [ref=e38]:
+                - generic [ref=e40]: 30–50%
+                - generic [ref=e41]: reducción en costos de atención al cliente
+            - generic [ref=e43]: Saber más →
+        - link "Llega donde están tus clientes Digital Media Tu marca en movimiento, donde importa. 500+ pantallas gestionadas en la red 2–3x mayor recall vs. señalética estática Saber más →" [ref=e45] [cursor=pointer]:
+          - /url: /verticales/dooh
+          - generic [ref=e47]:
+            - img [ref=e49]
+            - heading "Llega donde están tus clientes" [level=3] [ref=e51]
+            - paragraph [ref=e52]: Digital Media
+            - paragraph [ref=e53]: Tu marca en movimiento, donde importa.
+            - list [ref=e54]:
+              - listitem [ref=e55]:
+                - generic [ref=e57]: 500+
+                - generic [ref=e58]: pantallas gestionadas en la red
+              - listitem [ref=e59]:
+                - generic [ref=e61]: 2–3x
+                - generic [ref=e62]: mayor recall vs. señalética estática
+            - generic [ref=e64]: Saber más →
+        - link "Contenido que convierte Creative Studio Contenido que convierte, no solo impresiona. 3x velocidad vs. producción audiovisual tradicional 40–60% reducción de costo vs. agencia tradicional Saber más →" [ref=e66] [cursor=pointer]:
+          - /url: /verticales/producciones
+          - generic [ref=e68]:
+            - img [ref=e70]
+            - heading "Contenido que convierte" [level=3] [ref=e72]
+            - paragraph [ref=e73]: Creative Studio
+            - paragraph [ref=e74]: Contenido que convierte, no solo impresiona.
+            - list [ref=e75]:
+              - listitem [ref=e76]:
+                - generic [ref=e78]: 3x
+                - generic [ref=e79]: velocidad vs. producción audiovisual tradicional
+              - listitem [ref=e80]:
+                - generic [ref=e82]: 40–60%
+                - generic [ref=e83]: reducción de costo vs. agencia tradicional
+            - generic [ref=e85]: Saber más →
+        - link "Entrena a tu equipo con IA Academy Tu equipo con superpoderes de IA. 200+ profesionales formados en empresas chilenas 98% satisfacción en evaluaciones post-taller Saber más →" [ref=e87] [cursor=pointer]:
+          - /url: /verticales/academy
+          - generic [ref=e89]:
+            - img [ref=e91]
+            - heading "Entrena a tu equipo con IA" [level=3] [ref=e94]
+            - paragraph [ref=e95]: Academy
+            - paragraph [ref=e96]: Tu equipo con superpoderes de IA.
+            - list [ref=e97]:
+              - listitem [ref=e98]:
+                - generic [ref=e100]: 200+
+                - generic [ref=e101]: profesionales formados en empresas chilenas
+              - listitem [ref=e102]:
+                - generic [ref=e104]: 98%
+                - generic [ref=e105]: satisfacción en evaluaciones post-taller
+            - generic [ref=e107]: Saber más →
+    - generic [ref=e108]:
+      - paragraph [ref=e109]: Empresas que confían en nosotros
+      - generic [ref=e110]:
+        - img "Clínica Las Condes" [ref=e112]
+        - img "Seguros CLC" [ref=e114]
+        - img "TNT Sports" [ref=e116]
+        - img "Warner Bros." [ref=e118]
+        - img "HBO" [ref=e120]
+        - img "Point Cola" [ref=e122]
+        - img "Clínica Las Condes" [ref=e124]
+        - img "Seguros CLC" [ref=e126]
+        - img "TNT Sports" [ref=e128]
+        - img "Warner Bros." [ref=e130]
+        - img "HBO" [ref=e132]
+        - img "Point Cola" [ref=e134]
+    - region "Tres pasos. Resultados reales." [ref=e135]:
+      - generic [ref=e136]:
+        - generic [ref=e137]: Cómo trabajamos
+        - heading "Tres pasos. Resultados reales." [level=2] [ref=e139]:
+          - text: Tres pasos.
+          - text: Resultados reales.
+        - generic [ref=e140]:
+          - generic [ref=e142]:
+            - generic [ref=e143]: "01"
+            - heading "Diagnóstico" [level=3] [ref=e144]
+            - paragraph [ref=e145]: Analizamos tu negocio, tus procesos y tus objetivos. Identificamos dónde la IA puede generar el mayor impacto inmediato — sin hype, sin vender lo que no necesitás.
+          - generic [ref=e147]:
+            - generic [ref=e148]: "02"
+            - heading "Estrategia" [level=3] [ref=e149]
+            - paragraph [ref=e150]: Diseñamos un plan de acción concreto con hitos medibles, tecnologías seleccionadas y estimaciones reales. Sabés exactamente qué vas a lograr y cuándo.
+          - generic [ref=e152]:
+            - generic [ref=e153]: "03"
+            - heading "Ejecución" [level=3] [ref=e154]
+            - paragraph [ref=e155]: Implementamos, iteramos y medimos. Acompañamos el proceso completo hasta que los resultados sean consistentes y tu equipo pueda operar de forma independiente.
+    - region "Números que hablan." [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]: Resultados
+        - heading "Números que hablan." [level=2] [ref=e160]
+        - generic [ref=e161]:
+          - generic [ref=e163]:
+            - generic [ref=e165]: "+0"
+            - paragraph [ref=e166]: Empresas atendidas
+            - paragraph [ref=e167]: en Chile y LATAM
+          - generic [ref=e169]:
+            - generic [ref=e171]: 0x
+            - paragraph [ref=e172]: ROI promedio
+            - paragraph [ref=e173]: en automatización de atención
+          - generic [ref=e175]:
+            - generic [ref=e177]: 0%
+            - paragraph [ref=e178]: Satisfacción
+            - paragraph [ref=e179]: en encuestas post-proyecto
+          - generic [ref=e181]:
+            - generic [ref=e183]: $0M+
+            - paragraph [ref=e184]: Generados para clientes
+            - paragraph [ref=e185]: en ventas e impacto medible
+    - region "¿Listo para crecer con IA?" [ref=e186]:
+      - generic [ref=e187]:
+        - generic [ref=e188]:
+          - generic [ref=e189]:
+            - generic [ref=e190]: Hablemos
+            - heading "¿Listo para crecer con IA?" [level=2] [ref=e192]:
+              - text: ¿Listo para crecer
+              - text: con IA?
+            - paragraph [ref=e194]: Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial.
+            - list [ref=e196]:
+              - listitem [ref=e197]:
+                - generic [ref=e198]: ✓
+                - text: Diagnóstico gratuito en la primera reunión
+              - listitem [ref=e199]:
+                - generic [ref=e200]: ✓
+                - text: Propuesta en 48 horas
+              - listitem [ref=e201]:
+                - generic [ref=e202]: ✓
+                - text: Sin costos ocultos ni contratos largos
+          - generic [ref=e205]:
+            - generic [ref=e206]:
+              - generic [ref=e207]: Nombre completo *
+              - textbox "Nombre completo" [ref=e208]:
+                - /placeholder: Nombre Apellido
+            - generic [ref=e209]:
+              - generic [ref=e210]: Email *
+              - textbox "Email" [ref=e211]:
+                - /placeholder: tu@empresa.cl
+            - generic [ref=e212]:
+              - generic [ref=e213]: Empresa *
+              - textbox "Empresa" [ref=e214]:
+                - /placeholder: Nombre de tu empresa
+            - generic [ref=e215]:
+              - generic [ref=e216]: Mensaje *
+              - textbox "Mensaje" [ref=e217]:
+                - /placeholder: ¿En qué podemos ayudarte?
+            - button "Enviar mensaje →" [ref=e218]
+        - generic [ref=e219]:
+          - paragraph [ref=e221]: O agenda directo
+          - generic [ref=e224]: Cargando calendario...
+  - contentinfo [ref=e225]:
+    - generic [ref=e226]:
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - paragraph [ref=e229]: Belgrano
+          - paragraph [ref=e230]: Hacemos que la IA trabaje para tu negocio.
+        - generic [ref=e231]:
+          - paragraph [ref=e232]: Servicios
+          - navigation [ref=e233]:
+            - link "Smart Agents" [ref=e234] [cursor=pointer]:
+              - /url: /verticales/bots
+            - link "Digital Media" [ref=e235] [cursor=pointer]:
+              - /url: /verticales/dooh
+            - link "Creative Studio" [ref=e236] [cursor=pointer]:
+              - /url: /verticales/producciones
+            - link "Academy" [ref=e237] [cursor=pointer]:
+              - /url: /verticales/academy
+            - link "Nosotros" [ref=e238] [cursor=pointer]:
+              - /url: /nosotros
+            - link "Contacto" [ref=e239] [cursor=pointer]:
+              - /url: "#cta"
+        - generic [ref=e240]:
+          - paragraph [ref=e241]: Contacto
+          - link "hola@belgrano.cl" [ref=e242] [cursor=pointer]:
+            - /url: mailto:hola@belgrano.cl
+      - paragraph [ref=e244]: © 2026 Grupo Belgrano SpA. Todos los derechos reservados.
+  - link "Contáctanos por WhatsApp" [ref=e246] [cursor=pointer]:
+    - /url: https://wa.me/56965360205?text=Hola%2C%20quisiera%20saber%20m%C3%A1s%20sobre%20Belgrano
+    - img [ref=e247]
+  - button "Open Next.js Dev Tools" [ref=e254] [cursor=pointer]:
+    - img [ref=e255]

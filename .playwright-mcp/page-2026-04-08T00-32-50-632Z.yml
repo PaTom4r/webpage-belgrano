@@ -1,0 +1,19 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: CarWash CLC
+        - paragraph [ref=e6]: Inicia sesion para continuar
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - generic [ref=e10]: Email
+          - textbox "Email" [ref=e11]:
+            - /placeholder: tu@email.com
+        - generic [ref=e12]:
+          - generic [ref=e13]: Contrasena
+          - textbox "Contrasena" [ref=e14]:
+            - /placeholder: ••••••••
+        - button "Iniciar sesion" [ref=e15]
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e21] [cursor=pointer]:
+    - img [ref=e22]

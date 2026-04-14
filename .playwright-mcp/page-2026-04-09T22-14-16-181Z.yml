@@ -1,0 +1,13 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - heading "Log in to AI Trader" [level=1] [ref=e4]
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: Email
+        - textbox "Email" [ref=e8]:
+          - /placeholder: you@example.com
+      - generic [ref=e9]:
+        - generic [ref=e10]: Password
+        - textbox "Password" [ref=e11]
+      - button "Log in" [ref=e12]
+  - region "Notifications alt+T"

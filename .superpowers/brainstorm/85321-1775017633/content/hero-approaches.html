@@ -1,0 +1,279 @@
+<h2>Hero: 4 Mini Mockups en Fila</h2>
+<p class="subtitle">3 enfoques para mostrar las verticales en el hero. Cada uno muestra las 4 verticales lado a lado.</p>
+
+<!-- Approach A: Mini App Windows -->
+<div class="card" data-choice="a" onclick="toggleSelect(this)" style="margin-bottom:32px; cursor:pointer">
+  <div class="card-body">
+    <h3>A. Mini Ventanas de App</h3>
+    <p style="color:#999;margin-bottom:16px">4 mini "ventanas" con chrome (dots + barra), cada una mostrando un mockup simplificado de la interfaz del servicio</p>
+  </div>
+  <div class="card-image" style="padding:24px;background:#0a0a0a">
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:nowrap">
+      <!-- Bot -->
+      <div style="width:24%;min-width:150px;background:#111;border-radius:12px;overflow:hidden;border:1px solid #333">
+        <div style="background:#1a1a1a;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #333">
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+        </div>
+        <div style="padding:16px">
+          <!-- Chat mockup -->
+          <div style="background:#222;border-radius:8px;padding:8px;margin-bottom:6px;font-size:10px;color:#888;max-width:80%">Hola, necesito agendar una hora</div>
+          <div style="background:#fff;border-radius:8px;padding:8px;margin-bottom:6px;font-size:10px;color:#111;margin-left:20%;text-align:right">Perfecto. Te muestro horarios disponibles para esta semana</div>
+          <div style="background:#222;border-radius:8px;padding:8px;font-size:10px;color:#888;max-width:70%">El jueves a las 10am</div>
+          <div style="margin-top:8px;display:flex;gap:4px">
+            <div style="flex:1;background:#333;border-radius:4px;height:24px"></div>
+            <div style="width:24px;background:#fff;border-radius:4px;height:24px"></div>
+          </div>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid #222;text-align:center">
+          <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.02em">Bots Conversacionales</div>
+        </div>
+      </div>
+      <!-- DOOH -->
+      <div style="width:24%;min-width:150px;background:#111;border-radius:12px;overflow:hidden;border:1px solid #333">
+        <div style="background:#1a1a1a;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #333">
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+        </div>
+        <div style="padding:16px">
+          <!-- Screen grid mockup -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px">
+            <div style="background:#1a3a1a;border-radius:4px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:8px;color:#4a8a4a">LIVE</div>
+            <div style="background:#222;border-radius:4px;aspect-ratio:16/9"></div>
+            <div style="background:#222;border-radius:4px;aspect-ratio:16/9"></div>
+            <div style="background:#2a2a3a;border-radius:4px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:8px;color:#6a6a9a">AD</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:#666">
+            <span>500+ pantallas</span>
+            <span style="color:#4a8a4a">● Online</span>
+          </div>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid #222;text-align:center">
+          <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.02em">DOOH</div>
+        </div>
+      </div>
+      <!-- Producciones -->
+      <div style="width:24%;min-width:150px;background:#111;border-radius:12px;overflow:hidden;border:1px solid #333">
+        <div style="background:#1a1a1a;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #333">
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+        </div>
+        <div style="padding:16px">
+          <!-- Timeline mockup -->
+          <div style="background:#222;border-radius:6px;aspect-ratio:16/9;margin-bottom:8px;display:flex;align-items:center;justify-content:center">
+            <div style="width:0;height:0;border-left:12px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent"></div>
+          </div>
+          <div style="display:flex;gap:2px;margin-bottom:4px">
+            <div style="flex:3;height:6px;background:#444;border-radius:2px"></div>
+            <div style="flex:2;height:6px;background:#333;border-radius:2px"></div>
+            <div style="flex:1;height:6px;background:#555;border-radius:2px"></div>
+          </div>
+          <div style="display:flex;gap:2px">
+            <div style="flex:1;height:6px;background:#333;border-radius:2px"></div>
+            <div style="flex:2;height:6px;background:#444;border-radius:2px"></div>
+            <div style="flex:3;height:6px;background:#333;border-radius:2px"></div>
+          </div>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid #222;text-align:center">
+          <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.02em">Producciones</div>
+        </div>
+      </div>
+      <!-- Academy -->
+      <div style="width:24%;min-width:150px;background:#111;border-radius:12px;overflow:hidden;border:1px solid #333">
+        <div style="background:#1a1a1a;padding:6px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #333">
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+          <div style="width:6px;height:6px;border-radius:50%;background:#555"></div>
+        </div>
+        <div style="padding:16px">
+          <!-- Course/progress mockup -->
+          <div style="font-size:9px;color:#888;margin-bottom:6px">Módulo 3 de 8</div>
+          <div style="background:#333;border-radius:4px;height:4px;margin-bottom:10px"><div style="background:#fff;border-radius:4px;height:4px;width:37%"></div></div>
+          <div style="space-y:4px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+              <div style="width:14px;height:14px;border-radius:50%;background:#2a4a2a;display:flex;align-items:center;justify-content:center;font-size:8px;color:#4a8a4a">✓</div>
+              <span style="font-size:10px;color:#666;text-decoration:line-through">Intro a IA generativa</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+              <div style="width:14px;height:14px;border-radius:50%;background:#2a4a2a;display:flex;align-items:center;justify-content:center;font-size:8px;color:#4a8a4a">✓</div>
+              <span style="font-size:10px;color:#666;text-decoration:line-through">Prompting avanzado</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="width:14px;height:14px;border-radius:50%;border:1px solid #555"></div>
+              <span style="font-size:10px;color:#ccc">Automatización con n8n</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid #222;text-align:center">
+          <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.02em">Academy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Approach B: Floating Cards with Glass -->
+<div class="card" data-choice="b" onclick="toggleSelect(this)" style="margin-bottom:32px; cursor:pointer">
+  <div class="card-body">
+    <h3>B. Cards Glassmorphism con Icono Prominente</h3>
+    <p style="color:#999;margin-bottom:16px">4 cards translúcidas con icono grande, nombre en bold y una métrica destacada. Sin chrome de ventana — más limpio.</p>
+  </div>
+  <div class="card-image" style="padding:32px;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 100%)">
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:nowrap">
+      <div style="width:24%;min-width:140px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 16px;text-align:center">
+        <div style="width:48px;height:48px;margin:0 auto 12px;background:rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px">Bots Conversacionales</div>
+        <div style="font-size:11px;color:#888;margin-bottom:12px">Tu negocio responde solo. Siempre.</div>
+        <div style="font-size:20px;font-weight:800;color:#fff">70-85%</div>
+        <div style="font-size:9px;color:#666;margin-top:2px">consultas resueltas sin humano</div>
+      </div>
+      <div style="width:24%;min-width:140px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 16px;text-align:center">
+        <div style="width:48px;height:48px;margin:0 auto 12px;background:rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px">DOOH</div>
+        <div style="font-size:11px;color:#888;margin-bottom:12px">Tu marca en movimiento, donde importa.</div>
+        <div style="font-size:20px;font-weight:800;color:#fff">500+</div>
+        <div style="font-size:9px;color:#666;margin-top:2px">pantallas gestionadas</div>
+      </div>
+      <div style="width:24%;min-width:140px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 16px;text-align:center">
+        <div style="width:48px;height:48px;margin:0 auto 12px;background:rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+        </div>
+        <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px">Producciones</div>
+        <div style="font-size:11px;color:#888;margin-bottom:12px">Contenido que convierte, no solo impresiona.</div>
+        <div style="font-size:20px;font-weight:800;color:#fff">3x</div>
+        <div style="font-size:9px;color:#666;margin-top:2px">velocidad vs. producción tradicional</div>
+      </div>
+      <div style="width:24%;min-width:140px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 16px;text-align:center">
+        <div style="width:48px;height:48px;margin:0 auto 12px;background:rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div style="font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px">Academy</div>
+        <div style="font-size:11px;color:#888;margin-bottom:12px">Tu equipo con superpoderes de IA.</div>
+        <div style="font-size:20px;font-weight:800;color:#fff">200+</div>
+        <div style="font-size:9px;color:#666;margin-top:2px">profesionales formados</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Approach C: Mini Browser Mockups with interface -->
+<div class="card" data-choice="c" onclick="toggleSelect(this)" style="margin-bottom:32px; cursor:pointer">
+  <div class="card-body">
+    <h3>C. Mini Browser Windows con Interfaz Real</h3>
+    <p style="color:#999;margin-bottom:16px">4 mini ventanas de navegador, cada una mostrando una interfaz representativa del servicio. Nombre grande arriba de cada ventana.</p>
+  </div>
+  <div class="card-image" style="padding:24px;background:#f5f5f5">
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:nowrap">
+      <!-- Bot -->
+      <div style="width:24%;min-width:150px">
+        <div style="font-size:14px;font-weight:800;color:#111;letter-spacing:-0.02em;margin-bottom:6px;text-align:center">Bots</div>
+        <div style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb">
+          <div style="background:#fafafa;padding:5px 8px;display:flex;align-items:center;gap:4px;border-bottom:1px solid #e5e7eb">
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="flex:1;background:#f0f0f0;border-radius:3px;height:12px;margin-left:4px"></div>
+          </div>
+          <div style="padding:12px">
+            <div style="background:#f0f4f8;border-radius:8px;padding:6px 8px;margin-bottom:4px;font-size:9px;color:#555;max-width:75%">Necesito agendar una consulta</div>
+            <div style="background:#111;border-radius:8px;padding:6px 8px;margin-bottom:4px;font-size:9px;color:#fff;margin-left:25%;text-align:right">¡Perfecto! Tenemos horarios para mañana</div>
+            <div style="background:#f0f4f8;border-radius:8px;padding:6px 8px;font-size:9px;color:#555;max-width:60%">A las 10:00 am</div>
+            <div style="margin-top:8px;background:#111;color:#fff;border-radius:6px;padding:5px;text-align:center;font-size:8px;font-weight:600">Confirmar hora ✓</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:6px;font-size:9px;color:#888">70-85% resuelto sin humano</div>
+      </div>
+      <!-- DOOH -->
+      <div style="width:24%;min-width:150px">
+        <div style="font-size:14px;font-weight:800;color:#111;letter-spacing:-0.02em;margin-bottom:6px;text-align:center">DOOH</div>
+        <div style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb">
+          <div style="background:#fafafa;padding:5px 8px;display:flex;align-items:center;gap:4px;border-bottom:1px solid #e5e7eb">
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="flex:1;background:#f0f0f0;border-radius:3px;height:12px;margin-left:4px"></div>
+          </div>
+          <div style="padding:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:8px">
+              <div style="background:#111;border-radius:4px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:7px;color:#4a8;font-weight:600">● LIVE</div>
+              <div style="background:#f0f0f0;border-radius:4px;aspect-ratio:16/9"></div>
+              <div style="background:#f0f0f0;border-radius:4px;aspect-ratio:16/9"></div>
+              <div style="background:#e8e8f0;border-radius:4px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:7px;color:#888">CLC</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:8px;color:#888">Red activa</span>
+              <span style="font-size:8px;color:#4a8;font-weight:600">500+</span>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:6px;font-size:9px;color:#888">Pantallas en tiempo real</div>
+      </div>
+      <!-- Producciones -->
+      <div style="width:24%;min-width:150px">
+        <div style="font-size:14px;font-weight:800;color:#111;letter-spacing:-0.02em;margin-bottom:6px;text-align:center">Producciones</div>
+        <div style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb">
+          <div style="background:#fafafa;padding:5px 8px;display:flex;align-items:center;gap:4px;border-bottom:1px solid #e5e7eb">
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="flex:1;background:#f0f0f0;border-radius:3px;height:12px;margin-left:4px"></div>
+          </div>
+          <div style="padding:12px">
+            <div style="background:#111;border-radius:6px;aspect-ratio:16/9;margin-bottom:6px;display:flex;align-items:center;justify-content:center">
+              <div style="width:0;height:0;border-left:10px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent"></div>
+            </div>
+            <div style="display:flex;gap:2px;margin-bottom:3px">
+              <div style="flex:3;height:4px;background:#111;border-radius:2px"></div>
+              <div style="flex:2;height:4px;background:#ddd;border-radius:2px"></div>
+              <div style="flex:1;height:4px;background:#eee;border-radius:2px"></div>
+            </div>
+            <div style="display:flex;gap:2px">
+              <div style="flex:1;height:4px;background:#eee;border-radius:2px"></div>
+              <div style="flex:2;height:4px;background:#ddd;border-radius:2px"></div>
+            </div>
+            <div style="margin-top:6px;font-size:8px;color:#888;display:flex;justify-content:space-between"><span>00:24</span><span>01:30</span></div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:6px;font-size:9px;color:#888">3x más rápido que agencia</div>
+      </div>
+      <!-- Academy -->
+      <div style="width:24%;min-width:150px">
+        <div style="font-size:14px;font-weight:800;color:#111;letter-spacing:-0.02em;margin-bottom:6px;text-align:center">Academy</div>
+        <div style="background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb">
+          <div style="background:#fafafa;padding:5px 8px;display:flex;align-items:center;gap:4px;border-bottom:1px solid #e5e7eb">
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:#ddd"></div>
+            <div style="flex:1;background:#f0f0f0;border-radius:3px;height:12px;margin-left:4px"></div>
+          </div>
+          <div style="padding:12px">
+            <div style="font-size:8px;color:#888;margin-bottom:4px">Módulo 3 / 8</div>
+            <div style="background:#f0f0f0;border-radius:3px;height:4px;margin-bottom:8px"><div style="background:#111;border-radius:3px;height:4px;width:37%"></div></div>
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+              <div style="width:12px;height:12px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff">✓</div>
+              <span style="font-size:9px;color:#aaa;text-decoration:line-through">Intro IA generativa</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+              <div style="width:12px;height:12px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff">✓</div>
+              <span style="font-size:9px;color:#aaa;text-decoration:line-through">Prompting avanzado</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:4px">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid #111"></div>
+              <span style="font-size:9px;color:#333;font-weight:500">Automatización n8n</span>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:6px;font-size:9px;color:#888">200+ profesionales formados</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="color:#888;font-size:13px;margin-top:16px">Hacé clic en el enfoque que más te guste, o contame en el terminal qué te parece cada uno.</p>

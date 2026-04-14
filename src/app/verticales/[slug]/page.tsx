@@ -13,6 +13,7 @@ import { VerticalClientsSection } from '@/components/sections/vertical-clients-s
 import { VerticalFaqSection } from '@/components/sections/vertical-faq-section'
 import { VerticalBranchesSection } from '@/components/sections/vertical-branches-section'
 import { CtaSection } from '@/components/sections/cta-section'
+import { Footer } from '@/components/layout/footer'
 import { Container } from '@/components/layout/container'
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
 
@@ -134,6 +135,7 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
       {/* CTA — reuse landing CTA section as-is */}
       <CtaSection />
     </main>
+    <Footer />
     </>
   )
 }

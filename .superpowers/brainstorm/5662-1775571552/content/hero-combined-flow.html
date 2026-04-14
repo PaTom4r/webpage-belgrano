@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Flow — Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; font-family: 'Geist', 'Inter', system-ui, sans-serif; color: white; }
+
+  /* ── ZONE 1: Hero titular (unchanged) ── */
+  .zone1 {
+    background: #ffffff;
+    padding: 80px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .zone1 h1 {
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: #111827;
+    letter-spacing: -2px;
+  }
+  .zone1 p {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #6B7280;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .zone1 .cta {
+    margin-top: 28px;
+    background: #000;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+  }
+  .zone1-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* ── ZONE 2: 4 vertical strips ── */
+  .zone2 {
+    background: #09090B;
+    padding: 48px 40px 40px;
+  }
+  .section-hint {
+    text-align: center;
+    font-size: 11px;
+    color: #6B7280;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .strips {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .strip {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .strip:hover, .strip.active { border-color: #444; }
+  .strip-icon { font-size: 28px; margin-bottom: 12px; }
+  .strip-name {
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    color: #fff;
+  }
+  .strip-tagline {
+    font-size: 10px;
+    color: #6B7280;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  .scroll-cue {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 10px;
+    color: #6B7280;
+    letter-spacing: 1px;
+  }
+  .scroll-cue span { display: block; margin-top: 4px; font-size: 16px; animation: bounce 1.5s infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+  /* ── VERTICAL DETAIL SECTIONS ── */
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 0 40px;
+  }
+  .vertical-detail {
+    background: #09090B;
+    padding: 64px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .vertical-detail + .vertical-detail { padding-top: 40px; }
+  .detail-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  /* Alternate: odd = visual left, even = visual right */
+  .detail-inner.reverse { direction: rtl; }
+  .detail-inner.reverse > * { direction: ltr; }
+
+  /* Visual side */
+  .visual-box {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    color: #333;
+    font-size: 13px;
+  }
+  .visual-box .visual-icon { font-size: 40px; }
+  .visual-box .visual-label { font-size: 10px; color: #444; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Info side */
+  .detail-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #6B7280;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .detail-name {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .detail-desc {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #9CA3AF;
+    line-height: 1.7;
+  }
+  .metrics {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .metric {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 10px 14px;
+    flex: 1;
+  }
+  .metric-value { font-size: 20px; font-weight: 800; color: #fff; }
+  .metric-label { font-size: 9px; color: #6B7280; margin-top: 2px; line-height: 1.3; }
+  .detail-cta {
+    margin-top: 24px;
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 8px;
+  }
+  .detail-cta:hover { opacity: 0.85; }
+
+  /* Scroll label */
+  .page-label {
+    background: #111;
+    color: #6B7280;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div style="background:#fff;border-bottom:1px solid #e5e7eb;padding:0 40px;height:56px;display:flex;align-items:center;justify-content:space-between;">
+  <span style="font-size:17px;font-weight:900;letter-spacing:-1px;color:#000;text-transform:uppercase;">BELGRANO</span>
+  <div style="display:flex;gap:24px;font-size:12px;color:#6B7280;">
+    <span>Cómo trabajamos</span><span>Resultados</span><span>Nosotros</span><span>Contacto</span>
+  </div>
+  <span style="background:#000;color:#fff;font-size:12px;font-weight:600;padding:7px 18px;border-radius:6px;">Hablemos</span>
+</div>
+
+<!-- ── ZONE 1: HERO TITULAR (SIN CAMBIOS) ── -->
+<div class="zone1">
+  <div class="zone1-label">Agencia de IA aplicada · Santiago, Chile</div>
+  <h1>Tu negocio.<br>Nuestra inteligencia.</h1>
+  <p>Automatizamos ventas, amplificamos tu marca y formamos a tu equipo — todo con IA aplicada y resultados medibles.</p>
+  <span class="cta">Hablemos →</span>
+</div>
+
+<!-- ── ZONE 2: 4 STRIPS (NUEVO) ── -->
+<div class="zone2">
+  <div class="section-hint">¿Qué necesita tu negocio?</div>
+  <div class="strips">
+    <div class="strip">
+      <div class="strip-icon">💬</div>
+      <div class="strip-name">AUTOMATIZA TU ATENCIÓN</div>
+      <div class="strip-tagline">Chatbots IA que responden 24/7 sin intervención humana</div>
+    </div>
+    <div class="strip">
+      <div class="strip-icon">📺</div>
+      <div class="strip-name">LLEGA DONDE ESTÁN TUS CLIENTES</div>
+      <div class="strip-tagline">Red de pantallas digitales en espacios de alto tráfico</div>
+    </div>
+    <div class="strip">
+      <div class="strip-icon">🎬</div>
+      <div class="strip-name">CONTENIDO QUE CONVIERTE</div>
+      <div class="strip-tagline">Producción audiovisual que vende, no solo impresiona</div>
+    </div>
+    <div class="strip">
+      <div class="strip-icon">🎓</div>
+      <div class="strip-name">ENTRENA A TU EQUIPO CON IA</div>
+      <div class="strip-tagline">Capacitación práctica para equipos que quieren crecer</div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    Descubre cada solución
+    <span>↓</span>
+  </div>
+</div>
+
+<!-- ── SECCIÓN DETALLE: al scrollear ── -->
+<div class="page-label">↓ Al scrollear, cada vertical se revela así ↓</div>
+
+<!-- Vertical 1: Smart Agents -->
+<div style="background:#09090B;padding:64px 40px;">
+  <div class="detail-inner" style="max-width:960px;margin:0 auto;">
+    <div class="visual-box">
+      <div class="visual-icon">💬</div>
+      <div style="font-size:11px;color:#333;text-align:center;line-height:1.5;">
+        Demo chatbot<br>
+        <span style="font-size:9px;color:#444;">GIF / video interactivo</span>
+      </div>
+    </div>
+    <div>
+      <div class="detail-label">Smart Agents</div>
+      <div class="detail-name">Automatiza<br>tu atención</div>
+      <div class="detail-desc">Tu negocio responde solo. Chatbots con IA integrados en WhatsApp, web o cualquier canal — resuelven el 70–85% de las consultas sin que ningún humano tenga que intervenir.</div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">70–85%</div>
+          <div class="metric-label">consultas resueltas sin intervención</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">30–50%</div>
+          <div class="metric-label">reducción en costos de atención</div>
+        </div>
+      </div>
+      <a class="detail-cta">Ver cómo funciona →</a>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- Vertical 2: Digital Media (visual a la derecha) -->
+<div style="background:#09090B;padding:64px 40px;">
+  <div class="detail-inner reverse" style="max-width:960px;margin:0 auto;">
+    <div class="visual-box">
+      <div class="visual-icon">📺</div>
+      <div style="font-size:11px;color:#333;text-align:center;line-height:1.5;">
+        Mapa de red<br>
+        <span style="font-size:9px;color:#444;">Screenshot / mockup pantallas</span>
+      </div>
+    </div>
+    <div>
+      <div class="detail-label">Digital Media</div>
+      <div class="detail-name">Llega donde<br>están tus clientes</div>
+      <div class="detail-desc">Gestionamos una red de pantallas digitales en clínicas y espacios corporativos. Mostramos tu publicidad frente a una audiencia cautiva con 20–40 minutos de exposición promedio.</div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">500+</div>
+          <div class="metric-label">pantallas en la red</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">2–3x</div>
+          <div class="metric-label">mayor recall vs. señalética estática</div>
+        </div>
+      </div>
+      <a class="detail-cta">Conocer la red →</a>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- Vertical 3: Creative Studio -->
+<div style="background:#09090B;padding:64px 40px;">
+  <div class="detail-inner" style="max-width:960px;margin:0 auto;">
+    <div class="visual-box">
+      <div class="visual-icon">🎬</div>
+      <div style="font-size:11px;color:#333;text-align:center;line-height:1.5;">
+        Reel showreel<br>
+        <span style="font-size:9px;color:#444;">Video loop / portfolio</span>
+      </div>
+    </div>
+    <div>
+      <div class="detail-label">Creative Studio</div>
+      <div class="detail-name">Contenido<br>que convierte</div>
+      <div class="detail-desc">Producimos video, foto y contenido digital con IA aplicada a cada etapa. Más rápido que una agencia tradicional, con resultados medibles desde el primer mes.</div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">3x</div>
+          <div class="metric-label">velocidad vs. producción tradicional</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">40–60%</div>
+          <div class="metric-label">reducción de costo vs. agencia tradicional</div>
+        </div>
+      </div>
+      <a class="detail-cta">Ver nuestro trabajo →</a>
+    </div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- Vertical 4: Academy -->
+<div style="background:#09090B;padding:64px 40px 80px;">
+  <div class="detail-inner reverse" style="max-width:960px;margin:0 auto;">
+    <div class="visual-box">
+      <div class="visual-icon">🎓</div>
+      <div style="font-size:11px;color:#333;text-align:center;line-height:1.5;">
+        Curso demo<br>
+        <span style="font-size:9px;color:#444;">Screenshot plataforma / testimonios</span>
+      </div>
+    </div>
+    <div>
+      <div class="detail-label">Academy</div>
+      <div class="detail-name">Entrena a tu<br>equipo con IA</div>
+      <div class="detail-desc">Formación práctica para equipos de trabajo. No teórica — tus colaboradores aprenden a usar IA en su trabajo real, con herramientas que pueden aplicar desde el día uno.</div>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">200+</div>
+          <div class="metric-label">profesionales formados</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">98%</div>
+          <div class="metric-label">satisfacción post-formación</div>
+        </div>
+      </div>
+      <a class="detail-cta">Ver programas →</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Belgrano" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Cómo trabajamos" [ref=e6] [cursor=pointer]:
+          - /url: /#how-it-works
+        - link "Resultados" [ref=e7] [cursor=pointer]:
+          - /url: /#stats
+        - link "Nosotros" [ref=e8] [cursor=pointer]:
+          - /url: /nosotros
+        - link "Contacto" [ref=e9] [cursor=pointer]:
+          - /url: /#cta
+      - link "Hablemos" [ref=e11] [cursor=pointer]:
+        - /url: /#cta
+  - main [ref=e12]:
+    - region "Tu negocio. Nuestra inteligencia." [ref=e13]:
+      - generic [ref=e15]:
+        - heading "Tu negocio. Nuestra inteligencia." [level=1] [ref=e16]:
+          - text: Tu negocio.
+          - text: Nuestra inteligencia.
+        - paragraph [ref=e17]: Medios tradicionales con IA, soluciones inteligentes para tu empresa y experiencias de marca que conectan — todo Belgrano.
+      - generic [ref=e22]:
+        - link "Belgrano Intelligence IA aplicada que transforma cómo opera tu negocio La inteligencia artificial puesta a trabajar por tu empresa. AI Solutions Academy Saber más →" [ref=e24] [cursor=pointer]:
+          - /url: /verticales/intelligence
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e27]:
+                - generic [ref=e30]: Belgrano Intelligence
+                - generic [ref=e33]: AI Activo
+              - generic [ref=e34]:
+                - generic [ref=e35]:
+                  - generic [ref=e36]: AI Solutions
+                  - generic [ref=e37]:
+                    - generic [ref=e38]:
+                      - generic [ref=e39]: Agentes activos
+                      - generic [ref=e40]: "12"
+                    - generic [ref=e41]:
+                      - generic [ref=e42]: Tareas / día
+                      - generic [ref=e43]: 4.2k
+                    - generic [ref=e45]:
+                      - generic [ref=e46]: Precisión
+                      - generic [ref=e47]: 94%
+                - generic [ref=e51]:
+                  - generic [ref=e52]: Academy
+                  - generic [ref=e53]:
+                    - generic [ref=e55]:
+                      - generic [ref=e56]: IA para ventas
+                      - generic [ref=e57]: 87%
+                    - generic [ref=e61]:
+                      - generic [ref=e62]: Copilot 365
+                      - generic [ref=e63]: 64%
+                    - generic [ref=e67]:
+                      - generic [ref=e68]: n8n avanzado
+                      - generic [ref=e69]: 41%
+            - generic [ref=e72]:
+              - paragraph [ref=e73]: Belgrano Intelligence
+              - heading "IA aplicada que transforma cómo opera tu negocio" [level=3] [ref=e74]
+              - paragraph [ref=e75]: La inteligencia artificial puesta a trabajar por tu empresa.
+              - generic [ref=e76]:
+                - generic [ref=e77]: AI Solutions
+                - generic [ref=e78]: Academy
+              - generic [ref=e80]: Saber más →
+        - link "Belgrano Media Tu marca presente donde tu audiencia vive Medios tradicionales y digitales, planificados con cabeza. Saber más →" [ref=e82] [cursor=pointer]:
+          - /url: /verticales/media
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e86]: Media Planning
+                - generic [ref=e87]: Q2
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - generic [ref=e90]: TV
+                  - generic [ref=e93]: 35%
+                - generic [ref=e94]:
+                  - generic [ref=e95]: DOOH
+                  - generic [ref=e98]: 25%
+                - generic [ref=e99]:
+                  - generic [ref=e100]: Radio
+                  - generic [ref=e103]: 15%
+                - generic [ref=e104]:
+                  - generic [ref=e105]: OOH
+                  - generic [ref=e108]: 15%
+                - generic [ref=e109]:
+                  - generic [ref=e110]: Digital
+                  - generic [ref=e113]: 10%
+            - generic [ref=e114]:
+              - paragraph [ref=e115]: Belgrano Media
+              - heading "Tu marca presente donde tu audiencia vive" [level=3] [ref=e116]
+              - paragraph [ref=e117]: Medios tradicionales y digitales, planificados con cabeza.
+              - generic [ref=e119]: Saber más →
+        - link "Belgrano Brand Experiencias de marca que activan, conectan y venden Trade marketing y acciones creativas que dejan huella. Saber más →" [ref=e121] [cursor=pointer]:
+          - /url: /verticales/brand
+          - generic [ref=e122]:
+            - generic [ref=e123]:
+              - generic [ref=e125]: Brand Activation
+              - paragraph [ref=e129]: BELGRANO
+            - generic [ref=e139]:
+              - paragraph [ref=e140]: Belgrano Brand
+              - heading "Experiencias de marca que activan, conectan y venden" [level=3] [ref=e141]
+              - paragraph [ref=e142]: Trade marketing y acciones creativas que dejan huella.
+              - generic [ref=e144]: Saber más →
+    - region "Tres pasos. Resultados reales." [ref=e145]:
+      - generic [ref=e146]:
+        - generic [ref=e147]: Cómo trabajamos
+        - heading "Tres pasos. Resultados reales." [level=2] [ref=e149]:
+          - text: Tres pasos.
+          - text: Resultados reales.
+        - generic [ref=e150]:
+          - article [ref=e152]:
+            - generic [ref=e153]:
+              - img "Equipo analizando datos en una reunión de trabajo" [ref=e154]
+              - generic [ref=e155]:
+                - generic [ref=e156]: Paso 01
+                - heading "Diagnóstico" [level=3] [ref=e157]
+            - generic:
+              - generic:
+                - generic: Paso 01
+                - heading "Diagnóstico" [level=3]
+                - paragraph: Analizamos tu negocio, tus procesos y tus objetivos. Identificamos dónde la IA puede generar el mayor impacto inmediato — sin hype, sin vender lo que no necesitás.
+              - generic:
+                - generic:
+                  - img
+          - article [ref=e159]:
+            - generic [ref=e160]:
+              - img "Pizarra con post-its y planificación estratégica" [ref=e161]
+              - generic [ref=e162]:
+                - generic [ref=e163]: Paso 02
+                - heading "Estrategia" [level=3] [ref=e164]
+            - generic:
+              - generic:
+                - generic: Paso 02
+                - heading "Estrategia" [level=3]
+                - paragraph: Diseñamos un plan de acción concreto con hitos medibles, tecnologías seleccionadas y estimaciones reales. Sabés exactamente qué vas a lograr y cuándo.
+              - generic:
+                - generic:
+                  - img
+          - article [ref=e166]:
+            - generic [ref=e167]:
+              - img "Equipo colaborando en la ejecución de un proyecto" [ref=e168]
+              - generic [ref=e169]:
+                - generic [ref=e170]: Paso 03
+                - heading "Ejecución" [level=3] [ref=e171]
+            - generic:
+              - generic:
+                - generic: Paso 03
+                - heading "Ejecución" [level=3]
+                - paragraph: Implementamos, iteramos y medimos. Acompañamos el proceso completo hasta que los resultados sean consistentes y tu equipo pueda operar de forma independiente.
+              - generic:
+                - generic:
+                  - img
+    - region "Números que hablan." [ref=e172]:
+      - generic [ref=e173]:
+        - generic [ref=e174]: Resultados
+        - heading "Números que hablan." [level=2] [ref=e176]
+        - generic [ref=e177]:
+          - generic [ref=e179]:
+            - generic [ref=e181]: "+0"
+            - paragraph [ref=e182]: Empresas atendidas
+            - paragraph [ref=e183]: en Chile y LATAM
+          - generic [ref=e185]:
+            - generic [ref=e187]: 0x
+            - paragraph [ref=e188]: ROI promedio
+            - paragraph [ref=e189]: en automatización de atención
+          - generic [ref=e191]:
+            - generic [ref=e193]: 0%
+            - paragraph [ref=e194]: Satisfacción
+            - paragraph [ref=e195]: en encuestas post-proyecto
+          - generic [ref=e197]:
+            - generic [ref=e199]: $0M+
+            - paragraph [ref=e200]: Generados para clientes
+            - paragraph [ref=e201]: en ventas e impacto medible
+    - region "¿Listo para crecer con IA?" [ref=e202]:
+      - generic [ref=e203]:
+        - generic [ref=e204]:
+          - generic [ref=e205]:
+            - generic [ref=e206]: Hablemos
+            - heading "¿Listo para crecer con IA?" [level=2] [ref=e208]:
+              - text: ¿Listo para crecer
+              - text: con IA?
+            - paragraph [ref=e210]: Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial.
+            - list [ref=e212]:
+              - listitem [ref=e213]:
+                - generic [ref=e214]: ✓
+                - text: Diagnóstico gratuito en la primera reunión
+              - listitem [ref=e215]:
+                - generic [ref=e216]: ✓
+                - text: Propuesta en 48 horas
+              - listitem [ref=e217]:
+                - generic [ref=e218]: ✓
+                - text: Sin costos ocultos ni contratos largos
+          - generic [ref=e221]:
+            - generic [ref=e222]:
+              - generic [ref=e223]: Nombre completo *
+              - textbox "Nombre completo" [ref=e224]:
+                - /placeholder: Nombre Apellido
+            - generic [ref=e225]:
+              - generic [ref=e226]: Email *
+              - textbox "Email" [ref=e227]:
+                - /placeholder: tu@empresa.cl
+            - generic [ref=e228]:
+              - generic [ref=e229]: Empresa *
+              - textbox "Empresa" [ref=e230]:
+                - /placeholder: Nombre de tu empresa
+            - generic [ref=e231]:
+              - generic [ref=e232]: Mensaje *
+              - textbox "Mensaje" [ref=e233]:
+                - /placeholder: ¿En qué podemos ayudarte?
+            - button "Enviar mensaje →" [ref=e234]
+        - generic [ref=e235]:
+          - paragraph [ref=e237]: O agenda directo
+          - generic [ref=e240]: Cargando calendario...
+  - contentinfo [ref=e241]:
+    - generic [ref=e242]:
+      - generic [ref=e243]:
+        - generic [ref=e244]:
+          - paragraph [ref=e245]: Belgrano
+          - paragraph [ref=e246]: Hacemos que la IA trabaje para tu negocio.
+        - generic [ref=e247]:
+          - paragraph [ref=e248]: Servicios
+          - navigation [ref=e249]:
+            - link "Belgrano Media" [ref=e250] [cursor=pointer]:
+              - /url: /verticales/media
+            - link "Belgrano Intelligence" [ref=e251] [cursor=pointer]:
+              - /url: /verticales/intelligence
+            - link "Belgrano Brand" [ref=e252] [cursor=pointer]:
+              - /url: /verticales/brand
+            - link "Nosotros" [ref=e253] [cursor=pointer]:
+              - /url: /nosotros
+            - link "Contacto" [ref=e254] [cursor=pointer]:
+              - /url: "#cta"
+        - generic [ref=e255]:
+          - paragraph [ref=e256]: Contacto
+          - link "hola@belgrano.cl" [ref=e257] [cursor=pointer]:
+            - /url: mailto:hola@belgrano.cl
+      - paragraph [ref=e259]: © 2026 Grupo Belgrano SpA. Todos los derechos reservados.
+  - link "Contáctanos por WhatsApp" [ref=e261] [cursor=pointer]:
+    - /url: https://wa.me/56965360205?text=Hola%2C%20quisiera%20saber%20m%C3%A1s%20sobre%20Belgrano
+    - img [ref=e262]
+  - button "Open Next.js Dev Tools" [ref=e269] [cursor=pointer]:
+    - img [ref=e270]
+  - alert [ref=e273]

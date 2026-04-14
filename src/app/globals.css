@@ -4,11 +4,17 @@
   /* Brand colors — Minimalist black/white/grey palette */
   --color-bg: #ffffff;
   --color-bg-section: #f9fafb;
+  --color-bg-landing: #f3f3f3;
+  --color-surface: #ffffff;
   --color-dark: #09090b;
   --color-text: #111827;
   --color-text-secondary: #6b7280;
   --color-accent: #000000;
   --color-border: #e5e7eb;
+  --color-border-soft: #e2e2e2;
+  --color-accent-yellow: #E8F56B;
+  --color-accent-green: #CFE8D5;
+  --color-accent-pink: #F6D6D6;
 
   /* Typography — chain to next/font CSS variables injected at runtime */
   --font-sans: var(--font-geist), 'Inter', system-ui, sans-serif;

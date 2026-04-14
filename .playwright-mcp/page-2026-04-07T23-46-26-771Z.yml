@@ -1,0 +1,205 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Belgrano" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Cómo trabajamos" [ref=e6] [cursor=pointer]:
+          - /url: /#how-it-works
+        - link "Resultados" [ref=e7] [cursor=pointer]:
+          - /url: /#stats
+        - link "Nosotros" [ref=e8] [cursor=pointer]:
+          - /url: /nosotros
+        - link "Contacto" [ref=e9] [cursor=pointer]:
+          - /url: /#cta
+      - link "Hablemos" [ref=e11] [cursor=pointer]:
+        - /url: /#cta
+  - main [ref=e12]:
+    - region "Tu negocio. Nuestra inteligencia." [ref=e13]:
+      - generic [ref=e15]:
+        - heading "Tu negocio. Nuestra inteligencia." [level=1] [ref=e16]:
+          - text: Tu negocio.
+          - text: Nuestra inteligencia.
+        - paragraph [ref=e17]: Medios tradicionales con IA, soluciones inteligentes para tu empresa y experiencias de marca que conectan — todo Belgrano.
+      - generic [ref=e22]:
+        - link "Belgrano Intelligence IA aplicada que transforma cómo opera tu negocio La inteligencia artificial puesta a trabajar por tu empresa. AI Solutions Academy Saber más →" [ref=e24] [cursor=pointer]:
+          - /url: /verticales/intelligence
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e29]: Belgrano Intelligence
+              - generic [ref=e30]:
+                - paragraph [ref=e32]: AI Engine
+                - generic [ref=e38]:
+                  - paragraph [ref=e40]: AI Solutions
+                  - paragraph [ref=e42]: Academy
+            - generic [ref=e43]:
+              - paragraph [ref=e44]: Belgrano Intelligence
+              - heading "IA aplicada que transforma cómo opera tu negocio" [level=3] [ref=e45]
+              - paragraph [ref=e46]: La inteligencia artificial puesta a trabajar por tu empresa.
+              - generic [ref=e47]:
+                - generic [ref=e48]: AI Solutions
+                - generic [ref=e49]: Academy
+              - generic [ref=e51]: Saber más →
+        - link "Belgrano Media Tu marca presente donde tu audiencia vive Medios tradicionales y digitales, planificados con cabeza. Saber más →" [ref=e53] [cursor=pointer]:
+          - /url: /verticales/media
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - generic [ref=e56]:
+                - generic [ref=e57]: Media Planning
+                - generic [ref=e58]: Q2
+              - generic [ref=e59]:
+                - generic [ref=e60]:
+                  - generic [ref=e61]: TV
+                  - generic [ref=e64]: 35%
+                - generic [ref=e65]:
+                  - generic [ref=e66]: DOOH
+                  - generic [ref=e69]: 25%
+                - generic [ref=e70]:
+                  - generic [ref=e71]: Radio
+                  - generic [ref=e74]: 15%
+                - generic [ref=e75]:
+                  - generic [ref=e76]: OOH
+                  - generic [ref=e79]: 15%
+                - generic [ref=e80]:
+                  - generic [ref=e81]: Digital
+                  - generic [ref=e84]: 10%
+            - generic [ref=e85]:
+              - paragraph [ref=e86]: Belgrano Media
+              - heading "Tu marca presente donde tu audiencia vive" [level=3] [ref=e87]
+              - paragraph [ref=e88]: Medios tradicionales y digitales, planificados con cabeza.
+              - generic [ref=e90]: Saber más →
+        - link "Belgrano Brand Experiencias de marca que activan, conectan y venden Trade marketing y acciones creativas que dejan huella. Saber más →" [ref=e92] [cursor=pointer]:
+          - /url: /verticales/brand
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - generic [ref=e96]: Brand Activation
+              - paragraph [ref=e100]: BELGRANO
+            - generic [ref=e110]:
+              - paragraph [ref=e111]: Belgrano Brand
+              - heading "Experiencias de marca que activan, conectan y venden" [level=3] [ref=e112]
+              - paragraph [ref=e113]: Trade marketing y acciones creativas que dejan huella.
+              - generic [ref=e115]: Saber más →
+    - generic [ref=e116]:
+      - paragraph [ref=e117]: Empresas que confían en nosotros
+      - generic [ref=e118]:
+        - img "Clínica Las Condes" [ref=e120]
+        - img "Seguros CLC" [ref=e122]
+        - img "TNT Sports" [ref=e124]
+        - img "Warner Bros." [ref=e126]
+        - img "HBO" [ref=e128]
+        - img "Point Cola" [ref=e130]
+        - img "Clínica Las Condes" [ref=e132]
+        - img "Seguros CLC" [ref=e134]
+        - img "TNT Sports" [ref=e136]
+        - img "Warner Bros." [ref=e138]
+        - img "HBO" [ref=e140]
+        - img "Point Cola" [ref=e142]
+    - region "Tres pasos. Resultados reales." [ref=e143]:
+      - generic [ref=e144]:
+        - generic [ref=e145]: Cómo trabajamos
+        - heading "Tres pasos. Resultados reales." [level=2] [ref=e147]:
+          - text: Tres pasos.
+          - text: Resultados reales.
+        - generic [ref=e148]:
+          - generic [ref=e150]:
+            - generic [ref=e151]: "01"
+            - heading "Diagnóstico" [level=3] [ref=e152]
+            - paragraph [ref=e153]: Analizamos tu negocio, tus procesos y tus objetivos. Identificamos dónde la IA puede generar el mayor impacto inmediato — sin hype, sin vender lo que no necesitás.
+          - generic [ref=e155]:
+            - generic [ref=e156]: "02"
+            - heading "Estrategia" [level=3] [ref=e157]
+            - paragraph [ref=e158]: Diseñamos un plan de acción concreto con hitos medibles, tecnologías seleccionadas y estimaciones reales. Sabés exactamente qué vas a lograr y cuándo.
+          - generic [ref=e160]:
+            - generic [ref=e161]: "03"
+            - heading "Ejecución" [level=3] [ref=e162]
+            - paragraph [ref=e163]: Implementamos, iteramos y medimos. Acompañamos el proceso completo hasta que los resultados sean consistentes y tu equipo pueda operar de forma independiente.
+    - region "Números que hablan." [ref=e164]:
+      - generic [ref=e165]:
+        - generic [ref=e166]: Resultados
+        - heading "Números que hablan." [level=2] [ref=e168]
+        - generic [ref=e169]:
+          - generic [ref=e171]:
+            - generic [ref=e173]: "+0"
+            - paragraph [ref=e174]: Empresas atendidas
+            - paragraph [ref=e175]: en Chile y LATAM
+          - generic [ref=e177]:
+            - generic [ref=e179]: 0x
+            - paragraph [ref=e180]: ROI promedio
+            - paragraph [ref=e181]: en automatización de atención
+          - generic [ref=e183]:
+            - generic [ref=e185]: 0%
+            - paragraph [ref=e186]: Satisfacción
+            - paragraph [ref=e187]: en encuestas post-proyecto
+          - generic [ref=e189]:
+            - generic [ref=e191]: $0M+
+            - paragraph [ref=e192]: Generados para clientes
+            - paragraph [ref=e193]: en ventas e impacto medible
+    - region "¿Listo para crecer con IA?" [ref=e194]:
+      - generic [ref=e195]:
+        - generic [ref=e196]:
+          - generic [ref=e197]:
+            - generic [ref=e198]: Hablemos
+            - heading "¿Listo para crecer con IA?" [level=2] [ref=e200]:
+              - text: ¿Listo para crecer
+              - text: con IA?
+            - paragraph [ref=e202]: Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial.
+            - list [ref=e204]:
+              - listitem [ref=e205]:
+                - generic [ref=e206]: ✓
+                - text: Diagnóstico gratuito en la primera reunión
+              - listitem [ref=e207]:
+                - generic [ref=e208]: ✓
+                - text: Propuesta en 48 horas
+              - listitem [ref=e209]:
+                - generic [ref=e210]: ✓
+                - text: Sin costos ocultos ni contratos largos
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - generic [ref=e215]: Nombre completo *
+              - textbox "Nombre completo" [ref=e216]:
+                - /placeholder: Nombre Apellido
+            - generic [ref=e217]:
+              - generic [ref=e218]: Email *
+              - textbox "Email" [ref=e219]:
+                - /placeholder: tu@empresa.cl
+            - generic [ref=e220]:
+              - generic [ref=e221]: Empresa *
+              - textbox "Empresa" [ref=e222]:
+                - /placeholder: Nombre de tu empresa
+            - generic [ref=e223]:
+              - generic [ref=e224]: Mensaje *
+              - textbox "Mensaje" [ref=e225]:
+                - /placeholder: ¿En qué podemos ayudarte?
+            - button "Enviar mensaje →" [ref=e226]
+        - generic [ref=e227]:
+          - paragraph [ref=e229]: O agenda directo
+          - generic [ref=e232]: Cargando calendario...
+  - contentinfo [ref=e233]:
+    - generic [ref=e234]:
+      - generic [ref=e235]:
+        - generic [ref=e236]:
+          - paragraph [ref=e237]: Belgrano
+          - paragraph [ref=e238]: Hacemos que la IA trabaje para tu negocio.
+        - generic [ref=e239]:
+          - paragraph [ref=e240]: Servicios
+          - navigation [ref=e241]:
+            - link "Belgrano Media" [ref=e242] [cursor=pointer]:
+              - /url: /verticales/media
+            - link "Belgrano Intelligence" [ref=e243] [cursor=pointer]:
+              - /url: /verticales/intelligence
+            - link "Belgrano Brand" [ref=e244] [cursor=pointer]:
+              - /url: /verticales/brand
+            - link "Nosotros" [ref=e245] [cursor=pointer]:
+              - /url: /nosotros
+            - link "Contacto" [ref=e246] [cursor=pointer]:
+              - /url: "#cta"
+        - generic [ref=e247]:
+          - paragraph [ref=e248]: Contacto
+          - link "hola@belgrano.cl" [ref=e249] [cursor=pointer]:
+            - /url: mailto:hola@belgrano.cl
+      - paragraph [ref=e251]: © 2026 Grupo Belgrano SpA. Todos los derechos reservados.
+  - link "Contáctanos por WhatsApp" [ref=e253] [cursor=pointer]:
+    - /url: https://wa.me/56965360205?text=Hola%2C%20quisiera%20saber%20m%C3%A1s%20sobre%20Belgrano
+    - img [ref=e254]
+  - button "Open Next.js Dev Tools" [ref=e261] [cursor=pointer]:
+    - img [ref=e262]
