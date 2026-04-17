@@ -158,7 +158,9 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 
 ## Estado actual (2026-04-17)
 
-- **Branch activa**: `feature/21st-dev-ui-improvements` — pendiente merge a `main` (commits: `cff4591`, `0a36d28`)
+- **Branch principal**: `main` (reestructurado 2026-04-17). `feature/21st-dev-ui-improvements` mergeado. Vercel deploys desde `main`.
+- **Branch archivo**: `feature/landing-v2-template1` preservada en `.worktrees/landing-v2-template1/` — contiene diseño alternativo template-1 (hero accordion horizontal distinto). NO borrar.
+- **Caso de éxito CLC removido** de `/verticales/intelligence` (commit `6afe25b`)
 - **Home — Hero cinematográfico**: imagen oficina BELGRANO en hormigón + Costanera + Andes nevados, full opacity + gradient overlay (`from-black/90 via-black/50 to-black/10`). Min-h-[78vh]. Headline `BELGRANO GROUP` (text-4xl→6xl) alineado a la derecha sobre la cordillera. Bajada larga del metadata con doble textShadow para legibilidad.
 - **Cards del hero**: accordion horizontal tipo Apple Music (hover crece a flexGrow 2.2, otras se comprimen). Default expandida: Intelligence. Mockups v2 (Intelligence/Media/Brand) con chats/canales/activación. 3D tilt removido — el accordion ya comunica interactividad.
 - **Navbar**: "Belgrano" wordmark restaurado a la izquierda, lógica `heroInView` con IntersectionObserver, glass effect al scrollear fuera del hero. CTA Hablemos con magnetic spring.
