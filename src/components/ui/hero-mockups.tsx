@@ -1,31 +1,33 @@
 // src/components/ui/hero-mockups.tsx
-// 3 vertical cards for the hero section — asymmetric hierarchical layout.
-// Intelligence is the featured card (larger, spans 2 rows on desktop).
-// Media + Brand are secondary cards on the right column.
+// Horizontal accordion of 3 hero cards (Intelligence / Media / Brand).
+// On hover, the active card grows (flexGrow: 2.2), others shrink (flexGrow: 1).
+// Default expanded card: Intelligence. Mouse leaving the row resets to default.
+// On mobile (< md): all 3 stack vertically and render fully expanded.
 'use client'
 
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { verticales } from '@/lib/content/verticales'
-import { VerticalMockup } from '@/components/ui/vertical-mockups'
+import {
+  IntelligenceMockup,
+  MediaMockup,
+  BrandMockup,
+} from '@/components/ui/hero-mockups-v2'
 
-const easing = [0.25, 0.1, 0.25, 1] as const
+const easing = [0.25, 0, 0, 1] as const
 
 const containerVariants = {
   initial: {},
   animate: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.5,
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.5 },
   },
 }
 
 const itemVariants = {
   initial: { opacity: 0, y: 30 },
   animate: {
-    opacity: 1,
-    y: 0,
+    opacity: 1, y: 0,
     transition: { duration: 0.6, ease: easing },
   },
 }
@@ -34,110 +36,219 @@ interface CardProps {
   slug: string
   name: string
   benefitHeadline: string
-  tagline: string
-  featured?: boolean
-  branches?: { name: string }[]
+  shortTagline?: string
+  eyebrow?: string
+  chips?: string[]
+  accentColor?: string
+  mockupContent: React.ReactNode
+  expanded: boolean
+  onHover: () => void
+  /** When true, ignore expand/compact and render the full panel (used on mobile). */
+  alwaysExpanded?: boolean
 }
 
-function VerticalHeroCard({ slug, name, benefitHeadline, tagline, featured, branches }: CardProps) {
+function VerticalHeroCard({
+  slug,
+  name,
+  benefitHeadline,
+  shortTagline,
+  eyebrow,
+  chips,
+  accentColor,
+  mockupContent,
+  expanded,
+  onHover,
+  alwaysExpanded = false,
+}: CardProps) {
+  const accent = accentColor ?? '#ffffff'
+  const isOpen = alwaysExpanded || expanded
+  const [prefix, ...rest] = name.split(' ')
+  const verticalName = rest.join(' ')
+
   return (
-    <Link href={`/verticales/${slug}`} className="group block h-full">
+    <Link
+      href={`/verticales/${slug}`}
+      onMouseEnter={onHover}
+      onFocus={onHover}
+      className="group block h-full"
+    >
       <motion.div
-        whileHover={{ y: -4, scale: 1.01 }}
-        transition={{ duration: 0.2, ease: easing }}
-        className="flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-gray-950 shadow-lg shadow-black/20 transition-all duration-200 group-hover:border-white/25 group-hover:shadow-xl group-hover:shadow-black/30"
+        layout
+        transition={{ duration: 0.5, ease: easing }}
+        className="relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-xl border bg-gray-950 shadow-lg shadow-black/20 transition-colors duration-300"
+        style={{
+          borderColor: isOpen ? `${accent}55` : 'rgba(255,255,255,0.10)',
+        }}
       >
-        <VerticalMockup slug={slug} />
+        {/* Accent radial glow — only when expanded */}
+        <motion.div
+          aria-hidden="true"
+          animate={{ opacity: isOpen ? 0.12 : 0 }}
+          transition={{ duration: 0.4 }}
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: `radial-gradient(70% 50% at 30% 0%, ${accent} 0%, transparent 70%)`,
+          }}
+        />
 
-        <div className="flex flex-1 flex-col p-4">
-          <h3
-            className={`mt-0 font-black leading-tight tracking-tight text-white ${
-              featured ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-base sm:text-lg'
-            }`}
-          >
-            {benefitHeadline}
-          </h3>
-
-          <p
-            className={`mt-2 leading-relaxed text-gray-400 ${
-              featured ? 'text-base sm:text-lg' : 'text-xs sm:text-sm'
-            }`}
-          >
-            {tagline}
-          </p>
-
-          {/* Branch chips — only for featured (Intelligence) */}
-          {featured && branches && branches.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {branches.map((b) => (
-                <span
-                  key={b.name}
-                  className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white"
-                >
-                  {b.name}
-                </span>
-              ))}
-            </div>
+        {/* Mockup — visible only when expanded */}
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              key="mockup"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: easing }}
+              className="relative z-10 flex-shrink-0 overflow-hidden"
+            >
+              {mockupContent}
+            </motion.div>
           )}
+        </AnimatePresence>
 
-          <div className="mt-auto pt-4">
-            <span className={`inline-flex items-center gap-1.5 rounded-full border border-white/20 font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black ${featured ? 'px-5 py-2.5 text-sm' : 'px-4 py-2 text-xs'}`}>
+        {/* Body — two layouts based on isOpen */}
+        {!isOpen ? (
+          // COMPACT
+          <div className="relative z-10 flex flex-1 flex-col items-start justify-end gap-1.5 p-5">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
+              {prefix}
+            </p>
+            <span className="text-2xl font-black leading-none tracking-tight text-white sm:text-3xl">
+              {verticalName}
+            </span>
+            {shortTagline && (
+              <p className="mt-2 line-clamp-2 text-sm leading-snug text-white/60">
+                {shortTagline}
+              </p>
+            )}
+          </div>
+        ) : (
+          // EXPANDED
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="relative z-10 flex flex-1 flex-col gap-3 p-5"
+          >
+            <div>
+              {eyebrow && (
+                <p
+                  className="text-[10px] font-bold uppercase tracking-[0.18em]"
+                  style={{ color: accent }}
+                >
+                  {eyebrow}
+                </p>
+              )}
+              <h3 className="mt-1 text-2xl font-black tracking-tight text-white sm:text-3xl">
+                {name}
+              </h3>
+            </div>
+            <p className="text-sm leading-relaxed text-white/80">
+              {benefitHeadline}
+            </p>
+            {chips && chips.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {chips.slice(0, 5).map((chip) => (
+                  <span
+                    key={chip}
+                    className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold"
+                    style={{
+                      borderColor: `${accent}55`,
+                      backgroundColor: `${accent}14`,
+                      color: '#ffffff',
+                    }}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            )}
+            <span className="mt-auto inline-flex items-center gap-1.5 self-start rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black">
               Saber más →
             </span>
-          </div>
-        </div>
+          </motion.div>
+        )}
       </motion.div>
     </Link>
   )
 }
 
 export function HeroMockups() {
-  const media = verticales.find((v) => v.slug === 'media')
+  const [hoveredId, setHoveredId] = useState<string>('intelligence')
+
   const intelligence = verticales.find((v) => v.slug === 'intelligence')
+  const media = verticales.find((v) => v.slug === 'media')
   const brand = verticales.find((v) => v.slug === 'brand')
 
-  if (!media || !intelligence || !brand) return null
+  if (!intelligence || !media || !brand) return null
+
+  const items = [
+    { vertical: intelligence, mockupContent: <IntelligenceMockup /> },
+    { vertical: media,        mockupContent: <MediaMockup /> },
+    { vertical: brand,        mockupContent: <BrandMockup /> },
+  ]
 
   return (
     <motion.div
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      className="mx-auto grid w-full max-w-7xl grid-cols-1 items-stretch gap-4 px-6 sm:px-8 md:h-[500px] md:grid-cols-3 md:grid-rows-2 lg:gap-5 lg:px-12"
+      className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12"
     >
-      {/* Intelligence — featured, spans 2 rows on desktop, ocupa 2 columnas para ser más ancho */}
+      {/* Mobile: stacked, all expanded */}
+      <div className="flex flex-col gap-4 md:hidden">
+        {items.map(({ vertical, mockupContent }) => (
+          <motion.div key={vertical.slug} variants={itemVariants}>
+            <VerticalHeroCard
+              slug={vertical.slug}
+              name={vertical.name}
+              benefitHeadline={vertical.benefitHeadline}
+              shortTagline={vertical.shortTagline}
+              eyebrow={vertical.eyebrow}
+              chips={vertical.chips}
+              accentColor={vertical.accentColor}
+              mockupContent={mockupContent}
+              expanded
+              onHover={() => undefined}
+              alwaysExpanded
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Desktop: horizontal accordion */}
       <motion.div
-        variants={itemVariants}
-        className="md:col-span-2 md:row-span-2"
+        layout
+        className="hidden gap-4 md:flex"
+        onMouseLeave={() => setHoveredId('intelligence')}
       >
-        <VerticalHeroCard
-          slug={intelligence.slug}
-          name={intelligence.name}
-          benefitHeadline={intelligence.benefitHeadline}
-          tagline={intelligence.tagline}
-          featured
-          branches={intelligence.branches}
-        />
-      </motion.div>
-
-      {/* Media — top right */}
-      <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1">
-        <VerticalHeroCard
-          slug={media.slug}
-          name={media.name}
-          benefitHeadline={media.benefitHeadline}
-          tagline={media.tagline}
-        />
-      </motion.div>
-
-      {/* Brand — bottom right */}
-      <motion.div variants={itemVariants} className="md:col-span-1 md:row-span-1">
-        <VerticalHeroCard
-          slug={brand.slug}
-          name={brand.name}
-          benefitHeadline={brand.benefitHeadline}
-          tagline={brand.tagline}
-        />
+        {items.map(({ vertical, mockupContent }) => (
+          <motion.div
+            key={vertical.slug}
+            layout
+            style={{
+              flexGrow: hoveredId === vertical.slug ? 2.2 : 1,
+              flexBasis: 0,
+            }}
+            transition={{ duration: 0.5, ease: easing }}
+            variants={itemVariants}
+            className="min-w-0"
+          >
+            <VerticalHeroCard
+              slug={vertical.slug}
+              name={vertical.name}
+              benefitHeadline={vertical.benefitHeadline}
+              shortTagline={vertical.shortTagline}
+              eyebrow={vertical.eyebrow}
+              chips={vertical.chips}
+              accentColor={vertical.accentColor}
+              mockupContent={mockupContent}
+              expanded={hoveredId === vertical.slug}
+              onHover={() => setHoveredId(vertical.slug)}
+            />
+          </motion.div>
+        ))}
       </motion.div>
     </motion.div>
   )

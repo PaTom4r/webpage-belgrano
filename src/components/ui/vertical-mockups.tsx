@@ -5,7 +5,7 @@
 
 import { VerticalIcon } from '@/components/ui/vertical-icon'
 
-export function MediaMockup() {
+export function MediaMockup({ hideHeader }: { hideHeader?: boolean }) {
   const channels = [
     { label: 'TV', share: 35 },
     { label: 'DOOH', share: 25 },
@@ -20,16 +20,18 @@ export function MediaMockup() {
       className="w-full aspect-[2/1] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
     >
       {/* Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
-        <div className="flex items-center gap-1.5">
-          <VerticalIcon name="Monitor" className="h-3 w-3 text-white" />
-          <span className="flex items-baseline gap-1">
-            <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
-            <span className="text-sm font-extrabold text-white tracking-tight">Media</span>
-          </span>
+      {!hideHeader && (
+        <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
+          <div className="flex items-center gap-1.5">
+            <VerticalIcon name="Monitor" className="h-3 w-3 text-white" />
+            <span className="flex items-baseline gap-1">
+              <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
+              <span className="text-sm font-extrabold text-white tracking-tight">Media</span>
+            </span>
+          </div>
+          <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">Planificación de medios</span>
         </div>
-        <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">Planificación de medios</span>
-      </div>
+      )}
 
       {/* Channel bars */}
       <div className="flex flex-col gap-1.5 flex-1 justify-center">
@@ -64,7 +66,7 @@ export function IntelligenceMockup() {
   return (
     <div
       aria-hidden="true"
-      className="w-full h-[220px] md:h-[260px] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
+      className="w-full h-[180px] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
     >
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-3 flex-shrink-0">
@@ -137,23 +139,25 @@ export function IntelligenceMockup() {
   )
 }
 
-export function BrandMockup() {
+export function BrandMockup({ hideHeader }: { hideHeader?: boolean }) {
   return (
     <div
       aria-hidden="true"
       className="w-full aspect-[2/1] bg-gray-900 border-b border-white/10 p-3 flex flex-col overflow-hidden"
     >
       {/* Header */}
-      <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
-        <div className="flex items-center gap-1.5">
-          <VerticalIcon name="Megaphone" className="h-3 w-3 text-white" />
-          <span className="flex items-baseline gap-1">
-            <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
-            <span className="text-sm font-extrabold text-white tracking-tight">Brand</span>
-          </span>
+      {!hideHeader && (
+        <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
+          <div className="flex items-center gap-1.5">
+            <VerticalIcon name="Megaphone" className="h-3 w-3 text-white" />
+            <span className="flex items-baseline gap-1">
+              <span className="text-[10px] font-medium text-gray-400">Belgrano</span>
+              <span className="text-sm font-extrabold text-white tracking-tight">Brand</span>
+            </span>
+          </div>
+          <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">Trade marketing</span>
         </div>
-        <span className="text-[9px] font-semibold uppercase tracking-widest text-gray-500">Trade marketing</span>
-      </div>
+      )}
 
       {/* Stand scene */}
       <div className="flex-1 flex flex-col items-center justify-end relative">
@@ -183,11 +187,11 @@ export function BrandMockup() {
   )
 }
 
-export function VerticalMockup({ slug }: { slug: string }) {
+export function VerticalMockup({ slug, hideHeader }: { slug: string; hideHeader?: boolean }) {
   switch (slug) {
-    case 'media':        return <MediaMockup />
+    case 'media':        return <MediaMockup hideHeader={hideHeader} />
     case 'intelligence': return <IntelligenceMockup />
-    case 'brand':        return <BrandMockup />
+    case 'brand':        return <BrandMockup hideHeader={hideHeader} />
     default:             return null
   }
 }

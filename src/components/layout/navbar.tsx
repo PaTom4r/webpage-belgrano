@@ -1,39 +1,95 @@
 // src/components/layout/navbar.tsx
-// Sticky navbar: transparent → glass on scroll (per CONTEXT.md locked decision).
-// Height: 64px (h-16). Backdrop-blur when scrolled > 10px.
-// Added to app/layout.tsx in Plan 05 — built here as isolated component.
+// Sticky navbar that hides while the editorial hero owns the screen.
+// Uses IntersectionObserver on #hero — when >50% visible, navbar fades out.
+// Once scrolled past, transitions to glass mode (bg-white/80 + backdrop-blur).
+// Logo "Belgrano" visible only after hero (heroInView controls visibility of the whole navbar).
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { navLinks, siteConfig } from '@/lib/content/site'
+import { motion } from 'framer-motion'
+import { navLinks } from '@/lib/content/site'
 import { MobileMenu } from './mobile-menu'
+
+function MagneticCTA() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+
+  const onMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    const dx = (e.clientX - cx) / rect.width
+    const dy = (e.clientY - cy) / rect.height
+    setPos({ x: dx * 12, y: dy * 12 })
+  }, [])
+
+  const onMouseLeave = useCallback(() => setPos({ x: 0, y: 0 }), [])
+
+  return (
+    <div ref={ref} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
+      <motion.div
+        animate={{ x: pos.x, y: pos.y }}
+        transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+      >
+        <Link
+          href="/#cta"
+          className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+        >
+          Hablemos
+        </Link>
+      </motion.div>
+    </div>
+  )
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [heroInView, setHeroInView] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  // Glass effect after small scroll
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 10)
+    handler()
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
+  // Hide navbar while hero is dominating the viewport
+  useEffect(() => {
+    const hero = document.getElementById('hero')
+    if (!hero) {
+      setHeroInView(false)
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.intersectionRatio > 0.5),
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
+    )
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [])
+
+  const hidden = heroInView
+
   return (
     <header
-      className={`fixed top-0 z-50 h-16 w-full transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-border bg-white/90 backdrop-blur-sm'
+      aria-hidden={hidden}
+      className={`fixed top-0 z-50 h-16 w-full transition-all duration-500 ${
+        scrolled && !hidden
+          ? 'border-b border-border bg-white/80 backdrop-blur-lg shadow-sm'
           : 'bg-transparent'
-      }`}
+      } ${hidden ? '-translate-y-5 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100 pointer-events-auto'}`}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
+        {/* Brand logo — only visible after hero (whole navbar is hidden during hero via heroInView) */}
         <Link
           href="/"
-          className="text-3xl font-black uppercase tracking-tighter text-accent transition-opacity hover:opacity-70"
+          className="text-2xl font-black uppercase tracking-tighter text-accent transition-opacity hover:opacity-80"
         >
-          {siteConfig.name}
+          Belgrano
         </Link>
 
         {/* Desktop nav */}
@@ -51,12 +107,7 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex">
-          <Link
-            href="/#cta"
-            className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
-          >
-            Hablemos
-          </Link>
+          <MagneticCTA />
         </div>
 
         {/* Mobile hamburger */}

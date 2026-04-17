@@ -6,22 +6,22 @@ import { siteConfig, footerData } from '@/lib/content/site'
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-bg py-16">
+    <footer className="border-t border-white/10 bg-dark py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand */}
           <div>
-            <p className="text-2xl font-black uppercase tracking-tighter text-accent">
+            <p className="text-2xl font-black uppercase tracking-tighter text-bg">
               {siteConfig.name}
             </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-text-secondary">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-bg/60">
               {footerData.tagline}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-text">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-bg">
               Servicios
             </p>
             <nav className="flex flex-col gap-3">
@@ -29,7 +29,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-text-secondary transition-colors hover:text-text"
+                  className="text-sm text-bg/60 transition-colors hover:text-bg"
                 >
                   {link.label}
                 </Link>
@@ -39,20 +39,20 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-text">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-bg">
               Contacto
             </p>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-sm text-text-secondary transition-colors hover:text-text"
+              className="text-sm text-bg/60 transition-colors hover:text-bg"
             >
               {siteConfig.email}
             </a>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8">
-          <p className="text-center text-xs text-text-secondary">
+        <div className="mt-12 border-t border-white/10 pt-8">
+          <p className="text-center text-xs text-bg/50">
             {footerData.copyright}
           </p>
         </div>
