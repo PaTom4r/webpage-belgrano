@@ -32,7 +32,10 @@ export const metadata: Metadata = {
 
 export default function NosotrosPage() {
   return (
-    <main>
+    // pt-16 compensa la altura del navbar fijo (h-16). En p\u00e1ginas internas
+    // no hay #hero que el observer esconda, as\u00ed que el navbar queda siempre
+    // visible y necesitamos padding-top para que no tape la breadcrumb.
+    <main className="pt-16">
       {/* Breadcrumb bar — same pattern as vertical pages */}
       <div className="border-b border-border bg-bg">
         <Container>
