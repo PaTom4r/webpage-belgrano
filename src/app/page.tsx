@@ -3,6 +3,7 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
+// import { VerticalesSection } from '@/components/sections/verticales-section' // Desactivada — se vuelve a habilitar cuando se decida volver a mostrar 'Qué hacemos'
 import { MarqueeSection } from '@/components/sections/marquee-section'
 import { StatsSection } from '@/components/sections/stats-section'
 import { CtaSection } from '@/components/sections/cta-section'
@@ -60,6 +61,7 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
+        {/* <VerticalesSection /> — Desactivada temporalmente */}
         <StatsSection />
         <MarqueeSection />
         <CtaSection />

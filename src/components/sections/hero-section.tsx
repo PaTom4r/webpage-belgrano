@@ -1,9 +1,13 @@
 // src/components/sections/hero-section.tsx
-// Two-zone hero: compact headline → gradient → dark zone with 4 browser mockups.
-// Everything visible in the first viewport — no scroll needed to see the cards.
-// Uses Framer Motion animate (fires on mount) — NOT whileInView.
+// Two-zone hero:
+//  Zone 1: cinematic office bg (Santiago + Andes + BELGRANO en hormigón).
+//          Headline "BELGRANO GROUP" achicado y alineado a la derecha,
+//          posicionado sobre la zona de la cordillera (no sobre el wordmark de hormigón).
+//          Min-h-[78vh] para que la imagen respire.
+//  Zone 2: 3 HeroMockups en accordion horizontal sobre fondo dark.
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { HeroMockups } from '@/components/ui/hero-mockups'
 
@@ -15,7 +19,7 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.5, delay, ease: easing },
 })
 
-// LCP-safe variant: headline starts visible so Lighthouse can measure it immediately.
+// LCP-safe: headline starts visible so Lighthouse can measure it immediately.
 const headlineFade = {
   initial: { opacity: 1, y: 6 },
   animate: { opacity: 1, y: 0 },
@@ -24,58 +28,74 @@ const headlineFade = {
 
 export function HeroSection() {
   return (
-    <section id="hero" aria-labelledby="hero-heading" className="flex min-h-svh flex-col">
-      {/* Zone 1: Headline — generous spacing like Linear */}
-      <div className="relative overflow-hidden bg-bg pt-28 pb-6 sm:pt-32 sm:pb-8 lg:pt-36 lg:pb-10">
-        {/* Subtle grid background decoration — radial mask so edges fade out naturally */}
+    <section id="hero" aria-labelledby="hero-heading" className="flex flex-col">
+      {/* Zone 1 — Cinematic image full visible. Min-h-[78vh] for breathing room. */}
+      <div className="relative isolate flex min-h-[78vh] flex-col justify-end overflow-hidden bg-dark pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-32">
+        {/* Background image: BELGRANO office + Santiago + Andes (no blur, full opacity) */}
+        <Image
+          src="/hero/office-belgrano-santiago.webp"
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover object-[center_60%]"
+        />
+
+        {/* Gradient overlay — clear on top (sky/mountains visible), dark at bottom (text contrast) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10"
+        />
+
+        {/* Grid texture overlay (radial masked, super sutil) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
           style={{
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%)',
-            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%)',
+            backgroundImage:
+              'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundSize: '4rem 4rem',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 70% at 70% 50%, black 30%, transparent 100%)',
+            maskImage:
+              'radial-gradient(ellipse 80% 70% at 70% 50%, black 30%, transparent 100%)',
           }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          {/* Headline — large, left-aligned */}
-          <motion.h1
-            id="hero-heading"
-            {...headlineFade}
-            className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            <span className="bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500 bg-clip-text text-transparent">
-              Operamos el crecimiento
-            </span>
-            <br className="hidden sm:block" />
-            <span className="bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              de tu marca.
-            </span>
-          </motion.h1>
+        {/* Content — alineado a la derecha sobre la cordillera (opción A) */}
+        <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12" style={{ zIndex: 2 }}>
+          <div className="ml-auto max-w-2xl text-right">
+            {/* Headline achicado para no competir con BELGRANO en hormigón */}
+            <motion.h1
+              id="hero-heading"
+              {...headlineFade}
+              className="text-4xl font-black uppercase tracking-tighter text-white leading-[0.95] sm:text-5xl lg:text-6xl"
+              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+            >
+              BELGRANO GROUP
+            </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
-            {...fadeUp(0.15)}
-            className="mt-5 max-w-xl text-base font-medium leading-relaxed text-gray-700 sm:text-lg"
-          >
-            Integramos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.
-          </motion.p>
+            {/* Bajada — texto explicativo del grupo, blanco puro + textShadow doble para contraste sobre foto */}
+            <motion.p
+              {...fadeUp(0.1)}
+              className="ml-auto mt-4 text-base font-medium text-white sm:text-lg lg:mt-6 lg:text-xl"
+              style={{ textShadow: '0 2px 14px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.6)' }}
+            >
+              Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución
+              en terreno para impulsar resultados reales en cada punto de contacto.
+            </motion.p>
+          </div>
         </div>
       </div>
 
-      {/* Zone 2: Cards on white background — fills remaining viewport */}
-      <div className="relative flex flex-1 flex-col pb-6 sm:pb-8">
-        {/* Background fade — behind cards */}
-        <div className="absolute inset-0 bg-bg" />
+      {/* Zone 2 — Cards on dark background. More breathing room above. */}
+      <div className="relative bg-dark pb-8 pt-20 sm:pb-10 sm:pt-24 lg:pb-14 lg:pt-28">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-dark via-dark/80 to-transparent sm:h-64"
+          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/30 to-transparent"
         />
-
-        {/* Cards — on top of fade */}
-        <div className="relative z-10 flex-1">
-          <HeroMockups />
-        </div>
+        <HeroMockups />
       </div>
     </section>
   )

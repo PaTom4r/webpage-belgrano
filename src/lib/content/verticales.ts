@@ -22,11 +22,23 @@ export interface VerticalBranch {
   faq?: FaqItem[]
 }
 
+export interface VerticalCaseCard {
+  emoji: string
+  title: string
+  metric: string
+  footnote: string
+}
+
 export interface Vertical {
   slug: string
   name: string
   benefitHeadline: string
   tagline: string
+  shortTagline?: string     // very short tagline used in compact accordion state
+  eyebrow?: string          // small uppercase label shown in expanded accordion panel
+  chips?: string[]          // capability chips shown in expanded accordion panel
+  caseCard?: VerticalCaseCard
+  accentColor?: string      // hex accent used in accordion (per-vertical highlight)
   description: string       // short (used by landing cards)
   longDescription: string   // 2-3 paragraph expanded copy for detail page
   icon: string              // Lucide icon name label
@@ -43,6 +55,16 @@ export const verticales: Vertical[] = [
     name: 'Belgrano Media',
     benefitHeadline: 'Compramos y operamos tu pauta en TV, radio, vía pública, DOOH y digital.',
     tagline: 'Medios tradicionales y digitales, planificados con cabeza.',
+    shortTagline: 'Mix de medios planificado con data y relación directa.',
+    eyebrow: 'PLANIFICACIÓN DE MEDIOS',
+    chips: ['TV', 'Radio', 'Vía Pública', 'DOOH', 'Digital', 'Programática'],
+    caseCard: {
+      emoji: '📺',
+      title: 'TNT Sports + Warner Bros.',
+      metric: '15+ años negociando inventario en Chile',
+      footnote: 'Mix integrado ATL + BTL + DOOH + digital',
+    },
+    accentColor: '#0EA5E9',
     description:
       'Planificación, compra y gestión de espacios publicitarios: TV, radio, vía pública, DOOH y digital. Diseñamos mixes de medios que llegan donde tu audiencia realmente está — con data, relación directa con los canales y foco en resultados medibles.',
     longDescription:
@@ -93,6 +115,16 @@ export const verticales: Vertical[] = [
     name: 'Belgrano Intelligence',
     benefitHeadline: 'IA a medida integrada a tus sistemas. Capacitamos a tu equipo para operarla.',
     tagline: 'La inteligencia artificial puesta a trabajar por tu empresa.',
+    shortTagline: 'IA a medida + Academy. La capa transversal del grupo.',
+    eyebrow: 'IA APLICADA',
+    chips: ['Agentes', 'Automatización', 'Predictivo', 'Integraciones', 'SENCE', 'Incubadora'],
+    caseCard: {
+      emoji: '🏥',
+      title: 'Clínica Las Condes + Seguros CLC',
+      metric: '24/7 agentes en producción · 40–70% menos tiempo operativo',
+      footnote: 'AI Solutions + Academy con código SENCE',
+    },
+    accentColor: '#A855F7',
     description:
       'IA aplicada a problemas reales de tu negocio: agentes conversacionales, análisis de clientes, automatización de procesos y capacitación para que tu equipo se apropie de la tecnología. El tronco inteligente que potencia a Media y Brand.',
     longDescription:
@@ -217,6 +249,16 @@ export const verticales: Vertical[] = [
     name: 'Belgrano Brand',
     benefitHeadline: 'Activaciones BTL, stands y experiencias que venden en terreno.',
     tagline: 'Trade marketing y acciones creativas que dejan huella.',
+    shortTagline: 'Trade y BTL con producción y operación 360°.',
+    eyebrow: 'TRADE & EXPERIENCIAS',
+    chips: ['BTL', 'Stands', 'Eventos', 'Sampling', 'Punto de venta', 'Activaciones inteligentes'],
+    caseCard: {
+      emoji: '🎪',
+      title: 'Activaciones 360° con producción propia',
+      metric: 'Idea, diseño, producción y operación en un solo equipo',
+      footnote: 'Tecnología de Intelligence integrada cuando suma',
+    },
+    accentColor: '#F59E0B',
     description:
       'Trade marketing, activaciones BTL, stands, eventos y desarrollo creativo para marcas que quieren presencia real donde están sus clientes. Diseñamos experiencias que integran presencia física, contenido y — cuando suma — tecnología inteligente.',
     longDescription:
