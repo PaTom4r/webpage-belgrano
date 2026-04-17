@@ -29,6 +29,28 @@ export interface VerticalCaseCard {
   footnote: string
 }
 
+// Rich case study used in vertical detail pages (e.g. /verticales/intelligence).
+// Inspired by Vida C\u00e1mara layout: client logo + context + bullets on the left,
+// 4 metric cards with icons on the right.
+export type CaseStudyIcon = 'dollar' | 'roi' | 'users' | 'shield' | 'bolt' | 'clock' | 'chart'
+
+export interface CaseStudyMetric {
+  icon: CaseStudyIcon
+  value: string
+  label: string
+}
+
+export interface CaseStudy {
+  client: string                // "Cl\u00ednica Las Condes"
+  logoSrc: string               // "/logos/clc.svg"
+  logoWidth?: number            // intrinsic width for next/image
+  logoHeight?: number
+  context: string               // 1-2 sentence framing of what was built
+  capabilities: string[]        // bullets — concrete things the system does
+  metrics: CaseStudyMetric[]    // 3-4 metric cards
+  cta?: { label: string; href?: string; disabled?: boolean }
+}
+
 export interface Vertical {
   slug: string
   name: string
@@ -47,6 +69,7 @@ export interface Vertical {
   clients?: string[]
   faq: FaqItem[]
   branches?: VerticalBranch[]
+  caseStudy?: CaseStudy        // rich case study block (used by Intelligence page)
 }
 
 export const verticales: Vertical[] = [
@@ -117,12 +140,12 @@ export const verticales: Vertical[] = [
     tagline: 'La inteligencia artificial puesta a trabajar por tu empresa.',
     shortTagline: 'IA a medida + Academy. La capa transversal del grupo.',
     eyebrow: 'IA APLICADA',
-    chips: ['Agentes', 'Automatización', 'Predictivo', 'Integraciones', 'SENCE', 'Incubadora'],
+    chips: ['Agentes', 'Automatización', 'Predictivo', 'Integraciones', 'Incubadora'],
     caseCard: {
       emoji: '🏥',
       title: 'Clínica Las Condes + Seguros CLC',
       metric: '24/7 agentes en producción · 40–70% menos tiempo operativo',
-      footnote: 'AI Solutions + Academy con código SENCE',
+      footnote: 'AI Solutions + Academy in-company',
     },
     accentColor: '#A855F7',
     description:
@@ -137,6 +160,42 @@ export const verticales: Vertical[] = [
       { value: '40–70%', label: 'reducción de tiempos operativos en procesos automatizados' },
     ],
     clients: ['Clínica Las Condes', 'Seguros CLC', 'AFP Modelo'],
+    caseStudy: {
+      client: 'Clínica Las Condes',
+      logoSrc: '/logos/clc.svg',
+      logoWidth: 190,
+      logoHeight: 45,
+      context:
+        'Bot conversacional de presupuestos quirúrgicos en WhatsApp + dashboard de seguimiento para el equipo de ventas. Operación 24/7 con la API oficial de WhatsApp Business.',
+      capabilities: [
+        'Dashboard dinámico con alertas para que el equipo de ventas priorice pacientes interesados al instante',
+        'Seguimiento integrado entre el bot y las llamadas humanas — un solo timeline por paciente',
+        'WhatsApp Business API oficial — trabajo directo con Meta, sin intermediarios ni partners de por medio',
+      ],
+      metrics: [
+        {
+          icon: 'dollar',
+          value: '$780M',
+          label: 'Recuperados solo en marzo (21 días de bot activo)',
+        },
+        {
+          icon: 'roi',
+          value: '300x+',
+          label: 'ROI sobre la inversión en el primer mes',
+        },
+        {
+          icon: 'users',
+          value: '+3.000',
+          label: 'Personas alcanzadas por el agente conversacional',
+        },
+        {
+          icon: 'shield',
+          value: '24/7',
+          label: 'Operación con WhatsApp Business API oficial de Meta',
+        },
+      ],
+      cta: { label: 'Caso completo (próximamente)', disabled: true },
+    },
     branches: [
       {
         name: 'AI Solutions',
@@ -179,20 +238,14 @@ export const verticales: Vertical[] = [
         headline: 'Formación e innovación con IA',
         description:
           'Capacitamos a los equipos de empresas para que usen IA de verdad en su trabajo diario. Talleres, cursos certificados, programas in-company y una incubadora para nuevos negocios basados en IA. Enseñamos lo que nosotros mismos usamos.',
-        tags: ['Capacitación', 'Cursos SENCE', 'Incubadora', 'Talleres in-company', 'Innovación'],
+        tags: ['Capacitación', 'Cursos certificados', 'Incubadora', 'Talleres in-company', 'Innovación'],
         features: [
           'Talleres y cursos de IA para equipos de marketing, ventas y operaciones',
-          'Programas de certificación con código SENCE para franquicia tributaria',
           'Incubadora de ideas: transformamos un concepto en un producto con IA',
           'Mentoría para emprendedores que quieren construir negocios con IA',
           'Formatos in-company, online sincrónico y asincrónico a escala',
         ],
         faq: [
-          {
-            question: '¿Los cursos son con código SENCE?',
-            answer:
-              'Sí, trabajamos con SENCE en cursos acreditados que permiten a las empresas usar su franquicia tributaria. Verificamos disponibilidad de códigos según el formato y la fecha que necesites.',
-          },
           {
             question: '¿Qué herramientas enseñan?',
             answer:
