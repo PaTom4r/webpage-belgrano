@@ -3,15 +3,13 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroV2 } from '@/components/sections/hero-v2'
-import { PillsSectionV2 } from '@/components/sections/pills-section-v2'
-import { ProductShowcaseSection } from '@/components/sections/product-showcase-section'
-import { FeaturesGridSection } from '@/components/sections/features-grid-section'
 import { StatsV2Section } from '@/components/sections/stats-v2-section'
-import { MarqueeSection } from '@/components/sections/marquee-section'
 import { ComparisonSection } from '@/components/sections/comparison-section'
+import { HowWeWorkSection } from '@/components/sections/how-we-work-section'
 import { TestimonialsSection } from '@/components/sections/testimonials-section'
 import { FooterCtaSection } from '@/components/sections/footer-cta-section'
 import { BigFooter } from '@/components/layout/big-footer'
+import { StickyCtaMobile } from '@/components/layout/sticky-cta-mobile'
 
 export const metadata: Metadata = {
   title: 'Belgrano Group — Operamos el crecimiento de tu marca',
@@ -66,16 +64,14 @@ export default function HomePage() {
       />
       <main>
         <HeroV2 />
-        <PillsSectionV2 />
-        <ProductShowcaseSection />
-        <FeaturesGridSection />
         <StatsV2Section />
-        <MarqueeSection />
         <ComparisonSection />
+        <HowWeWorkSection />
         <TestimonialsSection />
         <FooterCtaSection />
       </main>
       <BigFooter />
+      <StickyCtaMobile />
     </>
   )
 }

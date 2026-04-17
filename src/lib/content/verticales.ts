@@ -35,11 +35,13 @@ export interface Vertical {
   clients?: string[]
   faq: FaqItem[]
   branches?: VerticalBranch[]
+  accentColor?: string // hex — hero tabs + "Lo que operamos" bento
 }
 
 export const verticales: Vertical[] = [
   {
     slug: 'media',
+    accentColor: '#FF9958',
     name: 'Belgrano Media',
     benefitHeadline: 'Compramos y operamos tu pauta en TV, radio, vía pública, DOOH y digital.',
     tagline: 'Medios tradicionales y digitales, planificados con cabeza.',
@@ -90,6 +92,7 @@ export const verticales: Vertical[] = [
   },
   {
     slug: 'intelligence',
+    accentColor: '#7AA2FF',
     name: 'Belgrano Intelligence',
     benefitHeadline: 'IA a medida integrada a tus sistemas. Capacitamos a tu equipo para operarla.',
     tagline: 'La inteligencia artificial puesta a trabajar por tu empresa.',
@@ -214,6 +217,7 @@ export const verticales: Vertical[] = [
   },
   {
     slug: 'brand',
+    accentColor: '#4ADE80',
     name: 'Belgrano Brand',
     benefitHeadline: 'Activaciones BTL, stands y experiencias que venden en terreno.',
     tagline: 'Trade marketing y acciones creativas que dejan huella.',

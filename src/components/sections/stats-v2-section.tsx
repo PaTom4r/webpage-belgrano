@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 
 const stats = [
   { prefix: '$', target: 750, suffix: 'MM+', label: 'en pauta gestionada' },
-  { prefix: '', target: 289, suffix: 'x', label: 'ROI máximo alcanzado' },
-  { prefix: '', target: 500, suffix: 'K+', label: 'personas alcanzadas' },
+  { prefix: '+', target: 300, suffix: 'x',  label: 'ROI en el primer mes de implementación' },
+  { prefix: '', target: 500, suffix: 'K+', label: 'personas alcanzadas en medios' },
   { prefix: '', target: 98, suffix: '%', label: 'satisfacción de clientes' },
 ]
 

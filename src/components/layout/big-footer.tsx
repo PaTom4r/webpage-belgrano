@@ -61,7 +61,7 @@ export function BigFooter() {
               <nav className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
                   <Link
-                    key={link.href}
+                    key={link.label}
                     href={link.href}
                     className="text-sm text-text-secondary transition-colors hover:text-text"
                   >
