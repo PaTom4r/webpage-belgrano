@@ -156,22 +156,36 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 > This section is managed by `generate-claude-profile` -- do not edit manually.
 <!-- GSD:profile-end -->
 
-## Estado actual (2026-04-14)
+## Estado actual (2026-04-17)
 
-- **Branch activa**: `feature/21st-dev-ui-improvements` — pendiente merge a `main`
-- **Rebrand completado**: Belgrano Group, slogan "Operamos el crecimiento de tu marca"
-- **Navbar**: Intelligence / Media / Brand + botón Hablemos con efecto magnético (spring Framer Motion)
-- **Hero**: 3 cards con 3D tilt (±8°) + spotlight cursor glow (Aceternity) + grid radial mask
-- **Hero subtitle**: `gray-700 font-medium` (más contraste)
-- **CTA "Hablemos"**: fondo blanco, texto oscuro (invertido)
-- **Contact form**: inputs light (dark borders, dark submit btn)
-- **Footer**: fondo oscuro `bg-dark`, texto blanco (invertido)
+- **Branch activa**: `feature/21st-dev-ui-improvements` — pendiente merge a `main` (commits: `cff4591`, `0a36d28`)
+- **Home — Hero cinematográfico**: imagen oficina BELGRANO en hormigón + Costanera + Andes nevados, full opacity + gradient overlay (`from-black/90 via-black/50 to-black/10`). Min-h-[78vh]. Headline `BELGRANO GROUP` (text-4xl→6xl) alineado a la derecha sobre la cordillera. Bajada larga del metadata con doble textShadow para legibilidad.
+- **Cards del hero**: accordion horizontal tipo Apple Music (hover crece a flexGrow 2.2, otras se comprimen). Default expandida: Intelligence. Mockups v2 (Intelligence/Media/Brand) con chats/canales/activación. 3D tilt removido — el accordion ya comunica interactividad.
+- **Navbar**: "Belgrano" wordmark restaurado a la izquierda, lógica `heroInView` con IntersectionObserver, glass effect al scrollear fuera del hero. CTA Hablemos con magnetic spring.
+- **Landing**: Hero → Stats → CTA → Footer. `MarqueeSection` (Empresas que confían) y `VerticalesSection` (Qué hacemos) **desactivadas** (código comentado para reactivar cuando haya contenido real).
+- **`/verticales/intelligence` premium**: composición dedicada via slug conditional. TracingBeam morada scroll-driven (Aceternity-style, Framer Motion + SVG, respeta prefers-reduced-motion). IntelligenceHero con grid + glow morado + brain icon. IntelligenceCapabilities (5 chips pulsing). **IntelligenceCaseStudy CLC** (Vida Cámara-style 2 columnas: logo CLC + bullets + 4 metric cards: $780M recuperados marzo / 300x+ ROI / +3.000 personas / 24/7 WhatsApp Business API oficial). IntelligenceBranches con hover lift. IntelligenceMetrics counter-animated (parser para "$780M"/"24/7"/"40-70%").
+- **`/verticales/media` + `/verticales/brand`**: mantienen template default. Aislados via `slug === 'intelligence'` conditional en `[slug]/page.tsx`.
+- **SENCE eliminado**: removido de chips, caseCard footnote, Academy tags, features y FAQ en `verticales.ts`. Belgrano no tiene esa certificación.
+- **Header bug fix**: `pt-16` en `<main>` de `/nosotros` y `/verticales/[slug]` para compensar altura del navbar fijo (el observer no dispara sin `#hero`).
+- **Sección clientes desactivada**: `MarqueeSection` (home) y `VerticalClientsSection` (3 verticales) comentadas. Reactivar cuando los clientes finales estén definidos.
+- **Calendly**: reactivado en CTA section.
 - **Stats**: 4 métricas — $750MM+, 289x ROI, 500K+ Personas alcanzadas, 98% Satisfacción
-- **Landing**: Hero → Stats → Marquee → CTA → Footer
+
+## Decisiones técnicas
+
+- **Patrón de variants por vertical**: para no contaminar Media/Brand con cambios Intelligence, se creó `src/components/sections/intelligence/*` con 5 componentes premium dedicados. `[slug]/page.tsx` decide qué layout renderizar según el slug. Cero impacto en otras verticales.
+- **TracingBeam**: SVG + Framer Motion (`useScroll`, `useTransform`, `useSpring`). `ResizeObserver` para dimensionar dinámicamente la altura. Respeta `prefers-reduced-motion` (línea estática sin gradient).
+- **AnimatedCounter en Intelligence metrics**: parser que extrae `{prefix, target, suffix}` de strings tipo "$780M" / "300x+" y fallback a plain text para "24/7" o "40-70%" (no numéricos puros).
+- **No Three.js** (constraint del proyecto). Frame-sequence scroll-driven (Apple AirPods style) postergado — requiere assets WebP de NanoBanana cuando Pato los exporte.
 
 ## Próximo
 
-- **Cambio drástico pendiente** — Pato tiene idea, se verá en próxima sesión
-- **Merge `feature/21st-dev-ui-improvements` → `main`** — pendiente PR + Vercel autodeploy
-- **Sección testimoniales** — requiere contenido real (nombre, cargo, empresa, cita)
-- **Color terciario indigo #635BFF** — deferido por Pato, para después
+- **Deploy** `feature/21st-dev-ui-improvements` → Vercel para validar imagen del hero (cache local impidió ver la nueva) y probar TracingBeam + Intelligence en producción.
+- **Merge → `main`** después del visual OK post-deploy.
+- **Mejorar `/verticales/media`**: Pato tiene 2-3 videos TNT Sports / Warner Bros — esperando que los dropee en `public/media/` (MP4/WebM <5MB ideal).
+- **Mejorar `/verticales/brand`**: esperando input del equipo interno; podemos proponer mejoras de layout/tipografía.
+- **Mejorar `/nosotros`**: alinear con look premium del home y de Intelligence.
+- **Reactivar sección de clientes** cuando tengan logos finales y narrativa definidos.
+- **Frame-sequence 3D scroll-driven** para Intelligence v2, condicionado a frames WebP de NanoBanana.
+- **Caso completo CLC** (página `/casos/clc`) — CTA disabled hasta tener post real.
+- **Color terciario indigo #635BFF** — deferido.

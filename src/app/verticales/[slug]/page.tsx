@@ -21,7 +21,6 @@ import { ScrollReveal } from '@/components/animations/scroll-reveal'
 import { TracingBeam } from '@/components/animations/tracing-beam'
 import { IntelligenceHero } from '@/components/sections/intelligence/intelligence-hero'
 import { IntelligenceCapabilities } from '@/components/sections/intelligence/intelligence-capabilities'
-import { IntelligenceCaseStudy } from '@/components/sections/intelligence/intelligence-case-study'
 import { IntelligenceBranches } from '@/components/sections/intelligence/intelligence-branches'
 import { IntelligenceMetrics } from '@/components/sections/intelligence/intelligence-metrics'
 
@@ -144,10 +143,6 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
               {longDescriptionBlock}
 
               <IntelligenceCapabilities chips={vertical.chips ?? []} accent={accent} />
-
-              {vertical.caseStudy && (
-                <IntelligenceCaseStudy caseStudy={vertical.caseStudy} accent={accent} />
-              )}
 
               {vertical.branches && vertical.branches.length > 0 && (
                 <IntelligenceBranches branches={vertical.branches} accent={accent} />
