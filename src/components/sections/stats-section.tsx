@@ -7,7 +7,7 @@ import { ScrollReveal } from '@/components/animations/scroll-reveal'
 
 const stats = [
   {
-    target: 750,
+    target: 1500,
     prefix: '$',
     suffix: 'MM+',
     label: 'Generados para clientes',
