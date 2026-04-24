@@ -57,48 +57,107 @@ function useElementProgress(ref: React.RefObject<HTMLElement | null>) {
   return progress
 }
 
+// Config de assets por vertical. Flipear a `/home/<slug>.mp4` cuando Pato
+// dropee el video final en public/home/. Mientras sea null, se renderiza
+// el placeholder SVG. Ver docs/home-verticales-prompts.md para el flujo.
+const MEDIA_ASSETS: Record<
+  'intelligence' | 'media' | 'brand',
+  { video: string | null; poster: string | null }
+> = {
+  intelligence: { video: '/home/intelligence.mp4', poster: '/home/intelligence.png' },
+  media: { video: null, poster: null },
+  brand: { video: null, poster: null },
+}
+
 interface PanelVisualProps {
   accent: string
   variant: 'intelligence' | 'media' | 'brand'
+  scrollYProgress?: MotionValue<number>
 }
 
-// Placeholder visual por vertical. Aspect-video, gradientes + patterns
-// que evocan el concepto final (neural net / LED / activación).
-// Se reemplaza en Phase 2 con los MP4 generados por Veo 3.1.
-function PanelVisual({ accent, variant }: PanelVisualProps) {
+// Visual per-vertical. Cuando hay demo (Intelligence + scrollYProgress) → panel
+// translúcido que deja ver el video de fondo de la sección. Cuando NO hay demo
+// (Media/Brand por ahora sin video) → video inline o placeholder SVG.
+function PanelVisual({ accent, variant, scrollYProgress }: PanelVisualProps) {
+  const asset = MEDIA_ASSETS[variant]
+  const hasDemo = variant === 'intelligence' && !!scrollYProgress
+
+  // Panel intelligence con demo: transparente, deja ver el video bg de la sección
+  if (hasDemo && scrollYProgress) {
+    return (
+      <div
+        className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl"
+        style={{
+          boxShadow: `0 40px 120px -40px ${accent}55`,
+          background:
+            'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 100%)',
+          backdropFilter: 'blur(2px)',
+        }}
+      >
+        <IntelligenceDemo scrollYProgress={scrollYProgress} accent={accent} />
+      </div>
+    )
+  }
+
   return (
     <div
       className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 bg-black shadow-2xl"
       style={{ boxShadow: `0 40px 120px -40px ${accent}55` }}
     >
-      {/* Base gradient — accent wash */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(90% 70% at 50% 40%, ${accent}66 0%, ${accent}22 40%, #000 100%)`,
-        }}
-      />
+      {asset.video ? (
+        <>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={asset.poster ?? undefined}
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={asset.video} type="video/mp4" />
+          </video>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%)',
+            }}
+          />
+        </>
+      ) : (
+        <>
+          {/* Base gradient — accent wash */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(90% 70% at 50% 40%, ${accent}66 0%, ${accent}22 40%, #000 100%)`,
+            }}
+          />
 
-      {/* Pattern overlay por variante */}
-      {variant === 'intelligence' && <NeuralPattern accent={accent} />}
-      {variant === 'media' && <LedPattern accent={accent} />}
-      {variant === 'brand' && <BrandPattern accent={accent} />}
+          {/* Pattern overlay por variante */}
+          {variant === 'intelligence' && <NeuralPattern accent={accent} />}
+          {variant === 'media' && <LedPattern accent={accent} />}
+          {variant === 'brand' && <BrandPattern accent={accent} />}
 
-      {/* Vignette */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)',
-        }}
-      />
+          {/* Vignette */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%)',
+            }}
+          />
 
-      {/* Placeholder label */}
-      <div className="absolute bottom-3 right-3 z-10 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur-md">
-        Placeholder · video próximamente
-      </div>
+          {/* Placeholder label */}
+          <div className="absolute bottom-3 right-3 z-10 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 backdrop-blur-md">
+            Placeholder · video próximamente
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -185,6 +244,206 @@ function BrandPattern({ accent }: { accent: string }) {
   )
 }
 
+// Demo scroll-driven de 3 pasos del orquestador de cobranza.
+// Rangos de scrollYProgress dentro del panel Intelligence (0.00 – 0.30):
+//   Paso 1 "Entrante":    0.00 – 0.10  (cliente escribe WhatsApp)
+//   Paso 2 "Orquestando": 0.10 – 0.20  (agente consulta 4 sistemas)
+//   Paso 3 "Resuelto":    0.20 – 0.30  (respuesta + métricas)
+// Cada paso cross-fade de 0.02 al entrar/salir.
+interface IntelligenceDemoProps {
+  scrollYProgress: MotionValue<number>
+  accent: string
+}
+
+function IntelligenceDemo({ scrollYProgress, accent }: IntelligenceDemoProps) {
+  // Step opacities — handoff limpio en 0.10 y 0.20
+  const step1Opacity = useTransform(
+    scrollYProgress,
+    [0.0, 0.02, 0.08, 0.10],
+    [0, 1, 1, 0],
+  )
+  const step2Opacity = useTransform(
+    scrollYProgress,
+    [0.10, 0.12, 0.18, 0.20],
+    [0, 1, 1, 0],
+  )
+  const step3Opacity = useTransform(
+    scrollYProgress,
+    [0.20, 0.22, 0.30],
+    [0, 1, 1],
+  )
+
+  // Sub-animations step 2 — cards staggered
+  const card1Op = useTransform(scrollYProgress, [0.120, 0.130], [0, 1])
+  const card2Op = useTransform(scrollYProgress, [0.135, 0.145], [0, 1])
+  const card3Op = useTransform(scrollYProgress, [0.150, 0.160], [0, 1])
+  const card4Op = useTransform(scrollYProgress, [0.165, 0.175], [0, 1])
+
+  // Step label reactivo — tipo string explícito para aceptar union literal
+  const stepLabel = useTransform<number, string>(scrollYProgress, (v) => {
+    if (v < 0.10) return '01 · Entrante'
+    if (v < 0.20) return '02 · Orquestando'
+    return '03 · Resuelto'
+  })
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-10">
+      {/* Step badge top-right */}
+      <div className="absolute right-4 top-4 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md">
+        <motion.span className="tabular-nums">{stepLabel}</motion.span>
+      </div>
+
+      {/* STEP 1 — Cliente escribe */}
+      <motion.div
+        style={{ opacity: step1Opacity }}
+        className="absolute inset-0 flex flex-col items-start justify-center gap-3 p-8 sm:p-12"
+      >
+        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/50">
+          Cliente · WhatsApp
+        </p>
+        <div className="max-w-[70%] rounded-2xl rounded-bl-sm border border-white/10 bg-white/10 px-4 py-3 text-sm text-white backdrop-blur-md sm:text-base">
+          Hola, necesito ponerme al día con mi deuda
+        </div>
+        <div className="ml-2 mt-1 flex items-center gap-1.5">
+          <span
+            className="h-1.5 w-1.5 animate-pulse rounded-full"
+            style={{ background: accent }}
+          />
+          <span
+            className="h-1.5 w-1.5 animate-pulse rounded-full"
+            style={{ background: accent, animationDelay: '0.15s' }}
+          />
+          <span
+            className="h-1.5 w-1.5 animate-pulse rounded-full"
+            style={{ background: accent, animationDelay: '0.3s' }}
+          />
+          <span className="ml-2 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+            Agente procesando
+          </span>
+        </div>
+      </motion.div>
+
+      {/* STEP 2 — Orquestación sistemas */}
+      <motion.div
+        style={{ opacity: step2Opacity }}
+        className="absolute inset-0 flex flex-col justify-center p-8 sm:p-12"
+      >
+        <p
+          className="mb-3 text-[10px] font-bold uppercase tracking-[0.22em]"
+          style={{ color: accent }}
+        >
+          Consultando 4 sistemas
+        </p>
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+          <motion.div style={{ opacity: card1Op }}>
+            <SystemCard label="CRM" value="Identidad validada" accent={accent} />
+          </motion.div>
+          <motion.div style={{ opacity: card2Op }}>
+            <SystemCard label="Ledger" value="Deuda: $450.000" accent={accent} />
+          </motion.div>
+          <motion.div style={{ opacity: card3Op }}>
+            <SystemCard
+              label="Motor de ofertas"
+              value="3 planes generados"
+              accent={accent}
+            />
+          </motion.div>
+          <motion.div style={{ opacity: card4Op }}>
+            <SystemCard
+              label="Pasarela de pago"
+              value="Link seguro emitido"
+              accent={accent}
+            />
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* STEP 3 — Resuelto */}
+      <motion.div
+        style={{ opacity: step3Opacity }}
+        className="absolute inset-0 flex flex-col items-end justify-center gap-4 p-8 sm:p-12"
+      >
+        <p
+          className="text-[10px] font-bold uppercase tracking-[0.22em]"
+          style={{ color: accent }}
+        >
+          Respuesta end-to-end
+        </p>
+        <div
+          className="max-w-[78%] rounded-2xl rounded-br-sm border px-4 py-3 text-sm backdrop-blur-md sm:text-base"
+          style={{
+            background: `${accent}22`,
+            borderColor: `${accent}66`,
+            color: 'white',
+          }}
+        >
+          Te ofrezco <strong>3 cuotas de $150.000</strong> sin interés.
+          <br />
+          Tu link de pago:{' '}
+          <span className="underline" style={{ color: accent }}>
+            pagar.belgrano.cl/x7k
+          </span>
+        </div>
+        <div className="mt-2 flex flex-wrap justify-end gap-2">
+          <MetricPill value="12s" label="Tiempo" accent={accent} />
+          <MetricPill value="4" label="Sistemas" accent={accent} />
+          <MetricPill value="0" label="Intervención humana" accent={accent} />
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+function SystemCard({
+  label,
+  value,
+  accent,
+}: {
+  label: string
+  value: string
+  accent: string
+}) {
+  return (
+    <div className="rounded-lg border border-white/10 bg-black/70 px-3 py-2 backdrop-blur-md">
+      <div className="flex items-center gap-2">
+        <span
+          className="h-1.5 w-1.5 rounded-full"
+          style={{ background: accent, boxShadow: `0 0 8px ${accent}` }}
+        />
+        <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/60">
+          {label}
+        </p>
+      </div>
+      <p className="mt-0.5 text-xs font-semibold text-white sm:text-sm">{value}</p>
+    </div>
+  )
+}
+
+function MetricPill({
+  value,
+  label,
+  accent,
+}: {
+  value: string
+  label: string
+  accent: string
+}) {
+  return (
+    <div
+      className="flex items-baseline gap-1.5 rounded-full border px-3 py-1 backdrop-blur-md"
+      style={{
+        borderColor: `${accent}55`,
+        background: `${accent}14`,
+      }}
+    >
+      <span className="text-xs font-bold text-white sm:text-sm">{value}</span>
+      <span className="text-[9px] font-semibold uppercase tracking-wider text-white/60">
+        {label}
+      </span>
+    </div>
+  )
+}
+
 interface PanelContentProps {
   slug: string
   eyebrow: string
@@ -193,15 +452,25 @@ interface PanelContentProps {
   chips: string[]
   accent: string
   variant: 'intelligence' | 'media' | 'brand'
+  scrollYProgress?: MotionValue<number>
 }
 
-function Panel({ slug, eyebrow, name, benefit, chips, accent, variant }: PanelContentProps) {
+function Panel({
+  slug,
+  eyebrow,
+  name,
+  benefit,
+  chips,
+  accent,
+  variant,
+  scrollYProgress,
+}: PanelContentProps) {
   return (
     <Link
       href={`/verticales/${slug}`}
       className="group block"
     >
-      <PanelVisual accent={accent} variant={variant} />
+      <PanelVisual accent={accent} variant={variant} scrollYProgress={scrollYProgress} />
 
       <div className="mt-6 flex flex-col gap-3">
         <p
@@ -271,6 +540,22 @@ export function VerticalesReveal() {
   const mediaY = useTransform(scrollYProgress, [0.30, 0.68], ['6%', '-6%'])
   const brandY = useTransform(scrollYProgress, [0.64, 1], ['6%', '0%'])
 
+  // Pointer-events por panel — solo el panel activo recibe clicks. Resuelve bug
+  // donde el último panel (Brand) capturaba clicks aún con opacity 0 por estar
+  // stacked con absolute inset-0.
+  const intelPE = useTransform<number, 'auto' | 'none'>(
+    scrollYProgress,
+    (v) => (v < 0.32 ? 'auto' : 'none'),
+  )
+  const mediaPE = useTransform<number, 'auto' | 'none'>(
+    scrollYProgress,
+    (v) => (v >= 0.32 && v < 0.66 ? 'auto' : 'none'),
+  )
+  const brandPE = useTransform<number, 'auto' | 'none'>(
+    scrollYProgress,
+    (v) => (v >= 0.66 ? 'auto' : 'none'),
+  )
+
   // Progress bar width
   const progressWidth = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
@@ -296,7 +581,11 @@ export function VerticalesReveal() {
 
   // Build desktop panels array
   const panels: Array<
-    PanelContentProps & { opacity: MotionValue<number>; y: MotionValue<string> }
+    PanelContentProps & {
+      opacity: MotionValue<number>
+      y: MotionValue<string>
+      pointerEvents: MotionValue<'auto' | 'none'>
+    }
   > = [
     {
       slug: 'intelligence',
@@ -308,6 +597,7 @@ export function VerticalesReveal() {
       variant: 'intelligence',
       opacity: intelOpacity,
       y: intelY,
+      pointerEvents: intelPE,
     },
     {
       slug: 'media',
@@ -319,6 +609,7 @@ export function VerticalesReveal() {
       variant: 'media',
       opacity: mediaOpacity,
       y: mediaY,
+      pointerEvents: mediaPE,
     },
     {
       slug: 'brand',
@@ -330,6 +621,7 @@ export function VerticalesReveal() {
       variant: 'brand',
       opacity: brandOpacity,
       y: brandY,
+      pointerEvents: brandPE,
     },
   ]
 
@@ -339,10 +631,68 @@ export function VerticalesReveal() {
       className="relative bg-dark text-white"
     >
       {/* DESKTOP — sticky scroll-driven reveal */}
-      <div ref={containerRef} className="relative hidden md:block" style={{ height: '400vh' }}>
+      <div ref={containerRef} className="relative hidden md:block" style={{ height: '700vh' }}>
         <div className="sticky top-16 flex h-[calc(100vh-4rem)] items-center overflow-hidden">
+          {/* Background video layer — section-wide. Inclinado a la derecha
+              con fade izquierdo via mask gradient. Vive detrás de TODO.
+              Mientras solo tenemos intelligence.mp4, lo usamos como atmósfera
+              constante; el tint accent cambia por vertical (abajo). */}
+          <div aria-hidden="true" className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/home/intelligence.png"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{
+                objectPosition: 'right center',
+                maskImage:
+                  'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 28%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,1) 80%)',
+                WebkitMaskImage:
+                  'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 28%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,1) 80%)',
+              }}
+            >
+              <source src="/home/intelligence.mp4" type="video/mp4" />
+            </video>
+
+            {/* Dark overlay general para legibilidad del texto */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.65) 35%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.25) 100%)',
+              }}
+            />
+
+            {/* Tint accent por vertical — cada layer tiene opacity
+                atada al scroll; se cross-fade entre sí. Interpolado. */}
+            <motion.div
+              className="absolute inset-0"
+              style={{
+                opacity: intelOpacity,
+                background: `radial-gradient(ellipse 70% 60% at 80% 50%, ${accents.intelligence}22 0%, transparent 60%)`,
+              }}
+            />
+            <motion.div
+              className="absolute inset-0"
+              style={{
+                opacity: mediaOpacity,
+                background: `radial-gradient(ellipse 70% 60% at 80% 50%, ${accents.media}22 0%, transparent 60%)`,
+              }}
+            />
+            <motion.div
+              className="absolute inset-0"
+              style={{
+                opacity: brandOpacity,
+                background: `radial-gradient(ellipse 70% 60% at 80% 50%, ${accents.brand}22 0%, transparent 60%)`,
+              }}
+            />
+          </div>
+
           <Container>
-            <div className="grid grid-cols-12 gap-8 lg:gap-12">
+            <div className="relative z-10 grid grid-cols-12 gap-8 lg:gap-12">
               {/* Left — sticky text */}
               <div className="col-span-5 flex flex-col justify-center gap-6">
                 <p
@@ -353,12 +703,16 @@ export function VerticalesReveal() {
                 <h2
                   id="verticales-heading"
                   className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
+                  style={{ textShadow: '0 2px 24px rgba(0,0,0,0.7)' }}
                 >
                   Tres verticales,
                   <br />
                   <span className="text-white/80">un mismo equipo</span>
                 </h2>
-                <p className="max-w-lg text-base leading-relaxed text-white/60 sm:text-lg">
+                <p
+                  className="max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
+                  style={{ textShadow: '0 1px 14px rgba(0,0,0,0.85)' }}
+                >
                   Operamos tres verticales que se potencian entre sí — inteligencia,
                   medios y marca. Cada una con su expertise. Todas con la misma
                   obsesión: resultados medibles.
@@ -388,7 +742,11 @@ export function VerticalesReveal() {
                   <motion.div
                     key={p.slug}
                     className="absolute inset-0 flex items-center"
-                    style={{ opacity: p.opacity, y: p.y }}
+                    style={{
+                      opacity: p.opacity,
+                      y: p.y,
+                      pointerEvents: p.pointerEvents,
+                    }}
                   >
                     <div className="w-full">
                       <Panel
@@ -399,6 +757,9 @@ export function VerticalesReveal() {
                         chips={p.chips}
                         accent={p.accent}
                         variant={p.variant}
+                        scrollYProgress={
+                          p.variant === 'intelligence' ? scrollYProgress : undefined
+                        }
                       />
                     </div>
                   </motion.div>
