@@ -14,11 +14,11 @@ const stats = [
     detail: 'en ventas atribuidas a campañas',
   },
   {
-    target: 289,
-    prefix: '',
-    suffix: 'x',
-    label: 'ROI en campañas',
-    detail: 'caso Clínica Las Condes',
+    target: 6,
+    prefix: '+',
+    suffix: 'M',
+    label: 'Alcanzadas en medios',
+    detail: 'de comunicación',
   },
   {
     target: 500,
@@ -58,7 +58,7 @@ export function StatsSection() {
             <ScrollReveal key={stat.label} delay={i * 0.08}>
               <div className="flex flex-col items-center text-center">
                 {/* Animated number */}
-                <div className="text-5xl font-extrabold tabular-nums tracking-tight text-bg sm:text-6xl">
+                <div className="text-4xl font-extrabold tabular-nums tracking-tight text-bg sm:text-5xl">
                   <AnimatedCounter
                     target={stat.target}
                     prefix={stat.prefix}

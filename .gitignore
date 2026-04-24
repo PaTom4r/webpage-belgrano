@@ -40,3 +40,16 @@ next-env.d.ts
 
 .vercel
 .worktrees/
+
+# dev artifacts — screenshots y playwright outputs
+.playwright-mcp/
+/*.png
+!public/**/*.png
+
+# Remotion standby project (aislado con su propio package.json)
+/remotion/
+
+# standby media outputs (no van a producción)
+public/video-media-1-hero.mp4
+public/cover-media.png
+public/template-prueba.png

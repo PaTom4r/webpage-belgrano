@@ -23,6 +23,10 @@ import { IntelligenceHero } from '@/components/sections/intelligence/intelligenc
 import { IntelligenceCapabilities } from '@/components/sections/intelligence/intelligence-capabilities'
 import { IntelligenceBranches } from '@/components/sections/intelligence/intelligence-branches'
 import { IntelligenceMetrics } from '@/components/sections/intelligence/intelligence-metrics'
+import { MediaHero } from '@/components/sections/media/media-hero'
+import { MediaCapabilities } from '@/components/sections/media/media-capabilities'
+import { MediaShowcase } from '@/components/sections/media/media-showcase'
+import { MediaMetrics } from '@/components/sections/media/media-metrics'
 
 interface VerticalPageProps {
   params: Promise<{ slug: string }>
@@ -93,6 +97,7 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
 
   const accent = vertical.accentColor ?? '#A855F7'
   const isIntelligence = slug === 'intelligence'
+  const isMedia = slug === 'media'
 
   // Long description block — reused by both layouts.
   const longDescriptionBlock = (
@@ -157,8 +162,28 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
             <VerticalFaqSection items={vertical.faq} verticalName={vertical.name} />
             <CtaSection />
           </>
+        ) : isMedia ? (
+          /* ============= PREMIUM MEDIA LAYOUT ============= */
+          <>
+            <MediaHero vertical={vertical} />
+
+            <TracingBeam accent={accent}>
+              {longDescriptionBlock}
+
+              <MediaCapabilities chips={vertical.chips ?? []} accent={accent} />
+
+              <MediaShowcase accent={accent} />
+
+              {vertical.metrics && vertical.metrics.length > 0 && (
+                <MediaMetrics metrics={vertical.metrics} accent={accent} />
+              )}
+            </TracingBeam>
+
+            <VerticalFaqSection items={vertical.faq} verticalName={vertical.name} />
+            <CtaSection />
+          </>
         ) : (
-          /* ============= DEFAULT TEMPLATE (Media + Brand) ============= */
+          /* ============= DEFAULT TEMPLATE (Brand) ============= */
           <>
             <VerticalHeroSection vertical={vertical} />
             {longDescriptionBlock}
