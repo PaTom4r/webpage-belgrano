@@ -34,7 +34,7 @@ export function ParticlesMesh({ count = 20000 }: ParticlesMeshProps) {
       </bufferGeometry>
       <pointsMaterial
         size={0.025}
-        color="#20808D"
+        color="#ffffff"
         sizeAttenuation
         transparent
         opacity={0.9}
