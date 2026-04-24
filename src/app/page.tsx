@@ -3,8 +3,7 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
-import { VerticalesReveal } from '@/components/sections/home/verticales-reveal'
-// import { VerticalesSection } from '@/components/sections/verticales-section' // Reemplazada por VerticalesReveal scroll-driven
+// import { VerticalesSection } from '@/components/sections/verticales-section' // Desactivada — se vuelve a habilitar cuando se decida volver a mostrar 'Qué hacemos'
 // import { MarqueeSection } from '@/components/sections/marquee-section' // Desactivada — clientes "que confían en nosotros" quitada a pedido de Pato
 import { StatsSection } from '@/components/sections/stats-section'
 import { CtaSection } from '@/components/sections/cta-section'
@@ -62,7 +61,7 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
-        <VerticalesReveal />
+        {/* <VerticalesSection /> — Desactivada temporalmente */}
         <StatsSection />
         {/* <MarqueeSection /> — Desactivada: secci\u00f3n "Empresas que conf\u00edan en nosotros" */}
         <CtaSection />

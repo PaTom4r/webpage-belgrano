@@ -147,7 +147,7 @@ export const verticales: Vertical[] = [
       metric: '24/7 agentes en producción · 40–70% menos tiempo operativo',
       footnote: 'AI Solutions + Academy in-company',
     },
-    accentColor: '#20808D',
+    accentColor: '#A855F7',
     description:
       'IA aplicada a problemas reales de tu negocio: agentes conversacionales, análisis de clientes, automatización de procesos y capacitación para que tu equipo se apropie de la tecnología. El tronco inteligente que potencia a Media y Brand.',
     longDescription:
@@ -311,7 +311,7 @@ export const verticales: Vertical[] = [
       metric: 'Idea, diseño, producción y operación en un solo equipo',
       footnote: 'Tecnología de Intelligence integrada cuando suma',
     },
-    accentColor: '#F97316',
+    accentColor: '#F59E0B',
     description:
       'Trade marketing, activaciones BTL, stands, eventos y desarrollo creativo para marcas que quieren presencia real donde están sus clientes. Diseñamos experiencias que integran presencia física, contenido y — cuando suma — tecnología inteligente.',
     longDescription:

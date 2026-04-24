@@ -156,14 +156,13 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 > This section is managed by `generate-claude-profile` -- do not edit manually.
 <!-- GSD:profile-end -->
 
-## Estado actual (2026-04-24)
+## Estado actual (2026-04-17)
 
-- **Branch principal**: `main`. Vercel deploys desde `main`.
-- **Home — Verticales scroll-driven reveal (NUEVO)**: `src/components/sections/home/verticales-reveal.tsx`. Container 700vh con sticky inner. Video neural (`public/home/intelligence.mp4`, generado con OpenAI gpt-image-2 + Veo 3.1) como fondo de toda la sección con mask gradient fade izquierdo y object-position: right center. Overlay oscuro horizontal + 3 tint accent (teal/sky/orange) cross-fade según scroll. Texto sticky a la izquierda ("Tres verticales, un mismo equipo"), paneles stacked con cross-fade a la derecha.
-- **Demo Intelligence scroll-driven — orquestador cobranza**: 3 pasos dentro del rango progress 0-0.30 (Entrante 0-0.10 / Orquestando 0.10-0.20 / Resuelto 0.20-0.30). Paso 1: chat WhatsApp cliente + typing indicator. Paso 2: grid 2x2 de 4 sistemas (CRM, Ledger, Motor ofertas, Pasarela) con stagger. Paso 3: respuesta bot con tint teal + 3 métricas (12s / 4 sistemas / 0 humano).
-- **Paleta definitiva por vertical**: Intelligence `#20808D` deep teal, Media `#0EA5E9` sky, Brand `#F97316` warm orange. Actualizada en `src/lib/content/verticales.ts`.
-- **Fix click bug**: `pointerEvents` por panel atado al scroll progress (`auto` si activo, `none` si no) — resuelve el bug donde clickar Intelligence navegaba a Brand por el `absolute inset-0` stacking.
-- **Hero section (sin cambios)**: `src/components/sections/hero-section.tsx` — imagen oficina BELGRANO hormigón + Costanera + Andes, min-h-[78vh], headline `BELGRANO GROUP` alineado a la derecha. Accordion horizontal REMOVIDO del hero (reemplazado por VerticalesReveal abajo).
+- **Branch principal**: `main` (reestructurado 2026-04-17). `feature/21st-dev-ui-improvements` mergeado. Vercel deploys desde `main`.
+- **Branch archivo**: `feature/landing-v2-template1` preservada en `.worktrees/landing-v2-template1/` — contiene diseño alternativo template-1 (hero accordion horizontal distinto). NO borrar.
+- **Caso de éxito CLC removido** de `/verticales/intelligence` (commit `6afe25b`)
+- **Home — Hero cinematográfico**: imagen oficina BELGRANO en hormigón + Costanera + Andes nevados, full opacity + gradient overlay (`from-black/90 via-black/50 to-black/10`). Min-h-[78vh]. Headline `BELGRANO GROUP` (text-4xl→6xl) alineado a la derecha sobre la cordillera. Bajada larga del metadata con doble textShadow para legibilidad.
+- **Cards del hero**: accordion horizontal tipo Apple Music (hover crece a flexGrow 2.2, otras se comprimen). Default expandida: Intelligence. Mockups v2 (Intelligence/Media/Brand) con chats/canales/activación. 3D tilt removido — el accordion ya comunica interactividad.
 - **Navbar**: "Belgrano" wordmark restaurado a la izquierda, lógica `heroInView` con IntersectionObserver, glass effect al scrollear fuera del hero. CTA Hablemos con magnetic spring.
 - **Landing**: Hero → Stats → CTA → Footer. `MarqueeSection` (Empresas que confían) y `VerticalesSection` (Qué hacemos) **desactivadas** (código comentado para reactivar cuando haya contenido real).
 - **`/verticales/intelligence` premium**: composición dedicada via slug conditional. TracingBeam morada scroll-driven (Aceternity-style, Framer Motion + SVG, respeta prefers-reduced-motion). IntelligenceHero con grid + glow morado + brain icon. IntelligenceCapabilities (5 chips pulsing). **IntelligenceCaseStudy CLC** (Vida Cámara-style 2 columnas: logo CLC + bullets + 4 metric cards: $780M recuperados marzo / 300x+ ROI / +3.000 personas / 24/7 WhatsApp Business API oficial). IntelligenceBranches con hover lift. IntelligenceMetrics counter-animated (parser para "$780M"/"24/7"/"40-70%").
@@ -180,16 +179,15 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 - **TracingBeam**: SVG + Framer Motion (`useScroll`, `useTransform`, `useSpring`). `ResizeObserver` para dimensionar dinámicamente la altura. Respeta `prefers-reduced-motion` (línea estática sin gradient).
 - **AnimatedCounter en Intelligence metrics**: parser que extrae `{prefix, target, suffix}` de strings tipo "$780M" / "300x+" y fallback a plain text para "24/7" o "40-70%" (no numéricos puros).
 - **No Three.js** (constraint del proyecto). Frame-sequence scroll-driven (Apple AirPods style) postergado — requiere assets WebP de NanoBanana cuando Pato los exporte.
-- **Custom `useElementProgress` hook** en `verticales-reveal.tsx` (no `useScroll`): Next 16 + Turbopack + React 19 tenía glitch de reactividad con `useScroll({ target })`. Custom hook usa scroll listener + rAF + MotionValue, más robusto.
-- **`pointerEvents` via MotionValue**: patrón para stacked panels con `absolute inset-0` — cada panel tiene `useTransform<number, 'auto' | 'none'>(scrollYProgress, ...)` mapeado a su rango activo. Evita que paneles con opacity 0 capturen clicks.
-- **Pipeline de videos verticales**: OpenAI gpt-image-2 (1536x1024, quality high) para imagen base → Veo 3.1 image-to-video con constraint de loop perfecto ("first frame matches last frame"). Tier strategy Fast → Lite → Normal. Prompts por vertical en `docs/home-verticales-prompts.md`. Assets finales a `public/home/<slug>.mp4` + `.png` poster. Config de mapping en `MEDIA_ASSETS` en `verticales-reveal.tsx`.
-- **Demo scroll-scrubbed in-page (no HyperFrames)**: el demo Intelligence se construye live con React + Framer Motion dentro del panel aspect-video, NO como MP4 renderizado. Justificación: permite scroll-drive real, menos peso, responsive al viewport. HyperFrames queda para contenido standalone (reels, bumpers de casos).
 
 ## Próximo
 
-- **Pato genera videos Media y Brand** con los prompts de `docs/home-verticales-prompts.md`. Dropea MP4 + PNG poster en `public/home/<slug>.*` → yo flipeo el toggle en `MEDIA_ASSETS`.
-- **Demo scroll-driven para Media y Brand**: pattern similar al de Intelligence (3 pasos). Para Media: Plan → Broadcast → Resultados. Para Brand: Concepto → Activación → Alcance. Construir cuando los videos de fondo estén listos.
+- **Deploy** `feature/21st-dev-ui-improvements` → Vercel para validar imagen del hero (cache local impidió ver la nueva) y probar TracingBeam + Intelligence en producción.
+- **Merge → `main`** después del visual OK post-deploy.
+- **Mejorar `/verticales/media`**: Pato tiene 2-3 videos TNT Sports / Warner Bros — esperando que los dropee en `public/media/` (MP4/WebM <5MB ideal).
+- **Mejorar `/verticales/brand`**: esperando input del equipo interno; podemos proponer mejoras de layout/tipografía.
 - **Mejorar `/nosotros`**: alinear con look premium del home y de Intelligence.
 - **Reactivar sección de clientes** cuando tengan logos finales y narrativa definidos.
+- **Frame-sequence 3D scroll-driven** para Intelligence v2, condicionado a frames WebP de NanoBanana.
 - **Caso completo CLC** (página `/casos/clc`) — CTA disabled hasta tener post real.
 - **Color terciario indigo #635BFF** — deferido.
