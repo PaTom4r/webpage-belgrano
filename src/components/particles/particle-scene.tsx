@@ -23,7 +23,7 @@ export function ParticleScene() {
 
   // Adaptive particle count — mobile halves it to stay at 60fps on mid-range GPUs
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-  const particleCount = isMobile ? 8000 : 20000
+  const particleCount = isMobile ? 5000 : 12000
 
   return (
     <div
