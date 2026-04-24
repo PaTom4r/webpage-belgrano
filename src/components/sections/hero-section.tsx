@@ -1,15 +1,13 @@
 // src/components/sections/hero-section.tsx
-// Two-zone hero:
-//  Zone 1: cinematic office bg (Santiago + Andes + BELGRANO en hormigón).
-//          Headline "BELGRANO GROUP" achicado y alineado a la derecha,
-//          posicionado sobre la zona de la cordillera (no sobre el wordmark de hormigón).
-//          Min-h-[78vh] para que la imagen respire.
-//  Zone 2: 3 HeroMockups en accordion horizontal sobre fondo dark.
+// Cinematic hero: office bg (Santiago + Andes + BELGRANO en hormigón).
+// Headline "BELGRANO GROUP" achicado y alineado a la derecha,
+// posicionado sobre la zona de la cordillera. Min-h-[78vh] para respirar.
+// El accordion horizontal se sacó — ahora el spotlight de verticales vive
+// en <VerticalesReveal /> abajo, como sección scroll-driven pinned.
 'use client'
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { HeroMockups } from '@/components/ui/hero-mockups'
 
 const easing = [0.25, 0.1, 0.25, 1] as const
 
@@ -89,14 +87,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Zone 2 — Cards on dark background. More breathing room above. */}
-      <div className="relative bg-dark pb-8 pt-20 sm:pb-10 sm:pt-24 lg:pb-14 lg:pt-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/30 to-transparent"
-        />
-        <HeroMockups />
-      </div>
     </section>
   )
 }
