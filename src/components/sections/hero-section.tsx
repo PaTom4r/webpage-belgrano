@@ -2,17 +2,17 @@
 // Layout:
 //   Mobile: stacked — particle canvas on top (full-width, dim opacity), text below.
 //   lg+:    canvas absolute spanning the full hero. Text content sits to the
-//           right starting at x≈51vw with max-width 620px so the threads breathe
+//           right starting at x≈40vw with max-width 680px so the threads breathe
 //           on the left while the headline reads cleanly. Two z-10 overlays
 //           (linear right→center + radial behind text) attenuate the threads
 //           without erasing them, so the fibers still show through.
-//   Zone 2: existing HeroMockups accordion, unchanged.
+//   Vertical cards used to live here as Zone 2 (HeroMockups accordion). They
+//   moved to <VerticalesReveal /> below, as a scroll-driven pinned section.
 'use client'
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { HeroMockups } from '@/components/ui/hero-mockups'
 
 // Canvas 2D physics loop runs only in the browser. Dynamic import keeps the
 // initial JS bundle for the home page lean and the hero text paints on SSR.
@@ -43,7 +43,7 @@ export function HeroSection() {
       aria-labelledby="hero-heading"
       className="flex flex-col"
     >
-      {/* Zone 1 — Living Threads + dominant headline */}
+      {/* Living Threads + dominant headline */}
       <div className="relative isolate overflow-hidden bg-black lg:min-h-[88vh]">
         {/* Single canvas, positioned responsively:
               · mobile: relative block stacked above the text (55-60vh tall),
@@ -71,7 +71,7 @@ export function HeroSection() {
           }}
         />
 
-        {/* Text content — starts at x≈51vw on lg+, full-width on mobile.
+        {/* Text content — starts at x≈40vw on lg+, full-width on mobile.
             z-20 keeps the headline above the threads + overlays.
             pointer-events-none on the outer wrapper lets cursor events fall
             through to the canvas in the empty area on the left; pointer-events
@@ -122,15 +122,6 @@ export function HeroSection() {
             </motion.div>
           </div>
         </div>
-      </div>
-
-      {/* Zone 2 — vertical cards (HeroMockups accordion, unchanged). */}
-      <div className="relative bg-black pb-8 pt-16 sm:pb-10 sm:pt-20 lg:pb-14 lg:pt-24">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/40 to-transparent"
-        />
-        <HeroMockups />
       </div>
     </section>
   )
