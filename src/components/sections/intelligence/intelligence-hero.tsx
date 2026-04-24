@@ -111,18 +111,18 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
             {vertical.benefitHeadline}
           </motion.p>
 
-          {/* Dual CTA */}
+          {/* Primary CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35, ease: easing }}
-            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            className="mt-10 flex items-center justify-center"
           >
             <Link
-              href="#caso-clc"
+              href="#cta"
               className="inline-flex items-center gap-2 rounded-full bg-bg px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-85"
             >
-              Ver caso Clínica Las Condes
+              Hablemos de tu proyecto
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
                   d="M3 8h10M9 4l4 4-4 4"
@@ -132,12 +132,6 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
                   strokeLinejoin="round"
                 />
               </svg>
-            </Link>
-            <Link
-              href="#cta"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-bg transition-all hover:border-white hover:bg-white/5"
-            >
-              Hablemos
             </Link>
           </motion.div>
         </div>

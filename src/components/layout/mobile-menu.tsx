@@ -9,10 +9,11 @@ import type { NavLink } from '@/lib/content/site'
 interface MobileMenuProps {
   isOpen: boolean
   links: NavLink[]
+  ctaHref: string
   onClose: () => void
 }
 
-export function MobileMenu({ isOpen, links, onClose }: MobileMenuProps) {
+export function MobileMenu({ isOpen, links, ctaHref, onClose }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -35,7 +36,7 @@ export function MobileMenu({ isOpen, links, onClose }: MobileMenuProps) {
               </Link>
             ))}
             <Link
-              href="#cta"
+              href={ctaHref}
               onClick={onClose}
               className="mt-2 inline-flex items-center justify-center rounded-lg bg-accent px-6 py-3 text-base font-semibold text-white transition-opacity hover:opacity-80"
             >

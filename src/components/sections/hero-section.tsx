@@ -8,6 +8,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { HeroMockups } from '@/components/ui/hero-mockups'
 
@@ -85,6 +86,25 @@ export function HeroSection() {
               Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución
               en terreno para impulsar resultados reales en cada punto de contacto.
             </motion.p>
+
+            {/* Primary CTA — ensures above-the-fold has a conversion path */}
+            <motion.div {...fadeUp(0.2)} className="mt-8 flex justify-end lg:mt-10">
+              <Link
+                href="/#cta"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                Agenda una reunión
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

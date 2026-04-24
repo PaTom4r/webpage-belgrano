@@ -7,11 +7,25 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { navLinks } from '@/lib/content/site'
 import { MobileMenu } from './mobile-menu'
 
+// Rutas que montan <CtaSection /> con id="cta" — el hash local funciona sin navegar al home
+const PAGES_WITH_LOCAL_CTA = ['/', '/nosotros', '/verticales/']
+
+function resolveCtaHref(pathname: string | null): string {
+  if (!pathname) return '/#cta'
+  const hasLocal = PAGES_WITH_LOCAL_CTA.some((p) =>
+    p.endsWith('/') && p !== '/' ? pathname.startsWith(p) : pathname === p
+  )
+  return hasLocal ? '#cta' : '/#cta'
+}
+
 function MagneticCTA() {
+  const pathname = usePathname()
+  const href = resolveCtaHref(pathname)
   const ref = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState({ x: 0, y: 0 })
 
@@ -34,7 +48,7 @@ function MagneticCTA() {
         transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
       >
         <Link
-          href="/#cta"
+          href={href}
           className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
         >
           Hablemos
@@ -45,6 +59,8 @@ function MagneticCTA() {
 }
 
 export function Navbar() {
+  const pathname = usePathname()
+  const ctaHref = resolveCtaHref(pathname)
   const [scrolled, setScrolled] = useState(false)
   const [heroInView, setHeroInView] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -148,6 +164,7 @@ export function Navbar() {
       <MobileMenu
         isOpen={menuOpen}
         links={navLinks}
+        ctaHref={ctaHref}
         onClose={() => setMenuOpen(false)}
       />
     </header>

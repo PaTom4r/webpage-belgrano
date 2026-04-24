@@ -33,7 +33,7 @@ export function CtaSection() {
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
               <p className="mt-6 text-lg leading-relaxed text-gray-700">
-                Cuéntanos tu desafío. En 24 horas te respondemos con una propuesta inicial.
+                Agenda una reunión de 30 minutos. Diagnóstico gratuito, propuesta inicial en 48 horas.
               </p>
             </ScrollReveal>
 
@@ -56,20 +56,25 @@ export function CtaSection() {
             </ScrollReveal>
           </div>
 
-          {/* Right: form */}
+          {/* Right: Calendly — primary conversion action */}
           <ScrollReveal delay={0.1} className="w-full">
-            <ContactForm />
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-text-secondary">
+              Agenda directo
+            </p>
+            <CalendlyEmbed />
           </ScrollReveal>
         </div>
 
-        {/* Calendly inline booking widget */}
+        {/* Contact form — secondary channel for those who prefer to write */}
         <div className="mt-16 border-t border-black/10 pt-16">
           <ScrollReveal>
             <p className="mb-8 text-center text-sm font-semibold uppercase tracking-widest text-text-secondary">
-              O agenda directo
+              O escríbenos y te respondemos en 24h
             </p>
           </ScrollReveal>
-          <CalendlyEmbed />
+          <div className="mx-auto max-w-2xl">
+            <ContactForm />
+          </div>
         </div>
       </div>
     </section>

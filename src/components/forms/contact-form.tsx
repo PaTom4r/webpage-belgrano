@@ -56,7 +56,7 @@ export function ContactForm() {
             type="text"
             autoComplete="name"
             {...register('name')}
-            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
+            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             placeholder="Nombre Apellido"
           />
           {errors.name && (
@@ -76,7 +76,7 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             {...register('email')}
-            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
+            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             placeholder="tu@empresa.cl"
           />
           {errors.email && (
@@ -96,7 +96,7 @@ export function ContactForm() {
             type="text"
             autoComplete="organization"
             {...register('company')}
-            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
+            className="w-full rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             placeholder="Nombre de tu empresa"
           />
           {errors.company && (
@@ -115,7 +115,7 @@ export function ContactForm() {
             id="message"
             rows={4}
             {...register('message')}
-            className="w-full resize-none rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus:ring-0"
+            className="w-full resize-none rounded-lg border border-black/10 bg-black/5 px-4 py-3 text-sm text-text placeholder:text-text-secondary/60 focus:border-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             placeholder="¿En qué podemos ayudarte?"
           />
           {errors.message && (
@@ -138,7 +138,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-dark px-6 py-4 text-sm font-bold text-bg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg bg-dark px-6 py-4 text-sm font-bold text-bg transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Enviando...' : 'Enviar mensaje \u2192'}
         </button>
