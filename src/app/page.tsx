@@ -7,6 +7,7 @@ import { HeroSection } from '@/components/sections/hero-section'
 // import { MarqueeSection } from '@/components/sections/marquee-section' // Desactivada — clientes "que confían en nosotros" quitada a pedido de Pato
 import { StatsSection } from '@/components/sections/stats-section'
 import { CtaSection } from '@/components/sections/cta-section'
+import { ParticleScene } from '@/components/particles/particle-scene'
 
 export const metadata: Metadata = {
   title: 'Belgrano Group — Operamos el crecimiento de tu marca',
@@ -59,7 +60,8 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
-      <main>
+      <ParticleScene />
+      <main className="relative z-10">
         <HeroSection />
         {/* <VerticalesSection /> — Desactivada temporalmente */}
         <StatsSection />
