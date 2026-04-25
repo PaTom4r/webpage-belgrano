@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Belgrano Particle Scroll Storyboard</title>
+  <style>
+    :root { --bg:#09090b; --ink:#f8fafc; --muted:rgba(248,250,252,.62); --line:rgba(248,250,252,.14); --teal:#20808D; --sky:#0EA5E9; --orange:#F97316; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+    .wrap { max-width:1220px; margin:0 auto; padding:42px 24px 64px; }
+    .eyebrow { color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; }
+    h1 { max-width:980px; margin:14px 0; font-size:clamp(40px,7vw,86px); line-height:.92; letter-spacing:-.04em; font-weight:900; }
+    .lead { max-width:760px; color:var(--muted); font-size:18px; line-height:1.55; }
+    .diagram { display:grid; grid-template-columns:1.1fr .9fr; gap:22px; margin-top:34px; align-items:stretch; }
+    .stage { position:relative; min-height:540px; overflow:hidden; border:1px solid var(--line); background:radial-gradient(circle at 72% 18%, rgba(32,128,141,.22), transparent 28%), radial-gradient(circle at 50% 72%, rgba(14,165,233,.13), transparent 34%), linear-gradient(180deg,#111114,#050506); border-radius:20px; box-shadow:0 24px 80px rgba(0,0,0,.35); }
+    .stage::before { content:""; position:absolute; inset:0; background-image:linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px); background-size:56px 56px; mask-image:radial-gradient(circle at 50% 50%, black, transparent 76%); opacity:.45; }
+    .panel { position:absolute; inset:auto 42px 42px 42px; z-index:2; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:end; }
+    .panel h2 { margin:0; max-width:580px; font-size:45px; line-height:.95; letter-spacing:-.045em; font-weight:900; }
+    .panel p { margin:10px 0 0; color:var(--muted); line-height:1.45; }
+    .cta { border:1px solid rgba(255,255,255,.22); background:white; color:black; border-radius:999px; padding:12px 18px; font-weight:850; white-space:nowrap; }
+    .particle { position:absolute; width:5px; height:5px; border-radius:999px; background:rgba(255,255,255,.9); box-shadow:0 0 18px rgba(255,255,255,.5); animation:drift 5.8s ease-in-out infinite alternate; }
+    .particle.teal { background:var(--teal); box-shadow:0 0 22px rgba(32,128,141,.8); }
+    .particle.sky { background:var(--sky); box-shadow:0 0 22px rgba(14,165,233,.75); }
+    .particle.orange { background:var(--orange); box-shadow:0 0 22px rgba(249,115,22,.7); }
+    .beam { position:absolute; z-index:1; height:1px; transform-origin:left center; background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent); opacity:.55; }
+    .shape { position:absolute; z-index:1; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.035); backdrop-filter:blur(8px); border-radius:16px; }
+    .shape.chat { left:68px; top:80px; width:250px; height:116px; }
+    .shape.orbit { right:74px; top:92px; width:230px; height:230px; border-radius:999px; }
+    .shape.metric { right:72px; bottom:162px; width:280px; height:82px; }
+    .shape::after { content:attr(data-label); position:absolute; left:16px; top:14px; color:rgba(255,255,255,.68); font-size:10px; font-weight:850; letter-spacing:.18em; text-transform:uppercase; }
+    .track { border:1px solid var(--line); border-radius:20px; padding:22px; background:rgba(255,255,255,.04); }
+    .track h3 { margin:0 0 10px; font-size:22px; letter-spacing:-.02em; }
+    .step { position:relative; padding:18px 18px 18px 42px; border-top:1px solid var(--line); color:var(--muted); line-height:1.42; }
+    .step:first-of-type { border-top:0; }
+    .step b { color:white; }
+    .dot { position:absolute; left:6px; top:20px; width:18px; height:18px; border-radius:999px; background:white; box-shadow:0 0 0 7px rgba(255,255,255,.08); }
+    .dot.teal { background:var(--teal); } .dot.sky { background:var(--sky); } .dot.orange { background:var(--orange); }
+    .options { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+    .option { border:1px solid var(--line); border-radius:16px; padding:18px; background:rgba(255,255,255,.045); }
+    .option h3 { margin:0 0 8px; font-size:18px; } .option p { margin:0; color:var(--muted); line-height:1.45; font-size:14px; }
+    @keyframes drift { from { transform:translate3d(-18px,12px,0) scale(.8); opacity:.45; } to { transform:translate3d(22px,-20px,0) scale(1.25); opacity:1; } }
+    @media (max-width:900px) { .diagram,.options { grid-template-columns:1fr; } .panel { grid-template-columns:1fr; } .stage { min-height:620px; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="eyebrow">Storyboard para decidir dirección</div>
+    <h1>No más nube flotante: las partículas deben actuar como un sistema.</h1>
+    <p class="lead">En una animación 3D con scrolling, el scroll no “mueve la página” solamente: también avanza una línea de tiempo. Las partículas pasan por estados: aparecen, forman interfaces, conectan ideas, revelan texto y se retiran cuando hay que convertir.</p>
+    <section class="diagram">
+      <div class="stage">
+        <div class="shape chat" data-label="1 · invocar"></div><div class="shape orbit" data-label="2 · conectar"></div><div class="shape metric" data-label="3 · revelar"></div>
+        <div class="beam" style="left:180px;top:146px;width:470px;transform:rotate(12deg);"></div><div class="beam" style="left:520px;top:238px;width:360px;transform:rotate(115deg);"></div><div class="beam" style="left:320px;top:360px;width:500px;transform:rotate(-7deg);"></div>
+        <div class="particle teal" style="left:10%;top:16%;animation-delay:-.4s"></div><div class="particle teal" style="left:18%;top:24%;animation-delay:-1.1s"></div><div class="particle teal" style="left:26%;top:18%;animation-delay:-2.1s"></div><div class="particle sky" style="left:58%;top:20%;animation-delay:-.7s"></div><div class="particle sky" style="left:64%;top:30%;animation-delay:-2.8s"></div><div class="particle sky" style="left:72%;top:38%;animation-delay:-1.9s"></div><div class="particle orange" style="left:68%;top:68%;animation-delay:-.9s"></div><div class="particle orange" style="left:76%;top:74%;animation-delay:-1.7s"></div><div class="particle" style="left:42%;top:44%;animation-delay:-2.4s"></div><div class="particle" style="left:48%;top:52%;animation-delay:-3.2s"></div><div class="particle" style="left:36%;top:62%;animation-delay:-.2s"></div><div class="particle" style="left:86%;top:18%;animation-delay:-2.2s"></div><div class="particle" style="left:12%;top:70%;animation-delay:-1.8s"></div><div class="particle" style="left:30%;top:82%;animation-delay:-3.5s"></div>
+        <div class="panel"><div><div class="eyebrow">Belgrano Intelligence Field</div><h2>La web se arma frente al usuario.</h2><p>Las partículas no decoran: convocan los bloques, conectan verticales y guían la lectura.</p></div><div class="cta">Hablemos</div></div>
+      </div>
+      <aside class="track">
+        <h3>Cómo se sentiría al hacer scroll</h3>
+        <div class="step"><span class="dot"></span><b>Hero:</b> partículas dormidas en el espacio, como polvo inteligente. No tapan el mensaje.</div>
+        <div class="step"><span class="dot teal"></span><b>Intelligence:</b> se agrupan y forman una interfaz viva: chat, nodos, decisión, respuesta.</div>
+        <div class="step"><span class="dot sky"></span><b>Media:</b> se convierten en barridos de señal: cobertura, pantallas, alcance, frecuencia.</div>
+        <div class="step"><span class="dot orange"></span><b>Brand:</b> se vuelven materia: activación, presencia física, energía en terreno.</div>
+        <div class="step"><span class="dot"></span><b>CTA:</b> se retiran. La animación deja de protagonizar y empuja la atención al formulario.</div>
+      </aside>
+    </section>
+    <section class="options">
+      <div class="option"><h3>A · Orquestador</h3><p>Partículas forman sistemas, flujos y decisiones. Es la opción más “empresa de IA aplicada”.</p></div>
+      <div class="option"><h3>B · Cinemático</h3><p>Partículas como escenas visuales grandes, casi trailer. Más wow, menos explicación de negocio.</p></div>
+      <div class="option"><h3>C · UI Viva</h3><p>Partículas construyen botones, cards, métricas y demos. Más producto digital, más controlado.</p></div>
+    </section>
+  </main>
+</body>
+</html>

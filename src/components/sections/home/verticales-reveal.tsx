@@ -11,6 +11,10 @@ import Link from 'next/link'
 import { motion, useMotionValue, useTransform, type MotionValue } from 'framer-motion'
 import { verticales } from '@/lib/content/verticales'
 import { Container } from '@/components/layout/container'
+import {
+  createVerticalInvocationWindows,
+  type InvocationVertical,
+} from '@/components/particles/particle-invocation'
 
 // Tracker manual — calcula progress (0→1) del elemento respecto al viewport.
 // Más robusto que useScroll({ target }) en combos Next 16 + Turbopack + React 19.
@@ -71,8 +75,152 @@ const MEDIA_ASSETS: Record<
 
 interface PanelVisualProps {
   accent: string
-  variant: 'intelligence' | 'media' | 'brand'
+  variant: InvocationVertical
   scrollYProgress?: MotionValue<number>
+}
+
+interface ParticleInvokeProps {
+  accent: string
+  children: React.ReactNode
+  className?: string
+  progress?: MotionValue<number>
+  range?: [number, number, number]
+}
+
+function ParticleInvoke({ accent, children, className, progress, range }: ParticleInvokeProps) {
+  if (!progress || !range) {
+    return <div className={className}>{children}</div>
+  }
+
+  return (
+    <ParticleInvokeAnimated accent={accent} className={className} progress={progress} range={range}>
+      {children}
+    </ParticleInvokeAnimated>
+  )
+}
+
+interface ParticleInvokeAnimatedProps {
+  accent: string
+  children: React.ReactNode
+  className?: string
+  progress: MotionValue<number>
+  range: [number, number, number]
+}
+
+function ParticleInvokeAnimated({
+  accent,
+  children,
+  className,
+  progress,
+  range,
+}: ParticleInvokeAnimatedProps) {
+  const [start, mid, end] = range
+  const opacity = useTransform(progress, [0, start, mid, end, 1], [0.12, 0.12, 0.78, 1, 1])
+  const dustOpacity = useTransform(progress, [0, start, mid, end, 1], [0, 0, 1, 0, 0])
+  const clipPath = useTransform(
+    progress,
+    [0, start, mid, end, 1],
+    [
+      'inset(0 100% 0 0)',
+      'inset(0 100% 0 0)',
+      'inset(0 24% 0 0)',
+      'inset(0 0% 0 0)',
+      'inset(0 0% 0 0)',
+    ],
+  )
+  const filter = useTransform(progress, [0, start, mid, end, 1], ['blur(12px)', 'blur(12px)', 'blur(3px)', 'blur(0px)', 'blur(0px)'])
+  const y = useTransform(progress, [start, end], [18, 0])
+  const dustX = useTransform(progress, [start, end], ['-28%', '108%'])
+
+  return (
+    <div className={`relative isolate ${className ?? ''}`}>
+      <motion.div style={{ opacity, clipPath, filter, y, willChange: 'opacity, clip-path, filter, transform' }}>
+        {children}
+      </motion.div>
+      <motion.span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-6 -inset-y-3 z-10"
+        style={{
+          opacity: dustOpacity,
+          x: dustX,
+          backgroundImage: `
+            radial-gradient(circle, ${accent} 0 1px, transparent 1.6px),
+            radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 1.5px)
+          `,
+          backgroundSize: '9px 9px, 17px 17px',
+          backgroundPosition: '0 0, 8px 5px',
+          maskImage: 'linear-gradient(to right, transparent 0%, black 22%, black 62%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent 0%, black 22%, black 62%, transparent 100%)',
+          mixBlendMode: 'screen',
+        }}
+      />
+    </div>
+  )
+}
+
+function ParticleInvokeBlock({ accent, children, progress, range }: ParticleInvokeProps) {
+  if (!progress || !range) return <>{children}</>
+
+  return (
+    <ParticleInvokeBlockAnimated accent={accent} progress={progress} range={range}>
+      {children}
+    </ParticleInvokeBlockAnimated>
+  )
+}
+
+function ParticleInvokeBlockAnimated({
+  accent,
+  children,
+  progress,
+  range,
+}: Required<Pick<ParticleInvokeProps, 'accent' | 'children' | 'progress' | 'range'>>) {
+  const [start, mid, end] = range
+  const blockOpacity = useTransform(progress, [0, start, mid, end, 1], [0, 0, 0.66, 1, 1])
+  const dustOpacity = useTransform(progress, [0, start, mid, end, 1], [0, 0, 1, 0.08, 0])
+  const scale = useTransform(progress, [start, mid, end], [0.96, 1.015, 1])
+  const clipPath = useTransform(
+    progress,
+    [0, start, mid, end, 1],
+    [
+      'inset(48% 48% 48% 48% round 12px)',
+      'inset(48% 48% 48% 48% round 12px)',
+      'inset(14% 10% 12% 10% round 12px)',
+      'inset(0% 0% 0% 0% round 12px)',
+      'inset(0% 0% 0% 0% round 12px)',
+    ],
+  )
+
+  return (
+    <div className="relative isolate">
+      <motion.div
+        style={{
+          opacity: blockOpacity,
+          clipPath,
+          scale,
+          willChange: 'opacity, clip-path, transform',
+        }}
+      >
+        {children}
+      </motion.div>
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-20 rounded-xl"
+        style={{
+          opacity: dustOpacity,
+          border: `1px solid ${accent}88`,
+          boxShadow: `0 0 32px ${accent}44, inset 0 0 28px ${accent}1f`,
+          backgroundImage: `
+            radial-gradient(circle at 18% 26%, ${accent} 0 1px, transparent 1.8px),
+            radial-gradient(circle at 82% 18%, ${accent} 0 1px, transparent 1.8px),
+            radial-gradient(circle at 54% 76%, rgba(255,255,255,0.92) 0 1px, transparent 1.8px)
+          `,
+          backgroundSize: '10px 10px, 14px 14px, 18px 18px',
+          mixBlendMode: 'screen',
+        }}
+      />
+    </div>
+  )
 }
 
 // Visual per-vertical. Cuando hay demo (Intelligence + scrollYProgress) → panel
@@ -451,7 +599,7 @@ interface PanelContentProps {
   benefit: string
   chips: string[]
   accent: string
-  variant: 'intelligence' | 'media' | 'brand'
+  variant: InvocationVertical
   scrollYProgress?: MotionValue<number>
 }
 
@@ -465,47 +613,64 @@ function Panel({
   variant,
   scrollYProgress,
 }: PanelContentProps) {
+  const invocation = createVerticalInvocationWindows(variant)
+
   return (
     <Link
       href={`/verticales/${slug}`}
       className="group block"
     >
-      <PanelVisual accent={accent} variant={variant} scrollYProgress={scrollYProgress} />
+      <ParticleInvokeBlock accent={accent} progress={scrollYProgress} range={invocation.visual}>
+        <PanelVisual accent={accent} variant={variant} scrollYProgress={scrollYProgress} />
+      </ParticleInvokeBlock>
 
       <div className="mt-6 flex flex-col gap-3">
-        <p
-          className="text-[11px] font-bold uppercase tracking-[0.22em]"
-          style={{ color: accent }}
-        >
-          {eyebrow}
-        </p>
-        <h3 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
-          {name}
-        </h3>
-        <p className="max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-          {benefit}
-        </p>
+        <ParticleInvoke accent={accent} progress={scrollYProgress} range={invocation.eyebrow}>
+          <p
+            className="text-[11px] font-bold uppercase tracking-[0.22em]"
+            style={{ color: accent }}
+          >
+            {eyebrow}
+          </p>
+        </ParticleInvoke>
+        <ParticleInvoke accent={accent} progress={scrollYProgress} range={invocation.title}>
+          <h3 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
+            {name}
+          </h3>
+        </ParticleInvoke>
+        <ParticleInvoke accent={accent} progress={scrollYProgress} range={invocation.body}>
+          <p className="max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+            {benefit}
+          </p>
+        </ParticleInvoke>
         {chips.length > 0 && (
-          <div className="mt-1 flex flex-wrap gap-2">
-            {chips.slice(0, 4).map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold text-white"
-                style={{
-                  borderColor: `${accent}55`,
-                  backgroundColor: `${accent}14`,
-                }}
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
+          <ParticleInvoke accent={accent} progress={scrollYProgress} range={invocation.chips}>
+            <div className="mt-1 flex flex-wrap gap-2">
+              {chips.slice(0, 4).map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold text-white"
+                  style={{
+                    borderColor: `${accent}55`,
+                    backgroundColor: `${accent}14`,
+                  }}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </ParticleInvoke>
         )}
-        <span
-          className="mt-3 inline-flex items-center gap-1.5 self-start rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black"
+        <ParticleInvoke
+          accent={accent}
+          className="self-start"
+          progress={scrollYProgress}
+          range={invocation.cta}
         >
-          Saber más →
-        </span>
+          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 group-hover:border-white group-hover:bg-white group-hover:text-black">
+            Saber más →
+          </span>
+        </ParticleInvoke>
       </div>
     </Link>
   )
@@ -627,6 +792,7 @@ export function VerticalesReveal() {
 
   return (
     <section
+      id="verticales"
       aria-labelledby="verticales-heading"
       className="relative bg-dark text-white"
     >
@@ -695,45 +861,69 @@ export function VerticalesReveal() {
             <div className="relative z-10 grid grid-cols-12 gap-8 lg:gap-12">
               {/* Left — sticky text */}
               <div className="col-span-5 flex flex-col justify-center gap-6">
-                <p
-                  className="text-xs font-bold uppercase tracking-[0.24em] text-white/50"
+                <ParticleInvoke
+                  accent={accents.intelligence}
+                  progress={scrollYProgress}
+                  range={[0.01, 0.04, 0.08]}
                 >
-                  Qué hacemos
-                </p>
-                <h2
-                  id="verticales-heading"
-                  className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
-                  style={{ textShadow: '0 2px 24px rgba(0,0,0,0.7)' }}
+                  <p
+                    className="text-xs font-bold uppercase tracking-[0.24em] text-white/50"
+                  >
+                    Qué hacemos
+                  </p>
+                </ParticleInvoke>
+                <ParticleInvoke
+                  accent={accents.intelligence}
+                  progress={scrollYProgress}
+                  range={[0.04, 0.08, 0.15]}
                 >
-                  Tres verticales,
-                  <br />
-                  <span className="text-white/80">un mismo equipo</span>
-                </h2>
-                <p
-                  className="max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
-                  style={{ textShadow: '0 1px 14px rgba(0,0,0,0.85)' }}
+                  <h2
+                    id="verticales-heading"
+                    className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
+                    style={{ textShadow: '0 2px 24px rgba(0,0,0,0.7)' }}
+                  >
+                    Tres verticales,
+                    <br />
+                    <span className="text-white/80">un mismo equipo</span>
+                  </h2>
+                </ParticleInvoke>
+                <ParticleInvoke
+                  accent={accents.intelligence}
+                  progress={scrollYProgress}
+                  range={[0.1, 0.16, 0.24]}
                 >
-                  Operamos tres verticales que se potencian entre sí — inteligencia,
-                  medios y marca. Cada una con su expertise. Todas con la misma
-                  obsesión: resultados medibles.
-                </p>
+                  <p
+                    className="max-w-lg text-base leading-relaxed text-white/70 sm:text-lg"
+                    style={{ textShadow: '0 1px 14px rgba(0,0,0,0.85)' }}
+                  >
+                    Operamos tres verticales que se potencian entre sí — inteligencia,
+                    medios y marca. Cada una con su expertise. Todas con la misma
+                    obsesión: resultados medibles.
+                  </p>
+                </ParticleInvoke>
 
                 {/* Progress indicator */}
-                <div className="mt-8 flex items-center gap-4">
-                  <span className="font-mono text-xs font-bold text-white/40">
-                    <ActiveIndex activeIndex={activeIndex} />
-                    {' / 03'}
-                  </span>
-                  <div className="relative h-px flex-1 overflow-hidden bg-white/10">
-                    <motion.div
-                      className="absolute inset-y-0 left-0"
-                      style={{
-                        width: progressWidth,
-                        background: `linear-gradient(to right, ${accents.intelligence} 0%, ${accents.media} 50%, ${accents.brand} 100%)`,
-                      }}
-                    />
+                <ParticleInvoke
+                  accent={accents.intelligence}
+                  progress={scrollYProgress}
+                  range={[0.18, 0.22, 0.3]}
+                >
+                  <div className="mt-8 flex items-center gap-4">
+                    <span className="font-mono text-xs font-bold text-white/40">
+                      <ActiveIndex activeIndex={activeIndex} />
+                      {' / 03'}
+                    </span>
+                    <div className="relative h-px flex-1 overflow-hidden bg-white/10">
+                      <motion.div
+                        className="absolute inset-y-0 left-0"
+                        style={{
+                          width: progressWidth,
+                          background: `linear-gradient(to right, ${accents.intelligence} 0%, ${accents.media} 50%, ${accents.brand} 100%)`,
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
+                </ParticleInvoke>
               </div>
 
               {/* Right — stacked panels con cross-fade */}
@@ -757,9 +947,7 @@ export function VerticalesReveal() {
                         chips={p.chips}
                         accent={p.accent}
                         variant={p.variant}
-                        scrollYProgress={
-                          p.variant === 'intelligence' ? scrollYProgress : undefined
-                        }
+                        scrollYProgress={scrollYProgress}
                       />
                     </div>
                   </motion.div>

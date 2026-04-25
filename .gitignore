@@ -46,6 +46,12 @@ next-env.d.ts
 /*.png
 !public/**/*.png
 
+# session artifacts
+.superpowers/
+.tmp/
+docs/superpowers/plans/
+public/video-frames/
+
 # Remotion standby project (aislado con su propio package.json)
 /remotion/
 
