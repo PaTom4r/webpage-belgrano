@@ -18,7 +18,7 @@ import {
   drawWaveField,
   stepWaveField,
   type CursorState,
-  type WaveParticle,
+  type WaveField,
 } from './particles'
 
 type UsePillarOptions = {
@@ -49,7 +49,7 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    let particles: WaveParticle[] = []
+    let field: WaveField | null = null
     const cursor: CursorState = { x: -9999, y: -9999, active: false }
     let cssWidth = 0
     let cssHeight = 0
@@ -71,7 +71,7 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       ctx.setTransform(1, 0, 0, 1, 0, 0)
       ctx.scale(dpr, dpr)
 
-      particles = createWaveField(
+      field = createWaveField(
         particleCountFor(window.innerWidth),
         cssWidth,
         cssHeight,
@@ -79,13 +79,14 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
     }
 
     const tick = () => {
+      if (!field) return
       const now = performance.now()
       const elapsed = now - startedAt
 
-      stepWaveField(particles, cursor, cssWidth, cssHeight, elapsed, reducedMotion)
+      stepWaveField(field, cursor, cssWidth, cssHeight, elapsed, reducedMotion)
 
       ctx.clearRect(0, 0, cssWidth, cssHeight)
-      drawWaveField(ctx, particles)
+      drawWaveField(ctx, field)
 
       rafId = requestAnimationFrame(tick)
     }
@@ -138,9 +139,9 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
     setupCanvas()
     startedAt = performance.now()
 
-    if (reducedMotion) {
+    if (reducedMotion && field) {
       ctx.clearRect(0, 0, cssWidth, cssHeight)
-      drawWaveField(ctx, particles)
+      drawWaveField(ctx, field)
     } else {
       rafId = requestAnimationFrame(tick)
     }
