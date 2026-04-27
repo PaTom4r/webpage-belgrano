@@ -41,10 +41,10 @@ export interface AboutContent {
 export const aboutContent: AboutContent = {
   narrative: {
     headline: 'Quiénes somos',
-    subheadline: 'Una agencia chilena construida sobre IA real, no promesas.',
+    subheadline: 'Una empresa chilena construida sobre IA real, no promesas.',
     paragraphs: [
       'Grupo Belgrano nació en Santiago con una convicción clara: la inteligencia artificial no es una moda — es la herramienta más poderosa que una empresa puede poner a trabajar hoy. Desde el primer día, construimos todo en torno a esa idea.',
-      'Somos una agencia integrada de marketing, IA y estrategia de negocios. Esto significa que no derivamos a terceros: el mismo equipo que diseña la estrategia, la ejecuta. Sin teléfono descompuesto, sin pérdida de contexto.',
+      'Somos una empresa integrada de marketing, IA y estrategia de negocios. Esto significa que no derivamos a terceros: el mismo equipo que diseña la estrategia, la ejecuta. Sin teléfono descompuesto, sin pérdida de contexto.',
       'Nuestros clientes incluyen aseguradoras, canales de televisión y empresas de servicios que eligieron crecer de forma inteligente. Hoy los acompañamos con planificación y compra de medios tradicionales y digitales, inteligencia artificial aplicada a sus procesos y experiencias de marca que conectan con su audiencia.',
     ],
   },
@@ -66,14 +66,8 @@ export const aboutContent: AboutContent = {
           'Belgrano Media, Intelligence y Brand: medios tradicionales y digitales, inteligencia artificial aplicada y experiencias de marca. Un solo equipo, sin intermediarios.',
       },
       {
-        icon: 'map-pin',
-        title: '100% chilena',
-        description:
-          'Entendemos el mercado local, los canales locales y cómo hablan tus clientes. No adaptamos plantillas de afuera — creamos estrategias desde adentro.',
-      },
-      {
         icon: 'users',
-        title: 'Tu equipo, no solo tu agencia',
+        title: 'Tu equipo, no solo tu proveedor',
         description:
           'A través de Academy — la rama formativa de Intelligence — capacitamos a tu gente para operar lo que construimos. El conocimiento se queda en tu empresa.',
       },

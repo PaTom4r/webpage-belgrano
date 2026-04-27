@@ -12,11 +12,11 @@ import { CtaSection } from '@/components/sections/cta-section'
 export const metadata: Metadata = {
   title: 'Nosotros',
   description:
-    'Conoce a Grupo Belgrano: agencia chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
+    'Conoce a Grupo Belgrano: empresa chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
   openGraph: {
     title: 'Nosotros | Belgrano',
     description:
-      'Conoce a Grupo Belgrano: agencia chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
+      'Conoce a Grupo Belgrano: empresa chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
     url: 'https://belgrano.cl/nosotros',
     images: [
       {

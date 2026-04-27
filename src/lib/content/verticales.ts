@@ -276,7 +276,7 @@ export const verticales: Vertical[] = [
           'AI Solutions construye la tecnología; Academy enseña a usarla. Muchos clientes parten con un proyecto de AI Solutions y siguen con capacitación Academy para que sus equipos tomen control total de la herramienta. También funciona al revés: un curso Academy suele dejar claro qué automatizar después.',
       },
       {
-        question: '¿En qué se diferencian de otras agencias de IA?',
+        question: '¿En qué se diferencian de otras empresas de IA?',
         answer:
           'No vendemos plataformas empaquetadas ni suscripciones genéricas. Construimos soluciones a medida, integradas a los sistemas que ya usas, con foco en retorno medible. Y después formamos a tu equipo para que la operación no dependa de nosotros para siempre.',
       },
@@ -315,7 +315,7 @@ export const verticales: Vertical[] = [
     description:
       'Trade marketing, activaciones BTL, stands, eventos y desarrollo creativo para marcas que quieren presencia real donde están sus clientes. Diseñamos experiencias que integran presencia física, contenido y — cuando suma — tecnología inteligente.',
     longDescription:
-      'Belgrano Brand es la unidad de trade marketing y experiencias de marca. Diseñamos y producimos activaciones BTL, stands para ferias y eventos, presencia en punto de venta, sampling, activaciones en vía pública y todo el desarrollo creativo alrededor. Donde otras agencias se quedan en el brief, nosotros ejecutamos la operación completa.\n\nCombinamos estrategia de marca, diseño, producción y logística. Un mismo equipo piensa la idea, la diseña, la fabrica y la opera en terreno. Esto baja los costos, acorta los tiempos y asegura que la ejecución no pierda el alma del concepto original.\n\nCuando suma, integramos tecnología de Belgrano Intelligence a las activaciones: pantallas interactivas, experiencias personalizadas, captura de datos de los asistentes para nutrir campañas posteriores. Una activación ya no tiene por qué ser solo un momento — puede ser el primer paso de una relación medible con el cliente.',
+      'Belgrano Brand es la unidad de trade marketing y experiencias de marca. Diseñamos y producimos activaciones BTL, stands para ferias y eventos, presencia en punto de venta, sampling, activaciones en vía pública y todo el desarrollo creativo alrededor. Donde otras empresas se quedan en el brief, nosotros ejecutamos la operación completa.\n\nCombinamos estrategia de marca, diseño, producción y logística. Un mismo equipo piensa la idea, la diseña, la fabrica y la opera en terreno. Esto baja los costos, acorta los tiempos y asegura que la ejecución no pierda el alma del concepto original.\n\nCuando suma, integramos tecnología de Belgrano Intelligence a las activaciones: pantallas interactivas, experiencias personalizadas, captura de datos de los asistentes para nutrir campañas posteriores. Una activación ya no tiene por qué ser solo un momento — puede ser el primer paso de una relación medible con el cliente.',
     icon: 'Megaphone',
     tags: ['Trade Marketing', 'Activaciones BTL', 'Stands', 'Eventos', 'Experiencia de marca', 'Marketing creativo'],
     metrics: [
@@ -338,7 +338,7 @@ export const verticales: Vertical[] = [
       {
         question: '¿Qué los diferencia de una productora de eventos tradicional?',
         answer:
-          'Somos una agencia de marca, no una productora. Pensamos la idea desde la estrategia del negocio, la integramos con los otros canales del cliente (medios, digital, CRM) y después la ejecutamos. Una productora te produce lo que le pides; nosotros te decimos si lo que pediste es lo correcto.',
+          'Somos una empresa de marca, no una productora. Pensamos la idea desde la estrategia del negocio, la integramos con los otros canales del cliente (medios, digital, CRM) y después la ejecutamos. Una productora te produce lo que le pides; nosotros te decimos si lo que pediste es lo correcto.',
       },
       {
         question: '¿Trabajan con todas las industrias?',
