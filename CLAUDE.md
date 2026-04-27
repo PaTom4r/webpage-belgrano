@@ -9,7 +9,7 @@ Corporate website for Grupo Belgrano, a Chilean AI, marketing, and business stra
 
 ### Constraints
 
-- **Stack:** Next.js (latest stable) + Tailwind CSS v4 + Framer Motion + GSAP. No Three.js, no Lenis.
+- **Stack:** Next.js (latest stable) + Tailwind CSS v4 + Framer Motion + GSAP + Three.js (R3F + @react-three/drei) confined to the hero. No Lenis.
 - **Design:** Minimalist, Linear.app-inspired. White backgrounds, black typography, generous whitespace. Dark sections for contrast.
 - **Typography:** Geist Sans (primary), Inter as fallback. Headlines 800-900 weight, tight tracking.
 - **Colors:** #ffffff (bg), #f9fafb (section bg), #09090B (dark sections), #111827 (text), #6B7280 (secondary text), #000000 (accent/CTAs).
@@ -86,7 +86,7 @@ Corporate website for Grupo Belgrano, a Chilean AI, marketing, and business stra
 | SEO | Built-in metadata API | next-seo | next-seo is a Pages Router pattern. In App Router, `generateMetadata()` is the official API. Using both creates conflicts. |
 | Sitemap | `app/sitemap.ts` | next-sitemap | next-sitemap is a post-build script pattern from Pages Router days. App Router's built-in `sitemap.ts` is cleaner and has no build step dependency. |
 | Analytics | @vercel/analytics | Plausible | Plausible costs $9/month for what @vercel/analytics gives for free on Vercel. No meaningful difference in features for a B2B corporate site. |
-| 3D | — | Three.js | Explicitly out of scope. Dropped from v2 for performance reasons. Correct decision. |
+| 3D | Three.js + R3F + drei (hero only) | — | Reintroduced for the hero particle entity (Slam Dunk-inspired). Confined to the hero canvas — Stats, CTA, vertical pages stay JS-light. Justified by GPU shaders + 10-20k particles at 60fps with cursor reactivity, which Framer Motion + GSAP cannot deliver. |
 ## Installation
 # Bootstrap
 # Animation
@@ -178,7 +178,7 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 - **Patrón de variants por vertical**: para no contaminar Media/Brand con cambios Intelligence, se creó `src/components/sections/intelligence/*` con 5 componentes premium dedicados. `[slug]/page.tsx` decide qué layout renderizar según el slug. Cero impacto en otras verticales.
 - **TracingBeam**: SVG + Framer Motion (`useScroll`, `useTransform`, `useSpring`). `ResizeObserver` para dimensionar dinámicamente la altura. Respeta `prefers-reduced-motion` (línea estática sin gradient).
 - **AnimatedCounter en Intelligence metrics**: parser que extrae `{prefix, target, suffix}` de strings tipo "$780M" / "300x+" y fallback a plain text para "24/7" o "40-70%" (no numéricos puros).
-- **No Three.js** (constraint del proyecto). Frame-sequence scroll-driven (Apple AirPods style) postergado — requiere assets WebP de NanoBanana cuando Pato los exporte.
+- **Three.js confinado al hero** (Phase 1 hero-particle-entity, branch `feature/hero-particle-entity`). El resto del sitio sigue JS-light (Framer Motion + GSAP). Frame-sequence scroll-driven (Apple AirPods style) postergado — requiere assets WebP de NanoBanana cuando Pato los exporte.
 
 ## Próximo
 
