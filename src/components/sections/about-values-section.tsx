@@ -1,6 +1,6 @@
 // src/components/sections/about-values-section.tsx
 // ABOUT-02 — Values/differentiators section with icon cards.
-// Server Component. Dark background for contrast. 4-card grid.
+// Server Component. Dark background for contrast. 3-card grid.
 import { Section } from '@/components/layout/section'
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
 import { aboutContent, type ValueItem } from '@/lib/content/about'
@@ -74,8 +74,8 @@ export function AboutValuesSection() {
         <p className="mt-4 text-xl text-bg/70">{values.subheadline}</p>
       </div>
 
-      {/* 4-card grid */}
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 3-card grid */}
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         {values.items.map((item, i) => (
           <ScrollReveal key={item.icon} delay={i * 0.1}>
             <div className="rounded-xl border border-white/10 bg-white/5 p-6">

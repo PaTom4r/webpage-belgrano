@@ -108,28 +108,14 @@ export function MediaHero({ vertical }: MediaHeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35, ease: easing }}
-            className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            className="mt-10 flex justify-center"
           >
             <Link
-              href="#caso-point-cola"
-              className="inline-flex items-center gap-2 rounded-full bg-bg px-6 py-3 text-sm font-semibold text-text transition-opacity hover:opacity-85"
-            >
-              Ver caso Point Cola
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path
-                  d="M3 8h10M9 4l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
-            <Link
-              href="#cta"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-bg transition-all hover:border-white hover:bg-white/5"
+              href="/#cta"
+              className="inline-flex items-center gap-2 rounded-full bg-bg px-7 py-3.5 text-sm font-semibold text-text transition-opacity hover:opacity-85"
             >
               Hablemos
+              <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
             </Link>
           </motion.div>
         </div>

@@ -22,7 +22,7 @@ const faqs: FaqItem[] = [
       'Sí. Tenemos clientes en México, Argentina, Colombia y Perú. La operación es remota para inteligencia y medios digitales; las activaciones físicas se coordinan con socios locales certificados.',
   },
   {
-    question: '¿Qué pasa si ya tenemos agencia de medios o proveedor de IA?',
+    question: '¿Qué pasa si ya tenemos un proveedor de medios o de IA?',
     answer:
       'Podemos trabajar en paralelo o reemplazar — depende del diagnóstico. Lo habitual es que nuestros servicios se complementen con lo que ya tienen, especialmente cuando el cliente necesita integrar IA con su estrategia de medios existente.',
   },

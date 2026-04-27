@@ -1,15 +1,25 @@
-// src/components/sections/hero-section.tsx
-// Two-zone hero:
-//  Zone 1: cinematic office bg (Santiago + Andes + BELGRANO en hormigón).
-//          Headline "BELGRANO GROUP" achicado y alineado a la derecha,
-//          posicionado sobre la zona de la cordillera (no sobre el wordmark de hormigón).
-//          Min-h-[78vh] para que la imagen respire.
-//  Zone 2: 3 HeroMockups en accordion horizontal sobre fondo dark.
+// Hero — Living Threads Canvas 2D + dominant text presence.
+// Layout:
+//   Mobile: stacked — particle canvas on top (full-width, dim opacity), text below.
+//   lg+:    canvas absolute spanning the full hero. Text content sits to the
+//           right starting at x≈40vw with max-width 680px so the threads breathe
+//           on the left while the headline reads cleanly. Two z-10 overlays
+//           (linear right→center + radial behind text) attenuate the threads
+//           without erasing them, so the fibers still show through.
+//   Vertical cards used to live here as Zone 2 (HeroMockups accordion). They
+//   moved to <VerticalesReveal /> below, as a scroll-driven pinned section.
 'use client'
 
-import Image from 'next/image'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { HeroMockups } from '@/components/ui/hero-mockups'
+
+// Canvas 2D physics loop runs only in the browser. Dynamic import keeps the
+// initial JS bundle for the home page lean and the hero text paints on SSR.
+const LivingThreadsCanvas = dynamic(
+  () => import('@/components/particles/living-pillar/canvas').then((m) => m.LivingThreadsCanvas),
+  { ssr: false },
+)
 
 const easing = [0.25, 0.1, 0.25, 1] as const
 
@@ -19,7 +29,7 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.5, delay, ease: easing },
 })
 
-// LCP-safe: headline starts visible so Lighthouse can measure it immediately.
+// LCP-safe — the headline starts visible so Lighthouse can measure it on first paint.
 const headlineFade = {
   initial: { opacity: 1, y: 6 },
   animate: { opacity: 1, y: 0 },
@@ -28,74 +38,90 @@ const headlineFade = {
 
 export function HeroSection() {
   return (
-    <section id="hero" aria-labelledby="hero-heading" className="flex flex-col">
-      {/* Zone 1 — Cinematic image full visible. Min-h-[78vh] for breathing room. */}
-      <div className="relative isolate flex min-h-[78vh] flex-col justify-end overflow-hidden bg-dark pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-32">
-        {/* Background image: BELGRANO office + Santiago + Andes (no blur, full opacity) */}
-        <Image
-          src="/hero/office-belgrano-santiago.webp"
-          alt=""
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover object-[center_60%]"
-        />
+    <section
+      id="hero"
+      aria-labelledby="hero-heading"
+      className="flex flex-col"
+    >
+      {/* Living Threads + dominant headline — full viewport on first load */}
+      <div className="relative isolate flex min-h-screen flex-col overflow-hidden bg-black lg:min-h-[100svh]">
+        {/* Single canvas, positioned responsively:
+              · mobile: relative block stacked above the text (55-60vh tall),
+                        dimmed so the text below stays the focus.
+              · lg+:    absolute, spans the full hero width and height. The
+                        engine's internal right-edge fade plus the overlays
+                        below keep threads dim behind the headline. */}
+        <div className="relative h-[55vh] w-full opacity-60 sm:h-[60vh] lg:absolute lg:inset-0 lg:h-auto lg:w-full lg:opacity-100">
+          <LivingThreadsCanvas />
+        </div>
 
-        {/* Gradient overlay — clear on top (sky/mountains visible), dark at bottom (text contrast) */}
+        {/* Overlay 1 — linear fade right→center for legibility on the text side. */}
         <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10"
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-l from-black via-black/70 to-transparent"
         />
-
-        {/* Grid texture overlay (radial masked, super sutil) */}
+        {/* Overlay 2 — radial pool behind the text block (desktop only).
+            Mobile: text sits below the canvas, no radial needed. */}
         <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
           style={{
             backgroundImage:
-              'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '4rem 4rem',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 80% 70% at 70% 50%, black 30%, transparent 100%)',
-            maskImage:
-              'radial-gradient(ellipse 80% 70% at 70% 50%, black 30%, transparent 100%)',
+              'radial-gradient(ellipse 55% 70% at 75% 50%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, transparent 80%)',
           }}
         />
 
-        {/* Content — alineado a la derecha sobre la cordillera (opción A) */}
-        <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12" style={{ zIndex: 2 }}>
-          <div className="ml-auto max-w-2xl text-right">
-            {/* Headline achicado para no competir con BELGRANO en hormigón */}
+        {/* Text content — starts at x≈40vw on lg+, full-width on mobile.
+            z-20 keeps the headline above the threads + overlays.
+            pointer-events-none on the outer wrapper lets cursor events fall
+            through to the canvas in the empty area on the left; pointer-events
+            is re-enabled on the inner content block so the chip / paragraph /
+            buttons stay interactive. */}
+        <div className="pointer-events-none relative z-20 flex w-full flex-1 px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:items-center lg:justify-end lg:py-0 lg:pl-[40vw] lg:pr-16 xl:pl-[42vw] xl:pr-20">
+          <div className="pointer-events-auto flex w-full max-w-[680px] flex-col gap-6 text-left lg:gap-8">
+            <motion.span
+              {...fadeUp(0)}
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur-sm sm:text-xs"
+            >
+              <span className="size-1.5 rounded-full bg-white/80" aria-hidden />
+              AI · MEDIA · BRAND
+            </motion.span>
+
             <motion.h1
               id="hero-heading"
               {...headlineFade}
-              className="text-4xl font-black uppercase tracking-tighter text-white leading-[0.95] sm:text-5xl lg:text-6xl"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+              className="font-black uppercase leading-[0.92] tracking-tighter text-white text-5xl sm:text-6xl lg:text-[4.75rem] xl:text-[5.75rem] 2xl:text-[6.5rem]"
+              style={{ letterSpacing: '-0.045em' }}
             >
-              BELGRANO GROUP
+              <span className="block">BELGRANO</span>
+              <span className="block">GROUP</span>
             </motion.h1>
 
-            {/* Bajada — texto explicativo del grupo, blanco puro + textShadow doble para contraste sobre foto */}
             <motion.p
-              {...fadeUp(0.1)}
-              className="ml-auto mt-4 text-base font-medium text-white sm:text-lg lg:mt-6 lg:text-xl"
-              style={{ textShadow: '0 2px 14px rgba(0,0,0,0.85), 0 1px 3px rgba(0,0,0,0.6)' }}
+              {...fadeUp(0.12)}
+              className="max-w-[560px] text-lg font-medium text-white/75 lg:text-xl"
             >
-              Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución
-              en terreno para impulsar resultados reales en cada punto de contacto.
+              Conectamos IA, medios y ejecución en terreno para impulsar resultados
+              reales en cada punto de contacto.
             </motion.p>
+
+            <motion.div {...fadeUp(0.22)} className="mt-3 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link
+                href="/#cta"
+                className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-black transition-all duration-200 hover:bg-white/90 lg:text-lg"
+              >
+                Hablemos
+                <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+              </Link>
+              <Link
+                href="/nosotros"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-4 text-base font-semibold text-white transition-all duration-200 hover:border-white hover:bg-white/5 lg:text-lg"
+              >
+                Conocernos
+              </Link>
+            </motion.div>
           </div>
         </div>
-      </div>
-
-      {/* Zone 2 — Cards on dark background. More breathing room above. */}
-      <div className="relative bg-dark pb-8 pt-20 sm:pb-10 sm:pt-24 lg:pb-14 lg:pt-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/30 to-transparent"
-        />
-        <HeroMockups />
       </div>
     </section>
   )

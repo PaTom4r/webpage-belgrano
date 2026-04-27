@@ -1,8 +1,6 @@
-// src/components/sections/intelligence/intelligence-hero.tsx
-// Premium dark hero for /verticales/intelligence.
-// Features: animated grid bg, radial purple glow, brain icon with pulse,
-//   eyebrow + h1 + tagline + dual CTA (case study + AI Solutions branch).
-// Client Component for the entrance animations.
+// Premium dark hero for /verticales/brand.
+// Mirrors Intelligence and Media heroes: animated grid bg, radial orange glow,
+//   megaphone icon with pulse, eyebrow + h1 + benefit + single CTA.
 'use client'
 
 import Link from 'next/link'
@@ -12,12 +10,12 @@ import type { Vertical } from '@/lib/content/verticales'
 
 const easing = [0.25, 0.1, 0.25, 1] as const
 
-interface IntelligenceHeroProps {
+interface BrandHeroProps {
   vertical: Vertical
 }
 
-export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
-  const accent = vertical.accentColor ?? '#A855F7'
+export function BrandHero({ vertical }: BrandHeroProps) {
+  const accent = vertical.accentColor ?? '#F97316'
 
   return (
     <section
@@ -50,7 +48,7 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
 
       <Container>
         <div className="relative mx-auto max-w-3xl text-center">
-          {/* Brain icon with pulse */}
+          {/* Megaphone icon with glow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -73,9 +71,8 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
               className="h-8 w-8"
               aria-hidden="true"
             >
-              <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-              <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-              <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
+              <path d="m3 11 18-5v12L3 14v-3z" />
+              <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
             </svg>
           </motion.div>
 
@@ -87,7 +84,7 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
             className="mt-8 text-xs font-bold uppercase tracking-[0.2em]"
             style={{ color: accent }}
           >
-            {vertical.eyebrow ?? 'IA APLICADA'}
+            {vertical.eyebrow ?? 'TRADE & EXPERIENCIAS'}
           </motion.p>
 
           {/* Headline */}
@@ -101,7 +98,7 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
             {vertical.name}
           </motion.h1>
 
-          {/* Tagline */}
+          {/* Benefit */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,7 +108,7 @@ export function IntelligenceHero({ vertical }: IntelligenceHeroProps) {
             {vertical.benefitHeadline}
           </motion.p>
 
-          {/* Single CTA — case study button removed for compliance */}
+          {/* Single CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

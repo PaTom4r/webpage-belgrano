@@ -4,17 +4,15 @@
 // generateStaticParams() ensures static generation of all 3 routes.
 // notFound() handles invalid slugs.
 //
-// Intelligence uses a premium layout with tracing beam + case study.
-// Media and Brand use the default template.
+// All 3 verticals (Intelligence, Media, Brand) now use a premium layout —
+// each has its own hero + capabilities + showcase + metrics, all wrapped
+// in the TracingBeam scroll indicator.
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { verticales } from '@/lib/content/verticales'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
-import { VerticalHeroSection } from '@/components/sections/vertical-hero-section'
-import { VerticalMetricsSection } from '@/components/sections/vertical-metrics-section'
 // import { VerticalClientsSection } from '@/components/sections/vertical-clients-section' // Desactivada — secci\u00f3n "Clientes que conf\u00edan en nosotros"
 import { VerticalFaqSection } from '@/components/sections/vertical-faq-section'
-import { VerticalBranchesSection } from '@/components/sections/vertical-branches-section'
 import { CtaSection } from '@/components/sections/cta-section'
 import { Container } from '@/components/layout/container'
 import { ScrollReveal } from '@/components/animations/scroll-reveal'
@@ -27,6 +25,10 @@ import { MediaHero } from '@/components/sections/media/media-hero'
 import { MediaCapabilities } from '@/components/sections/media/media-capabilities'
 import { MediaShowcase } from '@/components/sections/media/media-showcase'
 import { MediaMetrics } from '@/components/sections/media/media-metrics'
+import { BrandHero } from '@/components/sections/brand/brand-hero'
+import { BrandCapabilities } from '@/components/sections/brand/brand-capabilities'
+import { BrandActivations } from '@/components/sections/brand/brand-activations'
+import { BrandMetrics } from '@/components/sections/brand/brand-metrics'
 
 interface VerticalPageProps {
   params: Promise<{ slug: string }>
@@ -183,18 +185,21 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
             <CtaSection />
           </>
         ) : (
-          /* ============= DEFAULT TEMPLATE (Brand) ============= */
+          /* ============= PREMIUM BRAND LAYOUT ============= */
           <>
-            <VerticalHeroSection vertical={vertical} />
-            {longDescriptionBlock}
+            <BrandHero vertical={vertical} />
 
-            {vertical.branches && vertical.branches.length > 0 && (
-              <VerticalBranchesSection branches={vertical.branches} />
-            )}
+            <TracingBeam accent={accent}>
+              {longDescriptionBlock}
 
-            {vertical.metrics && vertical.metrics.length > 0 && (
-              <VerticalMetricsSection metrics={vertical.metrics} />
-            )}
+              <BrandCapabilities chips={vertical.chips ?? []} accent={accent} />
+
+              <BrandActivations accent={accent} />
+
+              {vertical.metrics && vertical.metrics.length > 0 && (
+                <BrandMetrics metrics={vertical.metrics} accent={accent} />
+              )}
+            </TracingBeam>
 
             {/* <VerticalClientsSection clients={vertical.clients ?? []} /> — Desactivada: secci\u00f3n "Clientes que conf\u00edan en nosotros" */}
             <VerticalFaqSection items={vertical.faq} verticalName={vertical.name} />
