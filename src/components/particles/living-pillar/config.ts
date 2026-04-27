@@ -17,26 +17,26 @@ export type BandSpec = {
   depth: 0 | 1 | 2        // 0 = background (soft, larger, no glow), 2 = foreground (sharp, glow)
 }
 
-// Band layout — 8 bands distributed across 3 depth tiers (3-3-2: back/mid/front).
-// Back bands give atmospheric mass, foreground bands carry the visible glow
-// accents. Phases are spread so the bands never line up.
+// Band layout — 6 bands distributed across 3 depth tiers (2-2-2: back/mid/front).
+// Fewer bands than the wave-field default but each one is fatter and more
+// prominent — bigger amp, more thickness, larger particles. Reads as a small
+// number of distinct rivers crossing the canvas instead of a uniform haze.
+// Phases spread so the bands never line up.
 export const BAND_SPECS: readonly BandSpec[] = [
-  { yRatio: 0.10, amp: 18, freq: 0.0085, speed: 0.00055, phase: 0.0, thickness: 6,  density: 0.8,  depth: 0 },
-  { yRatio: 0.20, amp: 26, freq: 0.0060, speed: 0.00040, phase: 1.3, thickness: 7,  density: 0.9,  depth: 1 },
-  { yRatio: 0.30, amp: 32, freq: 0.0050, speed: 0.00065, phase: 2.6, thickness: 8,  density: 1.0,  depth: 0 },
-  { yRatio: 0.40, amp: 40, freq: 0.0042, speed: 0.00038, phase: 3.9, thickness: 10, density: 1.0,  depth: 1 },
-  { yRatio: 0.60, amp: 44, freq: 0.0045, speed: 0.00072, phase: 0.7, thickness: 12, density: 1.1,  depth: 2 },
-  { yRatio: 0.70, amp: 38, freq: 0.0050, speed: 0.00045, phase: 2.1, thickness: 14, density: 1.15, depth: 0 },
-  { yRatio: 0.80, amp: 32, freq: 0.0070, speed: 0.00060, phase: 4.4, thickness: 14, density: 1.15, depth: 1 },
-  { yRatio: 0.90, amp: 22, freq: 0.0095, speed: 0.00055, phase: 1.8, thickness: 12, density: 1.0,  depth: 2 },
+  { yRatio: 0.15, amp: 38, freq: 0.0058, speed: 0.00045, phase: 0.0, thickness: 14, density: 0.9,  depth: 0 },
+  { yRatio: 0.30, amp: 56, freq: 0.0042, speed: 0.00060, phase: 2.1, thickness: 18, density: 1.0,  depth: 1 },
+  { yRatio: 0.45, amp: 48, freq: 0.0050, speed: 0.00038, phase: 4.0, thickness: 20, density: 1.05, depth: 2 },
+  { yRatio: 0.60, amp: 62, freq: 0.0040, speed: 0.00072, phase: 1.0, thickness: 22, density: 1.1,  depth: 1 },
+  { yRatio: 0.75, amp: 54, freq: 0.0048, speed: 0.00050, phase: 3.2, thickness: 22, density: 1.1,  depth: 0 },
+  { yRatio: 0.90, amp: 36, freq: 0.0072, speed: 0.00055, phase: 5.0, thickness: 16, density: 0.95, depth: 2 },
 ] as const
 
 export const FIELD_CONFIG = {
   // Total particle budget split across bands proportional to density weights.
   // Lower than the wave-field default because the new draw path connects
   // particles with translucent fiber lines — fewer points read as denser mass.
-  COUNT_DESKTOP: 1440,
-  COUNT_MOBILE: 700,
+  COUNT_DESKTOP: 1100,
+  COUNT_MOBILE: 540,
 
   // Field span — particles only exist in the LEFT portion of the canvas.
   // FIELD_WIDTH_RATIO is how far right the band lines extend; the right-side
@@ -65,18 +65,20 @@ export const FIELD_CONFIG = {
   SPRING_K: 0.05,
   DAMPING: 0.86,
 
-  // Particle visuals — slightly larger because density dropped.
-  SIZE_MIN: 0.7,
-  SIZE_MAX: 2.2,
-  ALPHA_MIN: 0.45,
+  // Particle visuals — bigger so the few-bands-but-prominent feel is honored.
+  SIZE_MIN: 1.0,
+  SIZE_MAX: 3.0,
+  ALPHA_MIN: 0.5,
   ALPHA_MAX: 0.95,
 
   // Threads — fiber lines connecting consecutive particles within a band.
-  LINE_ALPHA_MULT: 0.35,
-  LINE_WIDTH_BY_DEPTH: [1.4, 1.0, 0.7] as const, // back, mid, front
+  LINE_ALPHA_MULT: 0.42,
+  LINE_WIDTH_BY_DEPTH: [2.0, 1.5, 1.0] as const, // back, mid, front
   // Drop segments longer than this — happens when the cursor pushes a particle
-  // out of band, otherwise the line stretches into a long diagonal.
-  MAX_SEGMENT_PX: 25,
+  // out of band, otherwise the line stretches into a long diagonal. Slightly
+  // higher than the previous default because particles are now larger and a
+  // little more spread.
+  MAX_SEGMENT_PX: 32,
 
   // Glow — additive radial-gradient sprite drawn under the core pass for
   // bands with depth >= GLOW_DEPTH_MIN. Sprite is cached per radius bucket.
