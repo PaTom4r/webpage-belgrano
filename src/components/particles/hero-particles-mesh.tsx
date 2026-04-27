@@ -8,10 +8,10 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef, useEffect } from 'react'
 import {
-  AdditiveBlending,
   BufferAttribute,
   BufferGeometry,
   Color,
+  NormalBlending,
   ShaderMaterial,
   type Points,
 } from 'three'
@@ -60,7 +60,8 @@ export function HeroParticlesMesh({
       fragmentShader: heroFragmentShader,
       transparent: true,
       depthWrite: false,
-      blending: AdditiveBlending,
+      // NormalBlending — additive saturated to a solid white block at this density.
+      blending: NormalBlending,
       uniforms: {
         uTime: { value: 0 },
         uMorphProgress: { value: 0 },

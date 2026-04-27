@@ -62,8 +62,8 @@ void main() {
   // Circular sprite mask — soft alpha falloff at edge.
   vec2 uv = gl_PointCoord - 0.5;
   float dist = length(uv);
-  float alpha = smoothstep(0.5, 0.35, dist);
-  if (alpha <= 0.001) discard;
+  float mask = smoothstep(0.5, 0.20, dist);
+  if (mask <= 0.001) discard;
 
   // Cursor repulsion by color — distance in NDC.
   float cursorDist = distance(vScreenPos, uCursor);
@@ -71,9 +71,15 @@ void main() {
 
   vec3 color = mix(uColor, uBgColor, cursorMix);
 
-  // Slight per-particle brightness variation so the cloud doesn't read as a flat fill.
-  color *= (0.85 + 0.15 * vSeed);
+  // Per-particle brightness variation keeps the cloud from looking flat.
+  // Cap brightness slightly under 1.0 so even tightly stacked particles don't
+  // blow out to pure white.
+  color *= (0.55 + 0.40 * vSeed);
 
-  gl_FragColor = vec4(color, alpha * uOpacity);
+  // Soft alpha — each particle is semi-transparent so overlaps build a gentle
+  // cloud instead of a saturated block. Over a dark background, this reads as
+  // wispy / starry instead of solid.
+  float alpha = mask * 0.55 * uOpacity;
+  gl_FragColor = vec4(color, alpha);
 }
 `

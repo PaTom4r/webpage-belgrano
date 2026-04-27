@@ -51,10 +51,13 @@ export function HeroParticleEntity({
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
+  // pointSize is in WORLD units (the shader scales by 300/-z and DPR), so
+  // 0.05 ≈ 6 framebuffer px at the camera distance and dpr 2. Anything
+  // larger turns the cloud into an opaque blob.
   const { count, pointSize } = useMemo(() => {
-    if (viewportWidth < 768) return { count: 5000, pointSize: 5.5 }
-    if (viewportWidth < 1280) return { count: 9000, pointSize: 5.0 }
-    return { count: 14000, pointSize: 4.6 }
+    if (viewportWidth < 768) return { count: 3500, pointSize: 0.075 }
+    if (viewportWidth < 1280) return { count: 5500, pointSize: 0.060 }
+    return { count: 8000, pointSize: 0.055 }
   }, [viewportWidth])
 
   return (
