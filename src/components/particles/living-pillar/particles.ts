@@ -7,10 +7,10 @@ import { PILLAR_CONFIG } from './config'
 export type Particle = {
   x: number
   y: number
-  originX: number          // anchor in X (the column's centerline ± width)
+  originX: number          // X anchor — center of this particle's strand
   vx: number
   vy: number
-  speed: number            // 0.3..1.2 — upward bias multiplier
+  speed: number            // upward bias multiplier
   size: number             // px
   alpha: number            // 0..1 — modulated by velocity at draw time
   helixSeed: number        // 0..2π — phase offset so particles don't twist in lockstep
@@ -35,18 +35,26 @@ export function createParticles(
   count: number,
   width: number,
   height: number,
+  strandCenterRatios: readonly number[],
 ): Particle[] {
   const cfg = PILLAR_CONFIG
-  const cx = width * cfg.PILLAR_CENTER_RATIO
-  const halfWidth = (width * cfg.PILLAR_WIDTH_RATIO) / 2
+  const halfWidth = (width * cfg.STRAND_WIDTH_RATIO) / 2
+
+  // Pre-compute strand center X coordinates (in canvas px).
+  const strandCenters = strandCenterRatios.map((r) => width * r)
+  const strandCount = Math.max(1, strandCenters.length)
 
   const out: Particle[] = new Array(count)
 
   for (let i = 0; i < count; i++) {
-    // Gaussian X around the column center, clamped to ±2σ so outliers don't drift off-canvas.
+    // Round-robin assignment keeps each strand at roughly the same particle count.
+    const strandIdx = i % strandCount
+    const center = strandCenters[strandIdx]
+
+    // Gaussian X around the strand center, clamped to ±2σ so outliers don't drift far.
     const g = Math.max(-2.2, Math.min(2.2, gaussian()))
     const offsetX = (g / 2.2) * halfWidth
-    const originX = cx + offsetX
+    const originX = center + offsetX
 
     out[i] = {
       x: originX,
@@ -78,6 +86,9 @@ export function stepParticles(
   const cfg = PILLAR_CONFIG
   const radius = cfg.CURSOR_RADIUS
   const radiusSq = radius * radius
+  // Clamp distance for the runaway guard — relative to strand width, not the
+  // whole canvas, so cursor edge cases never let a particle escape its strand.
+  const maxOffset = width * cfg.STRAND_WIDTH_RATIO
 
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i]
@@ -95,10 +106,10 @@ export function stepParticles(
       }
     }
 
-    // 2) Spring back to column (X only — Y is the lifecycle axis).
+    // 2) Spring back to strand center (X only — Y is the lifecycle axis).
     p.vx += (p.originX - p.x) * cfg.SPRING_K
 
-    // 3) Helix twist — sin oscillation tied to Y so the column visibly twists.
+    // 3) Helix twist — sin oscillation tied to Y so the strand visibly twists.
     p.vx +=
       Math.sin(p.y * cfg.HELIX_FREQ + p.helixSeed + time * cfg.HELIX_SPEED) *
       cfg.HELIX_AMP
@@ -123,12 +134,10 @@ export function stepParticles(
     //    bottom with a small random offset so re-entries don't pulse in waves.
     if (p.y < -cfg.WRAP_MARGIN) {
       p.y = height + cfg.WRAP_MARGIN + Math.random() * 20
-      // Small velocity reset on wrap so the next ascent feels fresh.
       p.vy = 0
     }
 
-    // Hard horizontal clamp — prevents the rare runaway from cursor-edge cases.
-    const maxOffset = (width * cfg.PILLAR_WIDTH_RATIO) * 1.5
+    // Hard horizontal clamp relative to the particle's strand center.
     if (p.x < p.originX - maxOffset) p.x = p.originX - maxOffset
     if (p.x > p.originX + maxOffset) p.x = p.originX + maxOffset
   }

@@ -61,11 +61,15 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       ctx.setTransform(1, 0, 0, 1, 0, 0)
       ctx.scale(dpr, dpr)
 
-      const count = isMobileViewport(window.innerWidth)
+      const isMobile = isMobileViewport(window.innerWidth)
+      const count = isMobile
         ? PILLAR_CONFIG.COUNT_MOBILE
         : PILLAR_CONFIG.COUNT_DESKTOP
+      const strandCenters = isMobile
+        ? PILLAR_CONFIG.STRAND_CENTERS_MOBILE
+        : PILLAR_CONFIG.STRAND_CENTERS_DESKTOP
 
-      particles = createParticles(count, cssWidth, cssHeight)
+      particles = createParticles(count, cssWidth, cssHeight, strandCenters)
     }
 
     const tick = () => {

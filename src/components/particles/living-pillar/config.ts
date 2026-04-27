@@ -8,31 +8,38 @@ export const PILLAR_CONFIG = {
   COUNT_DESKTOP: 6000,
   COUNT_MOBILE: 2500,
 
-  // Pillar geometry (relative to canvas dimensions).
-  PILLAR_WIDTH_RATIO: 0.35,         // pillar width vs canvas width
-  PILLAR_CENTER_RATIO: 0.5,         // horizontal center position (0.5 = canvas center)
+  // Strands — number of independent vertical flows the particles split across.
+  // Centers are expressed as a fraction of canvas width. The leftmost desktop
+  // center sits at 0.0 (the canvas left edge) so its strand bleeds off-screen
+  // when the canvas itself is anchored to the page's left edge.
+  STRAND_COUNT_DESKTOP: 3,
+  STRAND_COUNT_MOBILE: 2,
+  STRAND_CENTERS_DESKTOP: [0.02, 0.34, 0.66] as const,
+  STRAND_CENTERS_MOBILE: [0.34, 0.66] as const,
+  STRAND_WIDTH_RATIO: 0.16, // gaussian half-spread per strand, vs canvas width
 
   // Cursor repulsion. Real physical force, falls off linearly with distance.
-  CURSOR_RADIUS: 160,               // px — radius of influence
-  CURSOR_STRENGTH: 4.5,             // multiplier on the force magnitude
+  CURSOR_RADIUS: 160,
+  CURSOR_STRENGTH: 4.5,
 
-  // Spring force pulling each particle back toward its column anchor (X only —
+  // Spring force pulling each particle back toward its strand anchor (X only —
   // Y is the lifecycle axis so it stays free).
   SPRING_K: 0.04,
 
-  // Continuous upward bias — the "blood flow" sensation.
-  UPWARD_BIAS: 0.55,
+  // Continuous upward bias — the "blood flow" sensation. Lowered from 0.55
+  // because the previous value read as a quick scroll instead of a slow drift.
+  UPWARD_BIAS: 0.22,
 
   // Helix twist — small horizontal sin oscillation as a function of Y.
   // Together these give the DNA-strand feel without being literal.
-  HELIX_AMP: 0.08,
+  HELIX_AMP: 0.07,
   HELIX_FREQ: 0.012,
-  HELIX_SPEED: 0.0006,
+  HELIX_SPEED: 0.00045,
 
-  // Curl noise — slow horizontal turbulence layered on top of the helix.
-  CURL_AMP: 0.06,
+  // Curl noise — slower horizontal turbulence layered on top of the helix.
+  CURL_AMP: 0.05,
   CURL_FREQ: 0.005,
-  CURL_SPEED: 0.0008,
+  CURL_SPEED: 0.0006,
 
   // Velocity damping per frame — keeps particles from oscillating forever.
   DAMPING: 0.92,
@@ -44,8 +51,8 @@ export const PILLAR_CONFIG = {
   ALPHA_MAX: 0.90,
 
   // Per-particle base speed (used for upward bias multiplier).
-  SPEED_MIN: 0.30,
-  SPEED_MAX: 1.20,
+  SPEED_MIN: 0.25,
+  SPEED_MAX: 0.95,
 
   // Reset margin so the lifecycle wrap is invisible at viewport edges.
   WRAP_MARGIN: 16,
