@@ -1,20 +1,27 @@
-// Wave Field — particle pool + per-frame physics.
-// Pure functions on a flat array of WaveParticle so the animation loop in
-// use-pillar.ts can stay branch-light and allocation-free per frame.
+// Wave Field — band-based particle engine.
+//
+// Each particle belongs to one "band" (a horizontal sin curve). The particle's
+// position along the band is a parametric `t` ∈ [0, 1]. The display target is:
+//   targetX = t * fieldWidth + tailJitterX
+//   targetY = band.y0 + sin(targetX * band.freq + time * band.speed + band.phase)
+//             * band.amp + perpendicularJitterY
+// The spring (cursor + return) chases that moving target, so cursor pushes
+// deform the band temporarily and it springs back to wherever the wave is.
 
-import { FIELD_CONFIG } from './config'
+import { FIELD_CONFIG, BAND_SPECS, type BandSpec } from './config'
 
 export type WaveParticle = {
-  baseX: number      // grid anchor X (in canvas pixels)
-  baseY: number      // grid anchor Y
-  x: number          // current display X
-  y: number          // current display Y
+  bandIdx: number
+  t: number              // 0..1 — parametric position along the band
+  jitterAlongX: number   // small offset along the band (so particles don't sit on a perfect line)
+  jitterPerpY: number    // perpendicular offset → band thickness
+  size: number
+  alpha: number          // base alpha (per-particle, randomized)
+  fadeAlpha: number      // permanent alpha multiplier from edge / right-fade rules
+  x: number              // current display X
+  y: number              // current display Y
   vx: number
   vy: number
-  size: number       // px (already scaled by row depth)
-  alpha: number      // per-particle base alpha (0..1)
-  fadeAlpha: number  // permanent multiplier from edge/right-fade rules (0..1)
-  phase: number      // 0..2π — desync per particle so the bands don't oscillate in lockstep
 }
 
 export type CursorState = {
@@ -31,22 +38,21 @@ function smoothstep(t: number) {
   return t * t * (3 - 2 * t)
 }
 
-export type FieldDimensions = {
-  cols: number
-  rows: number
+// Returns the sum of `density` weights across the band specs — used to split
+// the total particle budget proportionally between bands.
+function totalDensity(bands: readonly BandSpec[]): number {
+  let s = 0
+  for (const b of bands) s += b.density
+  return s
 }
 
 export function createWaveField(
-  dims: FieldDimensions,
+  totalCount: number,
   width: number,
   height: number,
 ): WaveParticle[] {
   const cfg = FIELD_CONFIG
-  const cols = dims.cols
-  const rows = dims.rows
   const fieldWidth = width * cfg.FIELD_WIDTH_RATIO
-  const cellW = fieldWidth / cols
-  const cellH = height / rows
   const fadeStartX = width * cfg.FADE_START
   const fadeEndX = width * cfg.FADE_END
   const fadeRangeX = Math.max(1, fadeEndX - fadeStartX)
@@ -54,48 +60,60 @@ export function createWaveField(
   const edgeBottomY = height * (1 - cfg.EDGE_FADE_BOTTOM)
   const edgeRangeBottom = Math.max(1, height - edgeBottomY)
 
+  const densitySum = totalDensity(BAND_SPECS)
   const particles: WaveParticle[] = []
 
-  // Spill one extra cell on the top + bottom + left so the field never reads
-  // as a hard rectangle — the canvas naturally clips overflow.
-  for (let row = -1; row < rows + 1; row++) {
-    for (let col = -1; col < cols; col++) {
-      const baseX =
-        col * cellW + cellW / 2 + (Math.random() - 0.5) * cellW * cfg.JITTER
-      const baseY =
-        row * cellH + cellH / 2 + (Math.random() - 0.5) * cellH * cfg.JITTER
+  for (let bandIdx = 0; bandIdx < BAND_SPECS.length; bandIdx++) {
+    const band = BAND_SPECS[bandIdx]
+    const bandY0 = height * band.yRatio
+    const bandCount = Math.round(totalCount * (band.density / densitySum))
 
-      // Right-edge density fade — full alpha until FADE_START, then ramps to 0.
+    // How "deep" this band is in the perspective (top = far, bottom = close).
+    const depthScale =
+      cfg.PERSPECTIVE_TOP_SCALE +
+      (cfg.PERSPECTIVE_BOTTOM_SCALE - cfg.PERSPECTIVE_TOP_SCALE) * band.yRatio
+
+    for (let i = 0; i < bandCount; i++) {
+      // Spread t evenly across the band but with a tiny per-particle offset so
+      // the band doesn't read as discrete dots — feels more like a stroke.
+      const t = (i + Math.random()) / bandCount
+      const jitterAlongX = (Math.random() - 0.5) * 4
+      const jitterPerpY = (Math.random() - 0.5) * band.thickness * 2
+
+      // Initial display position uses the wave at t=0 so the field looks correct
+      // on the very first frame before the loop has run once.
+      const baseX = t * fieldWidth + jitterAlongX
+      const targetY =
+        bandY0 + Math.sin(baseX * band.freq + band.phase) * band.amp + jitterPerpY
+
+      // Right-edge density fade — full alpha until FADE_START, ramps to 0 at FADE_END.
       const fadeT = (baseX - fadeStartX) / fadeRangeX
       const rightFade = 1 - smoothstep(fadeT)
 
       // Top/bottom soft vignette.
       let edgeFade = 1
-      if (baseY < edgeTopY) edgeFade *= smoothstep(baseY / Math.max(1, edgeTopY))
-      if (baseY > edgeBottomY) edgeFade *= 1 - smoothstep((baseY - edgeBottomY) / edgeRangeBottom)
+      if (targetY < edgeTopY)
+        edgeFade *= smoothstep(targetY / Math.max(1, edgeTopY))
+      if (targetY > edgeBottomY)
+        edgeFade *= 1 - smoothstep((targetY - edgeBottomY) / edgeRangeBottom)
 
       const fadeAlpha = rightFade * edgeFade
-      if (fadeAlpha < 0.02) continue // skip imperceptible particles to save draw cost
-
-      // Perspective hint — top rows are "further", bottom rows "closer".
-      const rowT = row / Math.max(1, rows - 1)
-      const depthScale =
-        cfg.PERSPECTIVE_TOP_SCALE +
-        (cfg.PERSPECTIVE_BOTTOM_SCALE - cfg.PERSPECTIVE_TOP_SCALE) * rowT
+      if (fadeAlpha < 0.02) continue
 
       particles.push({
-        baseX,
-        baseY,
-        x: baseX,
-        y: baseY,
-        vx: 0,
-        vy: 0,
+        bandIdx,
+        t,
+        jitterAlongX,
+        jitterPerpY,
         size:
           (cfg.SIZE_MIN + Math.random() * (cfg.SIZE_MAX - cfg.SIZE_MIN)) *
           depthScale,
         alpha: cfg.ALPHA_MIN + Math.random() * (cfg.ALPHA_MAX - cfg.ALPHA_MIN),
         fadeAlpha,
-        phase: Math.random() * TWO_PI,
+        x: baseX,
+        y: targetY,
+        vx: 0,
+        vy: 0,
       })
     }
   }
@@ -107,39 +125,29 @@ export function createWaveField(
 export function stepWaveField(
   particles: WaveParticle[],
   cursor: CursorState,
+  width: number,
+  height: number,
   time: number,
   reducedMotion: boolean,
 ): void {
-  if (reducedMotion) return // particles stay at their base grid
+  if (reducedMotion) return
 
   const cfg = FIELD_CONFIG
+  const fieldWidth = width * cfg.FIELD_WIDTH_RATIO
   const radius = cfg.CURSOR_RADIUS
   const radiusSq = radius * radius
 
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i]
+    const band = BAND_SPECS[p.bandIdx]
+    const bandY0 = height * band.yRatio
 
-    // Layered sin/cos waves displace the particle's GRID position to give the
-    // moving target the spring chases. Different frequencies + speeds prevent
-    // the whole field from oscillating in unison.
-    const waveY =
-      Math.sin(p.baseX * cfg.WAVE_FREQ_X_1 + time * cfg.WAVE_SPEED_1 + p.phase) *
-        cfg.WAVE_AMP_Y_1 +
-      Math.sin(
-        p.baseX * cfg.WAVE_FREQ_X_2 +
-          p.baseY * cfg.WAVE_FREQ_Y_2 +
-          time * cfg.WAVE_SPEED_2,
-      ) * cfg.WAVE_AMP_Y_2 +
-      Math.cos(p.baseY * cfg.WAVE_FREQ_Y_3 + time * cfg.WAVE_SPEED_3) *
-        cfg.WAVE_AMP_Y_3
-
-    const swayX =
-      Math.sin(
-        p.baseY * cfg.SWAY_FREQ_Y + time * cfg.SWAY_SPEED + p.phase,
-      ) * cfg.SWAY_AMP
-
-    const targetX = p.baseX + swayX
-    const targetY = p.baseY + waveY
+    // Compute the wave-displaced target for this particle.
+    const targetX = p.t * fieldWidth + p.jitterAlongX
+    const targetY =
+      bandY0 +
+      Math.sin(targetX * band.freq + time * band.speed + band.phase) * band.amp +
+      p.jitterPerpY
 
     // 1) Cursor repulsion — distance check first, sqrt only when needed.
     if (cursor.active) {

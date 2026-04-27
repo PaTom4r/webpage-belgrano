@@ -2,6 +2,12 @@
 // ref and a wrapping container ref; resizes with the container, listens to
 // mouse events on the container, and runs the physics loop until unmount.
 // Honors prefers-reduced-motion (renders one static frame and stops).
+//
+// Note: the cursor listener is attached to `window`, not the container. This
+// works around a layout pitfall where higher-z DOM (the headline wrapper) sits
+// on top of the canvas at typical zoom levels and would otherwise eat the
+// pointermove events. The handler still maps the event into canvas-local
+// coords using the container's bounding rect.
 'use client'
 
 import { useEffect } from 'react'
@@ -12,7 +18,6 @@ import {
   drawWaveField,
   stepWaveField,
   type CursorState,
-  type FieldDimensions,
   type WaveParticle,
 } from './particles'
 
@@ -25,11 +30,10 @@ function isMobileViewport(width: number) {
   return width < 768
 }
 
-function dimensionsFor(viewportWidth: number): FieldDimensions {
-  if (isMobileViewport(viewportWidth)) {
-    return { cols: FIELD_CONFIG.COLS_MOBILE, rows: FIELD_CONFIG.ROWS_MOBILE }
-  }
-  return { cols: FIELD_CONFIG.COLS_DESKTOP, rows: FIELD_CONFIG.ROWS_DESKTOP }
+function particleCountFor(viewportWidth: number): number {
+  return isMobileViewport(viewportWidth)
+    ? FIELD_CONFIG.COUNT_MOBILE
+    : FIELD_CONFIG.COUNT_DESKTOP
 }
 
 export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
@@ -67,15 +71,18 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       ctx.setTransform(1, 0, 0, 1, 0, 0)
       ctx.scale(dpr, dpr)
 
-      const dims = dimensionsFor(window.innerWidth)
-      particles = createWaveField(dims, cssWidth, cssHeight)
+      particles = createWaveField(
+        particleCountFor(window.innerWidth),
+        cssWidth,
+        cssHeight,
+      )
     }
 
     const tick = () => {
       const now = performance.now()
       const elapsed = now - startedAt
 
-      stepWaveField(particles, cursor, elapsed, reducedMotion)
+      stepWaveField(particles, cursor, cssWidth, cssHeight, elapsed, reducedMotion)
 
       ctx.clearRect(0, 0, cssWidth, cssHeight)
       drawWaveField(ctx, particles)
@@ -83,17 +90,34 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       rafId = requestAnimationFrame(tick)
     }
 
-    const onPointerMove = (e: PointerEvent) => {
-      // Touch / pen events can fire pointermove during scrolling — only react
-      // to a real mouse so vertical scroll on mobile never deforms the field.
-      if (e.pointerType !== 'mouse') return
+    // Map a window-level mouse event into canvas-local coords. Returns true
+    // when the cursor is over the canvas, false otherwise.
+    const updateCursorFromEvent = (e: MouseEvent | PointerEvent): boolean => {
       const rect = container.getBoundingClientRect()
-      cursor.x = e.clientX - rect.left
-      cursor.y = e.clientY - rect.top
-      cursor.active = true
+      const localX = e.clientX - rect.left
+      const localY = e.clientY - rect.top
+      const inside =
+        localX >= 0 &&
+        localY >= 0 &&
+        localX <= rect.width &&
+        localY <= rect.height
+      cursor.x = localX
+      cursor.y = localY
+      cursor.active = inside
+      return inside
     }
 
-    const onPointerLeave = () => {
+    const onPointerMove = (e: PointerEvent) => {
+      // Skip touch / pen so vertical scroll on mobile never deforms the field.
+      if (e.pointerType && e.pointerType !== 'mouse') return
+      updateCursorFromEvent(e)
+    }
+
+    const onMouseMove = (e: MouseEvent) => {
+      updateCursorFromEvent(e)
+    }
+
+    const onWindowLeave = () => {
       cursor.active = false
       cursor.x = -9999
       cursor.y = -9999
@@ -104,9 +128,12 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
     })
     resizeObs.observe(container)
 
-    container.addEventListener('pointermove', onPointerMove, { passive: true })
-    container.addEventListener('pointerleave', onPointerLeave, { passive: true })
-    container.addEventListener('pointerout', onPointerLeave, { passive: true })
+    // Listen on window so the listener is never blocked by overlay elements
+    // (headline wrapper, etc.) regardless of z-index or zoom level.
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('mouseleave', onWindowLeave, { passive: true })
+    document.addEventListener('mouseleave', onWindowLeave, { passive: true })
 
     setupCanvas()
     startedAt = performance.now()
@@ -121,9 +148,10 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
     return () => {
       cancelAnimationFrame(rafId)
       resizeObs.disconnect()
-      container.removeEventListener('pointermove', onPointerMove)
-      container.removeEventListener('pointerleave', onPointerLeave)
-      container.removeEventListener('pointerout', onPointerLeave)
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseleave', onWindowLeave)
+      document.removeEventListener('mouseleave', onWindowLeave)
     }
   }, [canvasRef, containerRef])
 }

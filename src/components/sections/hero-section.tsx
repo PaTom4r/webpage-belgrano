@@ -54,9 +54,13 @@ export function HeroSection() {
         </div>
 
         {/* Text content — right-aligned on lg+, full-width on mobile.
-            z-20 keeps the headline above the wave field where they overlap. */}
-        <div className="relative z-20 flex w-full px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:min-h-[88vh] lg:items-center lg:justify-end lg:py-0 lg:pl-[46vw] lg:pr-12 xl:pr-16">
-          <div className="flex w-full max-w-[820px] flex-col gap-6 text-left lg:gap-8">
+            z-20 keeps the headline above the wave field where they overlap.
+            pointer-events-none on the outer wrapper lets cursor events fall
+            through to the canvas in the empty area on the left; pointer-events
+            is re-enabled on the inner content block so the chip / paragraph /
+            buttons stay interactive. */}
+        <div className="pointer-events-none relative z-20 flex w-full px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:min-h-[88vh] lg:items-center lg:justify-end lg:py-0 lg:pl-[46vw] lg:pr-12 xl:pr-16">
+          <div className="pointer-events-auto flex w-full max-w-[820px] flex-col gap-6 text-left lg:gap-8">
             <motion.span
               {...fadeUp(0)}
               className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur-sm sm:text-xs"
