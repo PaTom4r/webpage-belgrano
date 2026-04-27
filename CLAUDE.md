@@ -156,34 +156,36 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 > This section is managed by `generate-claude-profile` -- do not edit manually.
 <!-- GSD:profile-end -->
 
-## Estado actual (2026-04-17)
+## Estado actual (2026-04-27)
 
-- **Branch principal**: `main` (reestructurado 2026-04-17). `feature/21st-dev-ui-improvements` mergeado. Vercel deploys desde `main`.
-- **Branch archivo**: `feature/landing-v2-template1` preservada en `.worktrees/landing-v2-template1/` — contiene diseño alternativo template-1 (hero accordion horizontal distinto). NO borrar.
-- **Caso de éxito CLC removido** de `/verticales/intelligence` (commit `6afe25b`)
-- **Home — Hero cinematográfico**: imagen oficina BELGRANO en hormigón + Costanera + Andes nevados, full opacity + gradient overlay (`from-black/90 via-black/50 to-black/10`). Min-h-[78vh]. Headline `BELGRANO GROUP` (text-4xl→6xl) alineado a la derecha sobre la cordillera. Bajada larga del metadata con doble textShadow para legibilidad.
-- **Cards del hero**: accordion horizontal tipo Apple Music (hover crece a flexGrow 2.2, otras se comprimen). Default expandida: Intelligence. Mockups v2 (Intelligence/Media/Brand) con chats/canales/activación. 3D tilt removido — el accordion ya comunica interactividad.
-- **Navbar**: "Belgrano" wordmark restaurado a la izquierda, lógica `heroInView` con IntersectionObserver, glass effect al scrollear fuera del hero. CTA Hablemos con magnetic spring.
-- **Landing**: Hero → Stats → CTA → Footer. `MarqueeSection` (Empresas que confían) y `VerticalesSection` (Qué hacemos) **desactivadas** (código comentado para reactivar cuando haya contenido real).
-- **`/verticales/intelligence` premium**: composición dedicada via slug conditional. TracingBeam morada scroll-driven (Aceternity-style, Framer Motion + SVG, respeta prefers-reduced-motion). IntelligenceHero con grid + glow morado + brain icon. IntelligenceCapabilities (5 chips pulsing). **IntelligenceCaseStudy CLC** (Vida Cámara-style 2 columnas: logo CLC + bullets + 4 metric cards: $780M recuperados marzo / 300x+ ROI / +3.000 personas / 24/7 WhatsApp Business API oficial). IntelligenceBranches con hover lift. IntelligenceMetrics counter-animated (parser para "$780M"/"24/7"/"40-70%").
-- **`/verticales/media` + `/verticales/brand`**: mantienen template default. Aislados via `slug === 'intelligence'` conditional en `[slug]/page.tsx`.
-- **SENCE eliminado**: removido de chips, caseCard footnote, Academy tags, features y FAQ en `verticales.ts`. Belgrano no tiene esa certificación.
-- **Header bug fix**: `pt-16` en `<main>` de `/nosotros` y `/verticales/[slug]` para compensar altura del navbar fijo (el observer no dispara sin `#hero`).
-- **Sección clientes desactivada**: `MarqueeSection` (home) y `VerticalClientsSection` (3 verticales) comentadas. Reactivar cuando los clientes finales estén definidos.
-- **Calendly**: reactivado en CTA section.
-- **Stats**: 4 métricas — $750MM+, 289x ROI, 500K+ Personas alcanzadas, 98% Satisfacción
+- **Branch en revisión**: `feature/hero-particle-entity` pusheada al remoto (12 commits). Vercel auto-deploya preview. `main` sin tocar hasta validar la preview.
+- **Hero rediseñado — Wave Field Canvas 2D** (`src/components/particles/living-pillar/`): 9 bandas horizontales con amp/freq/speed/fase/grosor propios. Partículas paramétricas (t ∈ [0,1] sobre la curva de cada banda) con jitter perpendicular para grosor. 5500 partículas desktop / 1800 mobile. Lee como crestas/valles ondulantes (estilo flag o duna), NO como nube uniforme.
+- **Cursor repulsion física**: distance check + force vector outward (`force = (radius - dist) / radius * STRENGTH`) + spring back al target ondulante + damping. Listener movido a `window` (no al canvas) para sortear el wrapper z-20 del headline que bloqueaba pointermove a 100% zoom.
+- **Layout hero**: lg+ canvas `absolute inset-0` cubriendo todo el hero. Headline a la derecha con `lg:pl-[46vw]`, z-20, `pointer-events-none` en wrapper externo + `pointer-events-auto` en bloque de contenido (chip + headline + p + CTAs). Mobile: stacked, canvas arriba 55-60vh, texto abajo.
+- **Headline**: `BELGRANO GROUP` en una línea lg+ (`lg:whitespace-nowrap`). Tamaños fluidos: text-5xl → text-6xl → text-[5rem] → text-[6rem] → text-[7rem]. Mobile: dos líneas via `<br className="lg:hidden" />`. Eyebrow chip "AI · Media · Brand". CTAs px-7 py-4 más prominentes.
+- **Fondo**: `#000000` puro. Sin grid texture, sin wordmark gigante de fondo (descartado en esta iteración; reincorporable si Pato quiere).
+- **HeroMockups (Zone 2)** intacto, accordion horizontal de 3 verticales.
+- **Three.js / R3F / drei descartados**: primer intento (commits `1b4a6b3` → `d5704a7`) usaba shaders + esfera/cluster/torus. Falló por bundle weight (~150KB gzip) + lectura visual estática + bug de pointSize. Stack vuelve a Next + Tailwind v4 + Framer + GSAP, todo el motor de partículas es Canvas 2D vanilla.
+- **Branch principal**: `main`. Vercel deploys desde `main`. `feature/landing-v2-template1` preservada como archivo. NO borrar.
+- **Stats**: 4 métricas — $750MM+, 289x ROI, 500K+ Personas alcanzadas, 98% Satisfacción.
+- **`/verticales/intelligence` premium**: TracingBeam morada + IntelligenceHero + Capabilities + CaseStudy CLC + Branches + Metrics counter-animated. Sin tocar en esta sesión.
+- **`/verticales/media` + `/verticales/brand`**: template default, sin tocar en esta sesión.
 
 ## Decisiones técnicas
 
 - **Patrón de variants por vertical**: para no contaminar Media/Brand con cambios Intelligence, se creó `src/components/sections/intelligence/*` con 5 componentes premium dedicados. `[slug]/page.tsx` decide qué layout renderizar según el slug. Cero impacto en otras verticales.
 - **TracingBeam**: SVG + Framer Motion (`useScroll`, `useTransform`, `useSpring`). `ResizeObserver` para dimensionar dinámicamente la altura. Respeta `prefers-reduced-motion` (línea estática sin gradient).
 - **AnimatedCounter en Intelligence metrics**: parser que extrae `{prefix, target, suffix}` de strings tipo "$780M" / "300x+" y fallback a plain text para "24/7" o "40-70%" (no numéricos puros).
-- **Sin Three.js**. El hero usa Canvas 2D (`src/components/particles/living-pillar/`) con física real de partículas + cursor repulsion. Three.js + R3F se intentaron en la branch `feature/hero-particle-entity` y se descartaron por bundle weight + lectura visual estática. Frame-sequence scroll-driven (Apple AirPods style) postergado — requiere assets WebP de NanoBanana cuando Pato los exporte.
+- **Sin Three.js — hero en Canvas 2D vanilla**. El motor de partículas vive en `src/components/particles/living-pillar/` (4 archivos: `config.ts`, `particles.ts`, `use-pillar.ts`, `canvas.tsx`). Cero deps externas — sólo `requestAnimationFrame` + Canvas 2D API. Three.js + R3F + drei se intentaron al inicio de la branch y se descartaron por bundle weight (~150KB gzip) + lectura visual estática. Mantenemos la branch como histórico de aprendizaje (los primeros 4 commits son del intento R3F).
+- **Pattern band-based para particle fields**: cada banda es un objeto en `BAND_SPECS` (yRatio, amp, freq, speed, phase, thickness, density). Las partículas se generan paramétricamente sobre la curva sinusoidal de su banda y la spring chasea ese target ondulante por frame. Editar visuales = ajustar `BAND_SPECS` y `FIELD_CONFIG` sin tocar el motor.
+- **Cursor listener en `window`**: en use-pillar.ts el `pointermove` se attachea a `window`, no al canvas. Convierte coords del viewport a canvas-local con `getBoundingClientRect`. Razón: cualquier overlay z-index alto encima del canvas robaba el evento si el listener estaba en el canvas. `window` es invulnerable a eso.
+- **Frame-sequence scroll-driven (Apple AirPods style)** sigue postergado — requiere assets WebP de NanoBanana cuando Pato los exporte.
 
 ## Próximo
 
-- **Deploy** `feature/21st-dev-ui-improvements` → Vercel para validar imagen del hero (cache local impidió ver la nueva) y probar TracingBeam + Intelligence en producción.
-- **Merge → `main`** después del visual OK post-deploy.
+- **Validar Vercel preview** de `feature/hero-particle-entity` en desktop + mobile. Si OK → merge a `main`.
+- **Color por vertical en partículas (Phase 2 diferida)**: hacer que las bandas cambien de tinte (Intelligence teal `#20808D` / Media sky `#0EA5E9` / Brand orange `#F97316`) según scroll a lo largo del hero o de la home. Diferido hasta que el motor base esté validado en preview.
+- **Decisión pendiente sobre wordmark "BELGRANO GROUP" gigante de fondo**: si el hero negro puro se siente vacío, reincorporar como capa con opacity ~0.04 detrás del wave field. Postergado a feedback post-preview.
 - **Mejorar `/verticales/media`**: Pato tiene 2-3 videos TNT Sports / Warner Bros — esperando que los dropee en `public/media/` (MP4/WebM <5MB ideal).
 - **Mejorar `/verticales/brand`**: esperando input del equipo interno; podemos proponer mejoras de layout/tipografía.
 - **Mejorar `/nosotros`**: alinear con look premium del home y de Intelligence.
