@@ -1,7 +1,7 @@
-// Living Pillar — public component.
+// Living Threads — public component.
 // A self-contained <canvas> that fills its parent. Mount it inside a relatively
-// positioned wrapper with a defined height and the column appears centered
-// inside that wrapper, flowing upward with cursor reactivity.
+// positioned wrapper with a defined height and the wave field of fiber
+// strands renders inside that wrapper, with cursor reactivity.
 'use client'
 
 import { useRef } from 'react'
@@ -12,7 +12,7 @@ type Props = {
   className?: string
 }
 
-export function LivingPillarCanvas({ className }: Props) {
+export function LivingThreadsCanvas({ className }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
