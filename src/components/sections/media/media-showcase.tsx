@@ -1,30 +1,29 @@
-// MediaShowcase — scroll-driven theater reveal.
-// Each video is pinned to the viewport while the user scrolls, growing from
-// a small rounded card into a full-bleed cinematic frame. Text sidebar
-// reveals in parallel with stagger. Two sequential theaters: commercial TV
-// then in-broadcast LED banner — the Point Cola case told through scroll.
+// MediaShowcase — compact case study (Point Cola).
+// Two videos shown as small autoplay cards with caption alongside, instead of
+// the previous full-bleed scroll-pinned theater. Reads as a quick "case study"
+// without taking over the page or forcing the user to scroll through 4 viewports.
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useInView, useReducedMotion, type Variants } from 'framer-motion'
 import { Container } from '@/components/layout/container'
-import { ScrollReveal } from '@/components/animations/scroll-reveal'
+
+const easing = [0.25, 0.1, 0.25, 1] as const
 
 interface MediaShowcaseProps {
   accent?: string
 }
 
-interface Theater {
+interface CaseClip {
   index: string
   src: string
   label: string
   channel: string
   headline: string
   description: string
-  metric: { value: string; unit: string }
 }
 
-const theaters: Theater[] = [
+const clips: CaseClip[] = [
   {
     index: '01',
     src: '/video-media-2.mp4',
@@ -32,8 +31,7 @@ const theaters: Theater[] = [
     channel: 'Pauta televisiva · cobertura nacional',
     headline: 'Un referente del fútbol en pantalla',
     description:
-      'Pieza publicitaria con una figura deportiva como embajador de marca. Distribución en pauta televisiva abierta y cable, con alcance nacional y frecuencia efectiva medida por GRPs.',
-    metric: { value: 'ATL', unit: 'Televisión abierta + cable' },
+      'Pieza publicitaria con una figura deportiva como embajador. Distribución en pauta televisiva abierta y cable, con alcance nacional y frecuencia efectiva.',
   },
   {
     index: '02',
@@ -42,227 +40,182 @@ const theaters: Theater[] = [
     channel: 'Publicidad virtual · en vivo',
     headline: 'La marca en la huincha del partido',
     description:
-      'Huincha LED en el costado inferior de la transmisión en vivo. Tecnología de reemplazo virtual para personalizar la señal por mercado, con audiencia cautiva en tiempo real.',
-    metric: { value: 'LIVE', unit: 'Audiencia deportiva cautiva' },
+      'Huincha LED en el costado inferior de la transmisión en vivo. Tecnología de reemplazo virtual para personalizar la señal por mercado.',
   },
 ]
 
-function TheaterSection({
-  theater,
-  accent,
-}: {
-  theater: Theater
-  accent: string
-}) {
-  const sectionRef = useRef<HTMLElement>(null)
+const headingChild: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easing } },
+}
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  })
+const headingContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+}
 
-  // Scale: small → full → small again as it leaves viewport
-  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.82, 1, 1, 0.92])
-  const borderRadius = useTransform(
-    scrollYProgress,
-    [0, 0.35, 0.65, 1],
-    [28, 0, 0, 20],
-  )
-  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.88, 1], [0.55, 1, 1, 0.55])
+const gridContainer: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+}
 
-  // Text reveals as section enters, exits as it leaves
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0.1, 0.25, 0.75, 0.92],
-    [0, 1, 1, 0],
-  )
-  const textY = useTransform(scrollYProgress, [0.1, 0.3], [40, 0])
-  const glowOpacity = useTransform(scrollYProgress, [0.15, 0.4, 0.7, 0.9], [0, 1, 1, 0])
+const cardItem: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: easing } },
+}
+
+function ClipCard({ clip, accent }: { clip: CaseClip; accent: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const inView = useInView(videoRef, { margin: '-25% 0px -25% 0px' })
+
+  // Autoplay only when in view — saves CPU and battery on mobile.
+  if (typeof window !== 'undefined' && videoRef.current) {
+    if (inView && videoRef.current.paused) {
+      videoRef.current.play().catch(() => {})
+    } else if (!inView && !videoRef.current.paused) {
+      videoRef.current.pause()
+    }
+  }
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative"
-      style={{ height: '200vh' }}
-      aria-label={`Caso ${theater.label}`}
+    <motion.article
+      variants={cardItem}
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-white/25"
+      style={{
+        backgroundImage: `linear-gradient(135deg, ${accent}10 0%, transparent 60%)`,
+      }}
     >
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-dark">
-        {/* Ambient accent glow */}
-        <motion.div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            opacity: glowOpacity,
-            background: `radial-gradient(50% 50% at 50% 50%, ${accent}22 0%, transparent 70%)`,
-          }}
-        />
-
-        {/* Index + Label sticky info */}
-        <motion.div
-          className="pointer-events-none absolute left-6 top-6 z-20 sm:left-10 sm:top-10"
-          style={{ opacity: textOpacity }}
+      {/* Video frame — 16:9 contained inside the card */}
+      <div className="relative aspect-video w-full overflow-hidden bg-black">
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="h-full w-full object-cover"
         >
-          <div className="flex items-center gap-3">
-            <span
-              className="font-mono text-xs font-bold tracking-widest"
-              style={{ color: accent }}
-            >
-              {theater.index}
-            </span>
-            <span className="h-px w-8" style={{ backgroundColor: `${accent}80` }} />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bg/80">
-              {theater.label}
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Video frame */}
-        <motion.div
-          style={{
-            scale,
-            borderRadius,
-            opacity,
-          }}
-          className="relative aspect-video w-[94vw] max-w-[1600px] overflow-hidden bg-black shadow-2xl"
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="h-full w-full object-cover"
+          <source src={clip.src} type="video/mp4" />
+        </video>
+        {/* Top-left index pill */}
+        <div className="absolute left-4 top-4 flex items-center gap-2">
+          <span
+            className="font-mono text-[11px] font-bold tracking-widest"
+            style={{ color: accent }}
           >
-            <source src={theater.src} type="video/mp4" />
-          </video>
-
-          {/* Vignette for readability */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, transparent 25%, transparent 65%, rgba(0,0,0,0.8) 100%)',
-            }}
-          />
-
-          {/* Bottom-left caption overlay */}
-          <motion.div
-            style={{ opacity: textOpacity, y: textY }}
-            className="absolute bottom-0 left-0 right-0 z-10 p-8 sm:p-12 lg:p-16"
-          >
-            <div className="flex flex-col gap-3 sm:max-w-2xl">
-              <span
-                className="text-[11px] font-bold uppercase tracking-[0.22em]"
-                style={{ color: accent }}
-              >
-                {theater.channel}
-              </span>
-              <h3
-                className="text-3xl font-extrabold leading-tight tracking-tight text-bg sm:text-4xl lg:text-5xl"
-                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
-              >
-                {theater.headline}
-              </h3>
-              <p
-                className="text-sm leading-relaxed text-bg/80 sm:text-base sm:leading-relaxed"
-                style={{ textShadow: '0 1px 10px rgba(0,0,0,0.4)' }}
-              >
-                {theater.description}
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Metric badge top-right */}
-          <motion.div
-            style={{ opacity: textOpacity }}
-            className="absolute right-6 top-6 z-10 flex items-center gap-2 rounded-full border bg-black/40 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] backdrop-blur-md sm:right-10 sm:top-10"
-          >
-            <span
-              className="h-1.5 w-1.5 animate-pulse rounded-full"
-              style={{ backgroundColor: accent }}
-            />
-            <span className="text-bg">{theater.metric.value}</span>
-            <span className="hidden text-bg/60 sm:inline">·</span>
-            <span className="hidden text-bg/60 sm:inline">
-              {theater.metric.unit}
-            </span>
-          </motion.div>
-        </motion.div>
+            {clip.index}
+          </span>
+          <span className="h-px w-6" style={{ backgroundColor: `${accent}80` }} />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/85">
+            {clip.label}
+          </span>
+        </div>
       </div>
-    </section>
+
+      {/* Caption block */}
+      <div className="flex flex-col gap-3 p-6 sm:p-7">
+        <span
+          className="text-[10px] font-bold uppercase tracking-[0.22em]"
+          style={{ color: accent }}
+        >
+          {clip.channel}
+        </span>
+        <h3 className="text-xl font-bold leading-tight text-white sm:text-2xl">
+          {clip.headline}
+        </h3>
+        <p className="text-sm leading-relaxed text-white/70">
+          {clip.description}
+        </p>
+      </div>
+
+      {/* Hover-only glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(ellipse at top, ${accent}25, transparent 60%)`,
+        }}
+      />
+    </motion.article>
   )
 }
 
 export function MediaShowcase({ accent = '#0EA5E9' }: MediaShowcaseProps) {
+  const reduceMotion = useReducedMotion()
+  const initial = reduceMotion ? 'visible' : 'hidden'
+
   return (
-    <div id="caso-point-cola" className="bg-dark">
-      {/* Intro block */}
-      <section className="flex min-h-[70vh] items-center bg-dark py-20 sm:py-24">
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <ScrollReveal>
-              <span
-                className="text-xs font-bold uppercase tracking-[0.22em]"
-                style={{ color: accent }}
-              >
-                Caso · Point Cola
-              </span>
-            </ScrollReveal>
-            <ScrollReveal delay={0.08}>
-              <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-bg sm:text-5xl lg:text-6xl">
-                Una marca,
-                <br />
-                <span style={{ color: accent }}>dos canales</span>, un mismo momento.
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={0.16}>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-bg/70 sm:text-lg">
-                El mismo día que Point Cola estaba en pantalla con un comercial
-                protagonizado por un referente del fútbol, también estaba en la
-                huincha LED de la transmisión del partido. Mix de medios ejecutado.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={0.24}>
-              <div className="mt-10 flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-bg/50">
-                <span>Scrollea</span>
-                <motion.span
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                  className="inline-block"
-                  style={{ color: accent }}
-                >
-                  ↓
-                </motion.span>
-              </div>
-            </ScrollReveal>
-          </div>
-        </Container>
-      </section>
+    <section
+      id="caso-point-cola"
+      className="relative overflow-hidden bg-dark py-20 sm:py-24 lg:py-28"
+      aria-label="Caso Point Cola"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `radial-gradient(ellipse at top, ${accent}1A 0%, transparent 60%)`,
+        }}
+      />
 
-      {/* Theater 1: Commercial TV */}
-      <TheaterSection theater={theaters[0]} accent={accent} />
+      <Container>
+        {/* Heading block */}
+        <motion.div
+          className="mb-12 mx-auto max-w-3xl text-center"
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={headingContainer}
+        >
+          <motion.span
+            variants={headingChild}
+            className="text-xs font-bold uppercase tracking-[0.22em]"
+            style={{ color: accent }}
+          >
+            Caso · Point Cola
+          </motion.span>
+          <motion.h2
+            variants={headingChild}
+            className="mt-4 font-black uppercase leading-[0.95] tracking-tighter text-white text-3xl sm:text-4xl lg:text-5xl"
+            style={{ letterSpacing: '-0.035em' }}
+          >
+            Una marca, dos canales, un mismo momento
+          </motion.h2>
+          <motion.p
+            variants={headingChild}
+            className="mt-5 text-base text-white/70 sm:text-lg"
+          >
+            El mismo día Point Cola estaba en pantalla con un comercial
+            protagonizado por un referente del fútbol y en la huincha LED de
+            la transmisión del partido. Mix de medios ejecutado.
+          </motion.p>
+        </motion.div>
 
-      {/* Theater 2: LED banner */}
-      <TheaterSection theater={theaters[1]} accent={accent} />
+        {/* Cards grid 2-col */}
+        <motion.div
+          className="grid gap-5 sm:gap-6 md:grid-cols-2 lg:gap-8"
+          initial={initial}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={gridContainer}
+        >
+          {clips.map((clip) => (
+            <ClipCard key={clip.index} clip={clip} accent={accent} />
+          ))}
+        </motion.div>
 
-      {/* Closing strip with both thumbnails */}
-      <section className="bg-dark py-20 sm:py-24">
-        <Container>
-          <ScrollReveal className="text-center">
-            <p
-              className="text-xs font-bold uppercase tracking-[0.22em]"
-              style={{ color: accent }}
-            >
-              Mismo día · misma marca · dos canales
-            </p>
-            <p className="mx-auto mt-5 max-w-xl text-xl font-medium text-bg/80 sm:text-2xl">
-              Eso es operar el mix de medios — no pensarlos por separado, sino
-              orquestarlos para que lleguen juntos.
-            </p>
-          </ScrollReveal>
-        </Container>
-      </section>
-    </div>
+        {/* Closing strip */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: easing }}
+          className="mx-auto mt-12 max-w-xl text-center text-base font-medium text-white/75 sm:mt-14 sm:text-lg"
+        >
+          Eso es operar el mix de medios — no pensarlos por separado, sino
+          orquestarlos para que lleguen juntos.
+        </motion.p>
+      </Container>
+    </section>
   )
 }
