@@ -1,8 +1,9 @@
 // Hero — Living Pillar Canvas 2D + dominant text presence.
 // Layout:
-//   Zone 1 (full-bleed, pure black, min-h ~88vh):
-//     · Two columns (lg+): left = Living Pillar particle canvas, right = eyebrow + headline + subhead + CTAs
-//     · Mobile: stacked — particle canvas on top, text below
+//   Mobile: stacked — particle canvas on top (centered strands), text below.
+//   lg+: canvas absolute against the viewport's left edge so the leftmost
+//        strand bleeds off-screen (no visible boundary). Text content sits to
+//        the right with extra horizontal room for a single-line headline.
 //   Zone 2: existing HeroMockups accordion, unchanged.
 'use client'
 
@@ -41,19 +42,18 @@ export function HeroSection() {
       className="flex flex-col"
     >
       {/* Zone 1 — Living Pillar + dominant headline */}
-      <div className="relative isolate overflow-hidden bg-black">
-        {/* Two-column content. Padding-top accounts for the fixed navbar. */}
-        <div
-          className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-6 pt-28 pb-20 sm:px-8 sm:pt-32 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-12 lg:pt-36 lg:pb-32"
-          style={{ minHeight: '88vh' }}
-        >
-          {/* Left — Living Pillar Canvas 2D. Wrapper needs height + relative for the absolute canvas. */}
-          <div className="relative h-[55vh] w-full sm:h-[62vh] lg:h-[78vh]">
-            <LivingPillarCanvas />
-          </div>
+      <div className="relative isolate overflow-hidden bg-black lg:min-h-[88vh]">
+        {/* Single canvas, positioned responsively:
+              · mobile: relative block stacked above the text (55-60vh tall)
+              · lg+:    absolute against the viewport's left edge (44vw wide,
+                        full hero height) so the leftmost strand bleeds off-screen */}
+        <div className="relative h-[55vh] w-full sm:h-[60vh] lg:absolute lg:inset-y-0 lg:left-0 lg:h-auto lg:w-[44vw] xl:w-[42vw]">
+          <LivingPillarCanvas />
+        </div>
 
-          {/* Right — eyebrow + dominant headline + subhead + CTAs */}
-          <div className="flex flex-col gap-6 text-left lg:gap-8">
+        {/* Text content — right-aligned on lg+, full-width on mobile. */}
+        <div className="relative z-10 flex w-full px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:min-h-[88vh] lg:items-center lg:justify-end lg:py-0 lg:pl-[46vw] lg:pr-12 xl:pr-16">
+          <div className="flex w-full max-w-[820px] flex-col gap-6 text-left lg:gap-8">
             <motion.span
               {...fadeUp(0)}
               className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur-sm sm:text-xs"
@@ -65,11 +65,11 @@ export function HeroSection() {
             <motion.h1
               id="hero-heading"
               {...headlineFade}
-              className="text-6xl font-black uppercase leading-[0.88] tracking-tighter text-white sm:text-7xl lg:text-8xl xl:text-[8.5rem]"
+              className="font-black uppercase leading-[0.92] tracking-tighter text-white text-5xl sm:text-6xl lg:whitespace-nowrap lg:text-[5rem] xl:text-[6rem] 2xl:text-[7rem]"
               style={{ letterSpacing: '-0.045em' }}
             >
-              BELGRANO
-              <br />
+              BELGRANO<br className="lg:hidden" />
+              <span className="hidden lg:inline"> </span>
               GROUP
             </motion.h1>
 
