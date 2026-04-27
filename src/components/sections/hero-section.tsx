@@ -1,9 +1,10 @@
-// Hero — Living Pillar Canvas 2D + dominant text presence.
+// Hero — Wave Field Canvas 2D + dominant text presence.
 // Layout:
-//   Mobile: stacked — particle canvas on top (centered strands), text below.
-//   lg+: canvas absolute against the viewport's left edge so the leftmost
-//        strand bleeds off-screen (no visible boundary). Text content sits to
-//        the right with extra horizontal room for a single-line headline.
+//   Mobile: stacked — particle canvas on top (full-width wave field), text below.
+//   lg+: canvas absolute spanning the full hero (right-edge fade is baked into
+//        the field engine itself). Text content sits to the right with z-10 so
+//        the wave field reads behind it where the right-edge fade leaves stray
+//        particles in the headline area.
 //   Zone 2: existing HeroMockups accordion, unchanged.
 'use client'
 
@@ -41,18 +42,20 @@ export function HeroSection() {
       aria-labelledby="hero-heading"
       className="flex flex-col"
     >
-      {/* Zone 1 — Living Pillar + dominant headline */}
+      {/* Zone 1 — Wave Field + dominant headline */}
       <div className="relative isolate overflow-hidden bg-black lg:min-h-[88vh]">
         {/* Single canvas, positioned responsively:
               · mobile: relative block stacked above the text (55-60vh tall)
-              · lg+:    absolute against the viewport's left edge (44vw wide,
-                        full hero height) so the leftmost strand bleeds off-screen */}
-        <div className="relative h-[55vh] w-full sm:h-[60vh] lg:absolute lg:inset-y-0 lg:left-0 lg:h-auto lg:w-[44vw] xl:w-[42vw]">
+              · lg+:    absolute, spans the full hero width and height. The
+                        engine's internal right-edge fade keeps particles dim
+                        behind the headline so text stays readable on top. */}
+        <div className="relative h-[55vh] w-full sm:h-[60vh] lg:absolute lg:inset-0 lg:h-auto lg:w-full">
           <LivingPillarCanvas />
         </div>
 
-        {/* Text content — right-aligned on lg+, full-width on mobile. */}
-        <div className="relative z-10 flex w-full px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:min-h-[88vh] lg:items-center lg:justify-end lg:py-0 lg:pl-[46vw] lg:pr-12 xl:pr-16">
+        {/* Text content — right-aligned on lg+, full-width on mobile.
+            z-20 keeps the headline above the wave field where they overlap. */}
+        <div className="relative z-20 flex w-full px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:min-h-[88vh] lg:items-center lg:justify-end lg:py-0 lg:pl-[46vw] lg:pr-12 xl:pr-16">
           <div className="flex w-full max-w-[820px] flex-col gap-6 text-left lg:gap-8">
             <motion.span
               {...fadeUp(0)}

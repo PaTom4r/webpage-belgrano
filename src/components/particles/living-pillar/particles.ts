@@ -1,19 +1,20 @@
-// Living Pillar — particle pool + per-frame physics.
-// Pure functions on a flat array of Particle objects so the animation loop
-// in use-pillar.ts can stay branch-light and allocation-free per frame.
+// Wave Field — particle pool + per-frame physics.
+// Pure functions on a flat array of WaveParticle so the animation loop in
+// use-pillar.ts can stay branch-light and allocation-free per frame.
 
-import { PILLAR_CONFIG } from './config'
+import { FIELD_CONFIG } from './config'
 
-export type Particle = {
-  x: number
-  y: number
-  originX: number          // X anchor — center of this particle's strand
+export type WaveParticle = {
+  baseX: number      // grid anchor X (in canvas pixels)
+  baseY: number      // grid anchor Y
+  x: number          // current display X
+  y: number          // current display Y
   vx: number
   vy: number
-  speed: number            // upward bias multiplier
-  size: number             // px
-  alpha: number            // 0..1 — modulated by velocity at draw time
-  helixSeed: number        // 0..2π — phase offset so particles don't twist in lockstep
+  size: number       // px (already scaled by row depth)
+  alpha: number      // per-particle base alpha (0..1)
+  fadeAlpha: number  // permanent multiplier from edge/right-fade rules (0..1)
+  phase: number      // 0..2π — desync per particle so the bands don't oscillate in lockstep
 }
 
 export type CursorState = {
@@ -24,74 +25,121 @@ export type CursorState = {
 
 const TWO_PI = Math.PI * 2
 
-// Box-Muller-ish gaussian for column distribution (denser at center, sparser at edges).
-function gaussian(): number {
-  const u = Math.max(1e-6, Math.random())
-  const v = Math.random()
-  return Math.sqrt(-2 * Math.log(u)) * Math.cos(TWO_PI * v)
+function smoothstep(t: number) {
+  if (t <= 0) return 0
+  if (t >= 1) return 1
+  return t * t * (3 - 2 * t)
 }
 
-export function createParticles(
-  count: number,
+export type FieldDimensions = {
+  cols: number
+  rows: number
+}
+
+export function createWaveField(
+  dims: FieldDimensions,
   width: number,
   height: number,
-  strandCenterRatios: readonly number[],
-): Particle[] {
-  const cfg = PILLAR_CONFIG
-  const halfWidth = (width * cfg.STRAND_WIDTH_RATIO) / 2
+): WaveParticle[] {
+  const cfg = FIELD_CONFIG
+  const cols = dims.cols
+  const rows = dims.rows
+  const fieldWidth = width * cfg.FIELD_WIDTH_RATIO
+  const cellW = fieldWidth / cols
+  const cellH = height / rows
+  const fadeStartX = width * cfg.FADE_START
+  const fadeEndX = width * cfg.FADE_END
+  const fadeRangeX = Math.max(1, fadeEndX - fadeStartX)
+  const edgeTopY = height * cfg.EDGE_FADE_TOP
+  const edgeBottomY = height * (1 - cfg.EDGE_FADE_BOTTOM)
+  const edgeRangeBottom = Math.max(1, height - edgeBottomY)
 
-  // Pre-compute strand center X coordinates (in canvas px).
-  const strandCenters = strandCenterRatios.map((r) => width * r)
-  const strandCount = Math.max(1, strandCenters.length)
+  const particles: WaveParticle[] = []
 
-  const out: Particle[] = new Array(count)
+  // Spill one extra cell on the top + bottom + left so the field never reads
+  // as a hard rectangle — the canvas naturally clips overflow.
+  for (let row = -1; row < rows + 1; row++) {
+    for (let col = -1; col < cols; col++) {
+      const baseX =
+        col * cellW + cellW / 2 + (Math.random() - 0.5) * cellW * cfg.JITTER
+      const baseY =
+        row * cellH + cellH / 2 + (Math.random() - 0.5) * cellH * cfg.JITTER
 
-  for (let i = 0; i < count; i++) {
-    // Round-robin assignment keeps each strand at roughly the same particle count.
-    const strandIdx = i % strandCount
-    const center = strandCenters[strandIdx]
+      // Right-edge density fade — full alpha until FADE_START, then ramps to 0.
+      const fadeT = (baseX - fadeStartX) / fadeRangeX
+      const rightFade = 1 - smoothstep(fadeT)
 
-    // Gaussian X around the strand center, clamped to ±2σ so outliers don't drift far.
-    const g = Math.max(-2.2, Math.min(2.2, gaussian()))
-    const offsetX = (g / 2.2) * halfWidth
-    const originX = center + offsetX
+      // Top/bottom soft vignette.
+      let edgeFade = 1
+      if (baseY < edgeTopY) edgeFade *= smoothstep(baseY / Math.max(1, edgeTopY))
+      if (baseY > edgeBottomY) edgeFade *= 1 - smoothstep((baseY - edgeBottomY) / edgeRangeBottom)
 
-    out[i] = {
-      x: originX,
-      y: Math.random() * height,
-      originX,
-      vx: 0,
-      vy: 0,
-      speed: cfg.SPEED_MIN + Math.random() * (cfg.SPEED_MAX - cfg.SPEED_MIN),
-      size: cfg.SIZE_MIN + Math.random() * (cfg.SIZE_MAX - cfg.SIZE_MIN),
-      alpha: cfg.ALPHA_MIN + Math.random() * (cfg.ALPHA_MAX - cfg.ALPHA_MIN),
-      helixSeed: Math.random() * TWO_PI,
+      const fadeAlpha = rightFade * edgeFade
+      if (fadeAlpha < 0.02) continue // skip imperceptible particles to save draw cost
+
+      // Perspective hint — top rows are "further", bottom rows "closer".
+      const rowT = row / Math.max(1, rows - 1)
+      const depthScale =
+        cfg.PERSPECTIVE_TOP_SCALE +
+        (cfg.PERSPECTIVE_BOTTOM_SCALE - cfg.PERSPECTIVE_TOP_SCALE) * rowT
+
+      particles.push({
+        baseX,
+        baseY,
+        x: baseX,
+        y: baseY,
+        vx: 0,
+        vy: 0,
+        size:
+          (cfg.SIZE_MIN + Math.random() * (cfg.SIZE_MAX - cfg.SIZE_MIN)) *
+          depthScale,
+        alpha: cfg.ALPHA_MIN + Math.random() * (cfg.ALPHA_MAX - cfg.ALPHA_MIN),
+        fadeAlpha,
+        phase: Math.random() * TWO_PI,
+      })
     }
   }
 
-  return out
+  return particles
 }
 
 // Single-frame physics step. Mutates particles in place — no allocations.
-export function stepParticles(
-  particles: Particle[],
+export function stepWaveField(
+  particles: WaveParticle[],
   cursor: CursorState,
-  width: number,
-  height: number,
   time: number,
   reducedMotion: boolean,
 ): void {
-  if (reducedMotion) return // particles stay at their origins
+  if (reducedMotion) return // particles stay at their base grid
 
-  const cfg = PILLAR_CONFIG
+  const cfg = FIELD_CONFIG
   const radius = cfg.CURSOR_RADIUS
   const radiusSq = radius * radius
-  // Clamp distance for the runaway guard — relative to strand width, not the
-  // whole canvas, so cursor edge cases never let a particle escape its strand.
-  const maxOffset = width * cfg.STRAND_WIDTH_RATIO
 
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i]
+
+    // Layered sin/cos waves displace the particle's GRID position to give the
+    // moving target the spring chases. Different frequencies + speeds prevent
+    // the whole field from oscillating in unison.
+    const waveY =
+      Math.sin(p.baseX * cfg.WAVE_FREQ_X_1 + time * cfg.WAVE_SPEED_1 + p.phase) *
+        cfg.WAVE_AMP_Y_1 +
+      Math.sin(
+        p.baseX * cfg.WAVE_FREQ_X_2 +
+          p.baseY * cfg.WAVE_FREQ_Y_2 +
+          time * cfg.WAVE_SPEED_2,
+      ) * cfg.WAVE_AMP_Y_2 +
+      Math.cos(p.baseY * cfg.WAVE_FREQ_Y_3 + time * cfg.WAVE_SPEED_3) *
+        cfg.WAVE_AMP_Y_3
+
+    const swayX =
+      Math.sin(
+        p.baseY * cfg.SWAY_FREQ_Y + time * cfg.SWAY_SPEED + p.phase,
+      ) * cfg.SWAY_AMP
+
+    const targetX = p.baseX + swayX
+    const targetY = p.baseY + waveY
 
     // 1) Cursor repulsion — distance check first, sqrt only when needed.
     if (cursor.active) {
@@ -106,53 +154,30 @@ export function stepParticles(
       }
     }
 
-    // 2) Spring back to strand center (X only — Y is the lifecycle axis).
-    p.vx += (p.originX - p.x) * cfg.SPRING_K
+    // 2) Spring back to the wave-displaced target.
+    p.vx += (targetX - p.x) * cfg.SPRING_K
+    p.vy += (targetY - p.y) * cfg.SPRING_K
 
-    // 3) Helix twist — sin oscillation tied to Y so the strand visibly twists.
-    p.vx +=
-      Math.sin(p.y * cfg.HELIX_FREQ + p.helixSeed + time * cfg.HELIX_SPEED) *
-      cfg.HELIX_AMP
-
-    // 4) Curl noise — slower horizontal turbulence layered on top of the helix.
-    p.vx +=
-      Math.sin(time * cfg.CURL_SPEED + p.y * cfg.CURL_FREQ + p.helixSeed) *
-      cfg.CURL_AMP
-
-    // 5) Continuous upward flow (the "blood through a vein" feel).
-    p.vy -= p.speed * cfg.UPWARD_BIAS
-
-    // 6) Damping.
+    // 3) Damping.
     p.vx *= cfg.DAMPING
     p.vy *= cfg.DAMPING
 
-    // 7) Integrate.
+    // 4) Integrate.
     p.x += p.vx
     p.y += p.vy
-
-    // 8) Lifecycle vertical wrap — when the particle exits the top, reset to the
-    //    bottom with a small random offset so re-entries don't pulse in waves.
-    if (p.y < -cfg.WRAP_MARGIN) {
-      p.y = height + cfg.WRAP_MARGIN + Math.random() * 20
-      p.vy = 0
-    }
-
-    // Hard horizontal clamp relative to the particle's strand center.
-    if (p.x < p.originX - maxOffset) p.x = p.originX - maxOffset
-    if (p.x > p.originX + maxOffset) p.x = p.originX + maxOffset
   }
 }
 
-export function drawParticles(
+export function drawWaveField(
   ctx: CanvasRenderingContext2D,
-  particles: Particle[],
+  particles: WaveParticle[],
 ): void {
   ctx.fillStyle = '#ffffff'
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i]
-    // Velocity-modulated alpha — fast particles read brighter, idle ones dim.
     const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy)
-    const dynamicAlpha = Math.min(1, p.alpha + speed * 0.05)
+    const dynamicAlpha = Math.min(1, (p.alpha + speed * 0.04) * p.fadeAlpha)
+    if (dynamicAlpha < 0.01) continue
     ctx.globalAlpha = dynamicAlpha
     ctx.beginPath()
     ctx.arc(p.x, p.y, p.size, 0, TWO_PI)

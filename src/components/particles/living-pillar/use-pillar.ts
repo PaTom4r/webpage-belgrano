@@ -1,18 +1,19 @@
-// Hook that owns the Living Pillar animation loop. Mounts on a <canvas>
-// element ref and a wrapping container ref; resizes with the container,
-// listens to mouse events on the container, and runs the physics loop until
-// unmount. Honors prefers-reduced-motion (renders one static frame and stops).
+// Hook that owns the Wave Field animation loop. Mounts on a <canvas> element
+// ref and a wrapping container ref; resizes with the container, listens to
+// mouse events on the container, and runs the physics loop until unmount.
+// Honors prefers-reduced-motion (renders one static frame and stops).
 'use client'
 
 import { useEffect } from 'react'
 
-import { PILLAR_CONFIG } from './config'
+import { FIELD_CONFIG } from './config'
 import {
-  createParticles,
-  drawParticles,
-  stepParticles,
+  createWaveField,
+  drawWaveField,
+  stepWaveField,
   type CursorState,
-  type Particle,
+  type FieldDimensions,
+  type WaveParticle,
 } from './particles'
 
 type UsePillarOptions = {
@@ -22,6 +23,13 @@ type UsePillarOptions = {
 
 function isMobileViewport(width: number) {
   return width < 768
+}
+
+function dimensionsFor(viewportWidth: number): FieldDimensions {
+  if (isMobileViewport(viewportWidth)) {
+    return { cols: FIELD_CONFIG.COLS_MOBILE, rows: FIELD_CONFIG.ROWS_MOBILE }
+  }
+  return { cols: FIELD_CONFIG.COLS_DESKTOP, rows: FIELD_CONFIG.ROWS_DESKTOP }
 }
 
 export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
@@ -37,7 +45,7 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    let particles: Particle[] = []
+    let particles: WaveParticle[] = []
     const cursor: CursorState = { x: -9999, y: -9999, active: false }
     let cssWidth = 0
     let cssHeight = 0
@@ -51,8 +59,6 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       cssHeight = Math.max(1, Math.round(rect.height))
       dpr = Math.min(window.devicePixelRatio || 1, 2)
 
-      // Match the framebuffer to the container size at the device pixel ratio
-      // so particles stay crisp on retina without being oversized.
       canvas.width = Math.round(cssWidth * dpr)
       canvas.height = Math.round(cssHeight * dpr)
       canvas.style.width = `${cssWidth}px`
@@ -61,33 +67,25 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       ctx.setTransform(1, 0, 0, 1, 0, 0)
       ctx.scale(dpr, dpr)
 
-      const isMobile = isMobileViewport(window.innerWidth)
-      const count = isMobile
-        ? PILLAR_CONFIG.COUNT_MOBILE
-        : PILLAR_CONFIG.COUNT_DESKTOP
-      const strandCenters = isMobile
-        ? PILLAR_CONFIG.STRAND_CENTERS_MOBILE
-        : PILLAR_CONFIG.STRAND_CENTERS_DESKTOP
-
-      particles = createParticles(count, cssWidth, cssHeight, strandCenters)
+      const dims = dimensionsFor(window.innerWidth)
+      particles = createWaveField(dims, cssWidth, cssHeight)
     }
 
     const tick = () => {
       const now = performance.now()
       const elapsed = now - startedAt
 
-      stepParticles(particles, cursor, cssWidth, cssHeight, elapsed, reducedMotion)
+      stepWaveField(particles, cursor, elapsed, reducedMotion)
 
       ctx.clearRect(0, 0, cssWidth, cssHeight)
-      drawParticles(ctx, particles)
+      drawWaveField(ctx, particles)
 
       rafId = requestAnimationFrame(tick)
     }
 
     const onPointerMove = (e: PointerEvent) => {
       // Touch / pen events can fire pointermove during scrolling — only react
-      // to a real mouse so vertical scroll on mobile never pulls the column
-      // sideways.
+      // to a real mouse so vertical scroll on mobile never deforms the field.
       if (e.pointerType !== 'mouse') return
       const rect = container.getBoundingClientRect()
       cursor.x = e.clientX - rect.left
@@ -101,7 +99,6 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
       cursor.y = -9999
     }
 
-    // ResizeObserver keeps the canvas in sync with whatever the container does.
     const resizeObs = new ResizeObserver(() => {
       setupCanvas()
     })
@@ -115,9 +112,8 @@ export function useLivingPillar({ canvasRef, containerRef }: UsePillarOptions) {
     startedAt = performance.now()
 
     if (reducedMotion) {
-      // One static render, no loop.
       ctx.clearRect(0, 0, cssWidth, cssHeight)
-      drawParticles(ctx, particles)
+      drawWaveField(ctx, particles)
     } else {
       rafId = requestAnimationFrame(tick)
     }
