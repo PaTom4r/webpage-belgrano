@@ -3,7 +3,8 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
-import { VerticalesReveal } from '@/components/sections/home/verticales-reveal'
+// import { VerticalesReveal } from '@/components/sections/home/verticales-reveal' // Pausada — reemplazada por <BusinessSuite /> (las 3 cards horizontales). Reactivar si querés volver al scroll-driven.
+import { BusinessSuite } from '@/components/sections/home/business-suite'
 // import { VerticalesSection } from '@/components/sections/verticales-section' // Reemplazada por VerticalesReveal scroll-driven
 // import { MarqueeSection } from '@/components/sections/marquee-section' // Desactivada — clientes "que confían en nosotros" quitada a pedido de Pato
 import { StatsSection } from '@/components/sections/stats-section'
@@ -62,7 +63,7 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
-        <VerticalesReveal />
+        <BusinessSuite />
         <StatsSection />
         {/* <MarqueeSection /> — Desactivada: secci\u00f3n "Empresas que conf\u00edan en nosotros" */}
         <CtaSection />

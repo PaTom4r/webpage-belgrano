@@ -43,8 +43,8 @@ export function HeroSection() {
       aria-labelledby="hero-heading"
       className="flex flex-col"
     >
-      {/* Living Threads + dominant headline */}
-      <div className="relative isolate overflow-hidden bg-black lg:min-h-[88vh]">
+      {/* Living Threads + dominant headline — full viewport on first load */}
+      <div className="relative isolate flex min-h-screen flex-col overflow-hidden bg-black lg:min-h-[100svh]">
         {/* Single canvas, positioned responsively:
               · mobile: relative block stacked above the text (55-60vh tall),
                         dimmed so the text below stays the focus.
@@ -77,7 +77,7 @@ export function HeroSection() {
             through to the canvas in the empty area on the left; pointer-events
             is re-enabled on the inner content block so the chip / paragraph /
             buttons stay interactive. */}
-        <div className="pointer-events-none relative z-20 flex w-full px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:min-h-[88vh] lg:items-center lg:justify-end lg:py-0 lg:pl-[40vw] lg:pr-16 xl:pl-[42vw] xl:pr-20">
+        <div className="pointer-events-none relative z-20 flex w-full flex-1 px-6 pt-16 pb-20 sm:px-8 sm:pt-20 sm:pb-24 lg:items-center lg:justify-end lg:py-0 lg:pl-[40vw] lg:pr-16 xl:pl-[42vw] xl:pr-20">
           <div className="pointer-events-auto flex w-full max-w-[680px] flex-col gap-6 text-left lg:gap-8">
             <motion.span
               {...fadeUp(0)}
