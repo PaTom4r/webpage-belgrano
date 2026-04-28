@@ -1,11 +1,15 @@
 // Hero — Living Threads Canvas 2D + dominant text presence.
 // Layout:
-//   Mobile: stacked — particle canvas on top (full-width, dim opacity), text below.
-//   lg+:    canvas absolute spanning the full hero. Text content sits to the
-//           right starting at x≈40vw with max-width 680px so the threads breathe
-//           on the left while the headline reads cleanly. Two z-10 overlays
-//           (linear right→center + radial behind text) attenuate the threads
-//           without erasing them, so the fibers still show through.
+//   Mobile (< lg): text-only. The threads canvas is intentionally not mounted —
+//                  no rAF physics loop, no reserved space, no overlays. Saves
+//                  JS, CPU, and battery on phones where the field never read
+//                  well at that aspect ratio.
+//   lg+:           canvas absolute spanning the full hero. Text content sits to
+//                  the right starting at x≈40vw with max-width 680px so the
+//                  threads breathe on the left while the headline reads
+//                  cleanly. Two z-10 overlays (linear right→center + radial
+//                  behind text) attenuate the threads without erasing them, so
+//                  the fibers still show through.
 //   Vertical cards used to live here as Zone 2 (HeroMockups accordion). They
 //   moved to <VerticalesReveal /> below, as a scroll-driven pinned section.
 'use client'
@@ -13,6 +17,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 // Canvas 2D physics loop runs only in the browser. Dynamic import keeps the
 // initial JS bundle for the home page lean and the hero text paints on SSR.
@@ -20,6 +25,23 @@ const LivingThreadsCanvas = dynamic(
   () => import('@/components/particles/living-pillar/canvas').then((m) => m.LivingThreadsCanvas),
   { ssr: false },
 )
+
+// Tailwind's `lg` breakpoint = 1024px. We mirror it here so we can gate the
+// canvas mount on viewport width — `display: none` would still mount the
+// component and run the rAF loop.
+const DESKTOP_QUERY = '(min-width: 1024px)'
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia(DESKTOP_QUERY)
+    setIsDesktop(mq.matches)
+    const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return isDesktop
+}
 
 const easing = [0.25, 0.1, 0.25, 1] as const
 
@@ -37,31 +59,34 @@ const headlineFade = {
 }
 
 export function HeroSection() {
+  const isDesktop = useIsDesktop()
+
   return (
     <section
       id="hero"
       aria-labelledby="hero-heading"
       className="flex flex-col"
     >
-      {/* Living Threads + dominant headline — full viewport on first load */}
+      {/* Living Threads (desktop) + dominant headline — full viewport on first load */}
       <div className="relative isolate flex min-h-screen flex-col overflow-hidden bg-black lg:min-h-[100svh]">
-        {/* Single canvas, positioned responsively:
-              · mobile: relative block stacked above the text (55-60vh tall),
-                        dimmed so the text below stays the focus.
-              · lg+:    absolute, spans the full hero width and height. The
-                        engine's internal right-edge fade plus the overlays
-                        below keep threads dim behind the headline. */}
-        <div className="relative h-[55vh] w-full opacity-60 sm:h-[60vh] lg:absolute lg:inset-0 lg:h-auto lg:w-full lg:opacity-100">
-          <LivingThreadsCanvas />
-        </div>
+        {/* Threads canvas — desktop only. On mobile we skip the mount entirely
+            so the hero collapses to text-only with no reserved space and no
+            animation loop. */}
+        {isDesktop && (
+          <div className="absolute inset-0 hidden lg:block">
+            <LivingThreadsCanvas />
+          </div>
+        )}
 
-        {/* Overlay 1 — linear fade right→center for legibility on the text side. */}
+        {/* Overlay 1 — linear fade right→center for legibility on the text
+            side. Desktop only — without threads behind it on mobile this
+            overlay would just darken an already-black background. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-l from-black via-black/70 to-transparent"
+          className="pointer-events-none absolute inset-0 z-10 hidden bg-gradient-to-l from-black via-black/70 to-transparent lg:block"
         />
         {/* Overlay 2 — radial pool behind the text block (desktop only).
-            Mobile: text sits below the canvas, no radial needed. */}
+            Mobile: text sits on plain black, no radial needed. */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
