@@ -57,3 +57,18 @@ public/template-prueba.png
 # raw working copies de assets (los finales viven en public/home/)
 public/intelligence-1.png
 public/intelligence-video-1.mp4
+
+# public/ — assets de trabajo / temporales que NUNCA van a producción.
+# Si alguno se vuelve definitivo, sacarlo de aquí y `git add` explícito.
+public/3d/
+public/video-frames/
+public/intelligence/
+public/hero-1-tmp.png
+public/hero-2-tmp.png
+public/hero-2-tmp-v1.png
+public/template-2.png
+public/vista-celular.jpeg
+# screenshots de mobile/desktop (capturas de prueba)
+public/*-celular.*
+public/*-mobile.*
+public/screenshot-*.*
