@@ -8,15 +8,18 @@ import { AboutNarrativeSection } from '@/components/sections/about-narrative-sec
 import { AboutValuesSection } from '@/components/sections/about-values-section'
 import { AboutTeamSection } from '@/components/sections/about-team-section'
 import { CtaSection } from '@/components/sections/cta-section'
+import { aboutPageJsonLd, breadcrumbJsonLd } from '@/lib/seo/jsonld'
+
+const NOSOTROS_TITLE = 'Nosotros'
+const NOSOTROS_DESCRIPTION =
+  'Conoce a Grupo Belgrano: empresa chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.'
 
 export const metadata: Metadata = {
-  title: 'Nosotros',
-  description:
-    'Conoce a Grupo Belgrano: empresa chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
+  title: NOSOTROS_TITLE,
+  description: NOSOTROS_DESCRIPTION,
   openGraph: {
     title: 'Nosotros | Belgrano',
-    description:
-      'Conoce a Grupo Belgrano: empresa chilena de IA aplicada, marketing digital y estrategia de negocio. Un equipo integrado que construye, instala y forma.',
+    description: NOSOTROS_DESCRIPTION,
     url: 'https://belgrano.cl/nosotros',
     images: [
       {
@@ -27,15 +30,36 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nosotros | Belgrano',
+    description: NOSOTROS_DESCRIPTION,
+    images: ['/og/og-nosotros.png'],
+  },
   alternates: { canonical: 'https://belgrano.cl/nosotros' },
 }
+
+const aboutLd = aboutPageJsonLd()
+const breadcrumbLd = breadcrumbJsonLd([
+  { name: 'Home', url: 'https://belgrano.cl' },
+  { name: 'Nosotros', url: 'https://belgrano.cl/nosotros' },
+])
 
 export default function NosotrosPage() {
   return (
     // pt-16 compensa la altura del navbar fijo (h-16). En p\u00e1ginas internas
     // no hay #hero que el observer esconda, as\u00ed que el navbar queda siempre
     // visible y necesitamos padding-top para que no tape la breadcrumb.
-    <main className="pt-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <main className="pt-16">
       {/* Breadcrumb bar — same pattern as vertical pages */}
       <div className="border-b border-border bg-bg">
         <Container>
@@ -68,6 +92,7 @@ export default function NosotrosPage() {
 
       {/* Consistent conversion point reused from landing */}
       <CtaSection />
-    </main>
+      </main>
+    </>
   )
 }
