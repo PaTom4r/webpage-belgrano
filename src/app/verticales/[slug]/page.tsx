@@ -11,6 +11,11 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { verticales } from '@/lib/content/verticales'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
+import {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  serviceJsonLd,
+} from '@/lib/seo/jsonld'
 // import { VerticalClientsSection } from '@/components/sections/vertical-clients-section' // Desactivada — secci\u00f3n "Clientes que conf\u00edan en nosotros"
 import { VerticalFaqSection } from '@/components/sections/vertical-faq-section'
 import { CtaSection } from '@/components/sections/cta-section'
@@ -51,6 +56,8 @@ export async function generateMetadata({ params }: VerticalPageProps): Promise<M
 
   const descriptionText = `${vertical.tagline} ${vertical.description.slice(0, 120)}`
 
+  const ogImage = ogImages[slug] ?? '/og/og-default.png'
+
   return {
     title: vertical.name,
     description: descriptionText,
@@ -60,12 +67,18 @@ export async function generateMetadata({ params }: VerticalPageProps): Promise<M
       url: `https://belgrano.cl/verticales/${slug}`,
       images: [
         {
-          url: ogImages[slug] ?? '/og/og-default.png',
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${vertical.name} — Belgrano`,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${vertical.name} | Belgrano`,
+      description: descriptionText,
+      images: [ogImage],
     },
     alternates: { canonical: `https://belgrano.cl/verticales/${slug}` },
   }
@@ -79,23 +92,13 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
     notFound()
   }
 
-  const serviceJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: vertical.name,
-    description: vertical.description,
-    url: `https://belgrano.cl/verticales/${slug}`,
-    provider: {
-      '@type': 'Organization',
-      name: 'Grupo Belgrano',
-      url: 'https://belgrano.cl',
-    },
-    serviceType: vertical.name,
-    areaServed: {
-      '@type': 'Country',
-      name: 'Chile',
-    },
-  }
+  const serviceLd = serviceJsonLd(vertical)
+  const breadcrumbLd = breadcrumbJsonLd([
+    { name: 'Home', url: 'https://belgrano.cl' },
+    { name: 'Verticales', url: 'https://belgrano.cl/#verticales' },
+    { name: vertical.name, url: `https://belgrano.cl/verticales/${slug}` },
+  ])
+  const faqLd = faqPageJsonLd(vertical.faq)
 
   const accent = vertical.accentColor ?? '#A855F7'
   const isIntelligence = slug === 'intelligence'
@@ -126,7 +129,15 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
       {/* pt-16 compensa la altura del navbar fijo (h-16). En páginas internas
           no hay #hero que el observer esconda, así que el navbar queda siempre

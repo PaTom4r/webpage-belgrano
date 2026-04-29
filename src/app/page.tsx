@@ -1,7 +1,8 @@
 // Home page — composes 4 landing sections.
 // Navbar and Footer are in layout.tsx (persistent across all pages).
+// Organization + WebSite JSON-LD live in layout.tsx (sitewide); this page
+// only declares page-level metadata overrides.
 import type { Metadata } from 'next'
-import { siteConfig } from '@/lib/content/site'
 import { HeroSection } from '@/components/sections/hero-section'
 // import { VerticalesReveal } from '@/components/sections/home/verticales-reveal' // Pausada — reemplazada por <BusinessSuite /> (las 3 cards horizontales). Reactivar si querés volver al scroll-driven.
 import { BusinessSuite } from '@/components/sections/home/business-suite'
@@ -10,14 +11,17 @@ import { BusinessSuite } from '@/components/sections/home/business-suite'
 import { StatsSection } from '@/components/sections/stats-section'
 import { CtaSection } from '@/components/sections/cta-section'
 
+const HOME_TITLE = 'Belgrano Group — Operamos el crecimiento de tu marca'
+const HOME_DESCRIPTION =
+  'Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.'
+
 export const metadata: Metadata = {
-  title: 'Belgrano Group — Operamos el crecimiento de tu marca',
-  description:
-    'Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.',
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  alternates: { canonical: 'https://belgrano.cl' },
   openGraph: {
-    title: 'Belgrano Group — Operamos el crecimiento de tu marca',
-    description:
-      'Belgrano Group: Media, Intelligence y Brand. Conectamos IA, medios y ejecución en terreno para impulsar resultados reales en cada punto de contacto.',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     url: 'https://belgrano.cl',
     images: [
       {
@@ -28,46 +32,22 @@ export const metadata: Metadata = {
       },
     ],
   },
-  alternates: { canonical: 'https://belgrano.cl' },
+  twitter: {
+    card: 'summary_large_image',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    images: ['/og/og-default.png'],
+  },
 }
 
 export default function HomePage() {
-  const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': ['Organization', 'LocalBusiness'],
-    name: 'Belgrano Group',
-    alternateName: 'Belgrano',
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/og/og-default.png`,
-    description: siteConfig.description,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Santiago',
-      addressRegion: 'Región Metropolitana',
-      addressCountry: 'CL',
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer service',
-      email: siteConfig.email,
-      availableLanguage: 'Spanish',
-    },
-    sameAs: [siteConfig.url],
-  }
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
-      <main>
-        <HeroSection />
-        <BusinessSuite />
-        <StatsSection />
-        {/* <MarqueeSection /> — Desactivada: secci\u00f3n "Empresas que conf\u00edan en nosotros" */}
-        <CtaSection />
-      </main>
-    </>
+    <main>
+      <HeroSection />
+      <BusinessSuite />
+      <StatsSection />
+      {/* <MarqueeSection /> — Desactivada: sección "Empresas que confían en nosotros" */}
+      <CtaSection />
+    </main>
   )
 }
