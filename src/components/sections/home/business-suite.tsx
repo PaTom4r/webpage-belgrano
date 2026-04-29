@@ -106,7 +106,7 @@ export function BusinessSuite() {
             return (
               <motion.div key={v.slug} variants={cardItem}>
                 <Link
-                  href={`/verticales/${v.slug}`}
+                  href={`/${v.slug}`}
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] sm:p-8 lg:p-10"
                   style={{
                     // Subtle accent-tinted gradient — gives each card its identity.

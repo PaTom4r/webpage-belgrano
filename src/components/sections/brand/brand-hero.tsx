@@ -1,4 +1,4 @@
-// Premium dark hero for /verticales/brand.
+// Premium dark hero for /brand.
 // Mirrors Intelligence and Media heroes: animated grid bg, radial orange glow,
 //   megaphone icon with pulse, eyebrow + h1 + benefit + single CTA.
 'use client'

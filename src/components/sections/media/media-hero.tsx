@@ -1,4 +1,4 @@
-// Premium dark hero for /verticales/media.
+// Premium dark hero for /media.
 // Mirrors Intelligence hero structure: animated grid bg, radial sky-blue glow,
 //   monitor icon with pulse, eyebrow + h1 + benefit + dual CTA.
 // Client Component for the entrance animations.

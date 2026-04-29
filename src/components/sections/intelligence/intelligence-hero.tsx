@@ -1,5 +1,5 @@
 // src/components/sections/intelligence/intelligence-hero.tsx
-// Premium dark hero for /verticales/intelligence.
+// Premium dark hero for /intelligence.
 // Features: animated grid bg, radial purple glow, brain icon with pulse,
 //   eyebrow + h1 + tagline + dual CTA (case study + AI Solutions branch).
 // Client Component for the entrance animations.

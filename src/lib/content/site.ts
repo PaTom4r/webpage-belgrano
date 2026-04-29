@@ -48,17 +48,17 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Intelligence', href: '/verticales/intelligence' },
-  { label: 'Media',        href: '/verticales/media' },
-  { label: 'Brand',        href: '/verticales/brand' },
+  { label: 'Intelligence', href: '/intelligence' },
+  { label: 'Media',        href: '/media' },
+  { label: 'Brand',        href: '/brand' },
 ]
 
 export const footerData = {
   tagline: 'Hacemos que la IA trabaje para tu negocio.',
   links: [
-    { label: 'Belgrano Media', href: '/verticales/media' },
-    { label: 'Belgrano Intelligence', href: '/verticales/intelligence' },
-    { label: 'Belgrano Brand', href: '/verticales/brand' },
+    { label: 'Belgrano Media', href: '/media' },
+    { label: 'Belgrano Intelligence', href: '/intelligence' },
+    { label: 'Belgrano Brand', href: '/brand' },
     { label: 'Nosotros', href: '/nosotros' },
     { label: 'Contacto', href: '#cta' },
   ],

@@ -119,7 +119,7 @@ export function aboutPageJsonLd() {
 }
 
 export function serviceJsonLd(vertical: Vertical) {
-  const url = `${siteConfig.url}/verticales/${vertical.slug}`
+  const url = `${siteConfig.url}/${vertical.slug}`
   const primaryCategory = vertical.tags?.[0] ?? 'Marketing'
 
   return {

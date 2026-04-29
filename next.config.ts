@@ -26,12 +26,25 @@ const nextConfig: NextConfig = {
   },
   // Canonical: belgrano.cl (apex). Cualquier hit a www.* se redirige permanente
   // al apex para no diluir signal SEO ni generar duplicate-content warnings.
+  // Las verticales viven en /:slug directo desde 2026-04-29; redirijo /verticales/:slug
+  // → /:slug con 301 para preservar cualquier link viejo crawleado por buscadores.
   async redirects() {
     return [
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'www.belgrano.cl' }],
         destination: 'https://belgrano.cl/:path*',
+        permanent: true,
+      },
+      {
+        source: '/verticales/:slug',
+        destination: '/:slug',
+        permanent: true,
+      },
+      {
+        // Cualquier hijo accidental queda apuntado al slug raíz también.
+        source: '/verticales/:slug/:rest*',
+        destination: '/:slug/:rest*',
         permanent: true,
       },
     ]
