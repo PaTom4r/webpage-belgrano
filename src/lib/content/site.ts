@@ -11,11 +11,10 @@ export const siteConfig = {
   url: 'https://belgrano.cl',
   email: 'hola@belgrano.cl',
   whatsapp: '+56965360205',
-  // TODO Pato — confirmar año real de fundación
+  // foundedYear queda null intencionalmente — schema no emite foundingDate.
   foundedYear: null as number | null,
   address: {
-    // TODO Pato — confirmar dirección postal exacta (debe matchear GBP)
-    street: null as string | null,
+    street: 'Av. Presidente Kennedy 5600',
     city: 'Santiago',
     region: 'Región Metropolitana',
     postalCode: null as string | null,
@@ -33,7 +32,7 @@ export const siteConfig = {
     'Compra de medios',
     'Capacitación en IA',
   ] as const,
-  // TODO Pato — confirmar URLs reales (LinkedIn / Instagram / X / YouTube).
+  // Redes pendientes (Instagram de Belgrano Intelligence en preparación).
   // Strings vacíos se filtran fuera del Organization.sameAs automáticamente.
   social: {
     linkedin: '',
