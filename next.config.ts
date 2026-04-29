@@ -24,6 +24,18 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  // Canonical: belgrano.cl (apex). Cualquier hit a www.* se redirige permanente
+  // al apex para no diluir signal SEO ni generar duplicate-content warnings.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.belgrano.cl' }],
+        destination: 'https://belgrano.cl/:path*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
