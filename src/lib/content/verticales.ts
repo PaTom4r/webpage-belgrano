@@ -29,7 +29,7 @@ export interface VerticalCaseCard {
   footnote: string
 }
 
-// Rich case study used in vertical detail pages (e.g. /verticales/intelligence).
+// Rich case study used in vertical detail pages (e.g. /intelligence).
 // Inspired by Vida C\u00e1mara layout: client logo + context + bullets on the left,
 // 4 metric cards with icons on the right.
 export type CaseStudyIcon = 'dollar' | 'roi' | 'users' | 'shield' | 'bolt' | 'clock' | 'chart'

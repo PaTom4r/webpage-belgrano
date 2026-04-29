@@ -67,7 +67,7 @@ function VerticalHeroCard({
 
   return (
     <Link
-      href={`/verticales/${slug}`}
+      href={`/${slug}`}
       onMouseEnter={onHover}
       onFocus={onHover}
       className="group block h-full"

@@ -8,9 +8,9 @@ Idioma principal: español (es-CL). Mercado: Chile primero, Latinoamérica como 
 
 ## Verticales
 
-- [Belgrano Media](https://belgrano.cl/verticales/media): Compramos y operamos pauta en TV, radio, vía pública, DOOH y digital. Mix planificado con data y relación directa con los canales.
-- [Belgrano Intelligence](https://belgrano.cl/verticales/intelligence): IA a medida integrada a sistemas internos. Agentes conversacionales, modelos predictivos, automatización de procesos y formación a través de Academy.
-- [Belgrano Brand](https://belgrano.cl/verticales/brand): Trade marketing y activaciones BTL con producción propia. Stands, eventos, sampling, vía pública y experiencias en punto de venta.
+- [Belgrano Media](https://belgrano.cl/media): Compramos y operamos pauta en TV, radio, vía pública, DOOH y digital. Mix planificado con data y relación directa con los canales.
+- [Belgrano Intelligence](https://belgrano.cl/intelligence): IA a medida integrada a sistemas internos. Agentes conversacionales, modelos predictivos, automatización de procesos y formación a través de Academy.
+- [Belgrano Brand](https://belgrano.cl/brand): Trade marketing y activaciones BTL con producción propia. Stands, eventos, sampling, vía pública y experiencias en punto de venta.
 
 ## Sobre nosotros
 

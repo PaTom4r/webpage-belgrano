@@ -28,7 +28,7 @@ function BentoCard({
   featured?: boolean
 }) {
   return (
-    <Link href={`/verticales/${slug}`} className="group block h-full">
+    <Link href={`/${slug}`} className="group block h-full">
       <motion.div
         whileHover={{ y: -3 }}
         transition={{ duration: 0.2, ease: easing }}

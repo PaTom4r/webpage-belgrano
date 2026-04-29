@@ -18,19 +18,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/verticales/media`,
+      url: `${baseUrl}/media`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/verticales/intelligence`,
+      url: `${baseUrl}/intelligence`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/verticales/brand`,
+      url: `${baseUrl}/brand`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,

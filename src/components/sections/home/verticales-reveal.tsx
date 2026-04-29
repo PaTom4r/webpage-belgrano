@@ -467,7 +467,7 @@ function Panel({
 }: PanelContentProps) {
   return (
     <Link
-      href={`/verticales/${slug}`}
+      href={`/${slug}`}
       className="group block"
     >
       <PanelVisual accent={accent} variant={variant} scrollYProgress={scrollYProgress} />

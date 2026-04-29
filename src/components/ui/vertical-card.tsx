@@ -158,7 +158,7 @@ export function VerticalCard({
 
             {/* CTA — pinned at end via mt-auto */}
             <Link
-              href={`/verticales/${vertical.slug}`}
+              href={`/${vertical.slug}`}
               className="mt-auto inline-flex items-center gap-1.5 self-start rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:border-white hover:bg-white hover:text-black"
             >
               Ver {vertical.name.replace('Belgrano ', '')}

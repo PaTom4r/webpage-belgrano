@@ -1,8 +1,9 @@
-// src/app/verticales/[slug]/page.tsx
-// Dynamic vertical detail pages: /verticales/media, /verticales/intelligence,
-//   /verticales/brand
-// generateStaticParams() ensures static generation of all 3 routes.
-// notFound() handles invalid slugs.
+// src/app/[slug]/page.tsx
+// Flat vertical detail routes: /media, /intelligence, /brand.
+// dynamicParams=false → cualquier slug fuera de la whitelist devuelve 404
+// directo (sin invocar la página). Esto evita catch-all collisions con
+// rutas estáticas hermanas (/, /nosotros, /icon.svg, etc.) — Next prioriza
+// static routes pero el flag deja la intención explícita.
 //
 // All 3 verticals (Intelligence, Media, Brand) now use a premium layout —
 // each has its own hero + capabilities + showcase + metrics, all wrapped
@@ -45,6 +46,10 @@ const ogImages: Record<string, string> = {
   brand: '/og/og-brand.png',
 }
 
+// Solo los 3 slugs reales se prerender. Cualquier otro slug → 404 directo
+// sin invocar la función (más seguro y rápido).
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return verticales.map((v) => ({ slug: v.slug }))
 }
@@ -64,7 +69,7 @@ export async function generateMetadata({ params }: VerticalPageProps): Promise<M
     openGraph: {
       title: `${vertical.name} | Belgrano`,
       description: descriptionText,
-      url: `https://belgrano.cl/verticales/${slug}`,
+      url: `https://belgrano.cl/${slug}`,
       images: [
         {
           url: ogImage,
@@ -80,7 +85,7 @@ export async function generateMetadata({ params }: VerticalPageProps): Promise<M
       description: descriptionText,
       images: [ogImage],
     },
-    alternates: { canonical: `https://belgrano.cl/verticales/${slug}` },
+    alternates: { canonical: `https://belgrano.cl/${slug}` },
   }
 }
 
@@ -95,8 +100,7 @@ export default async function VerticalPage({ params }: VerticalPageProps) {
   const serviceLd = serviceJsonLd(vertical)
   const breadcrumbLd = breadcrumbJsonLd([
     { name: 'Home', url: 'https://belgrano.cl' },
-    { name: 'Verticales', url: 'https://belgrano.cl/#verticales' },
-    { name: vertical.name, url: `https://belgrano.cl/verticales/${slug}` },
+    { name: vertical.name, url: `https://belgrano.cl/${slug}` },
   ])
   const faqLd = faqPageJsonLd(vertical.faq)
 
