@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
 import { Geist, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { ClientProviders } from '@/components/client-providers'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { FloatingWhatsApp } from '@/components/conversion/floating-whatsapp'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo/jsonld'
 import './globals.css'
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 const geistSans = Geist({
   subsets: ['latin'],
@@ -71,6 +74,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FloatingWhatsApp />
         </ClientProviders>
         <Analytics />
+        {GA_MEASUREMENT_ID && process.env.NODE_ENV === 'production' && (
+          <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   )
