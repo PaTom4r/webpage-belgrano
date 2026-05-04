@@ -32,11 +32,10 @@ export const siteConfig = {
     'Compra de medios',
     'Capacitación en IA',
   ] as const,
-  // Redes pendientes (Instagram de Belgrano Intelligence en preparación).
   // Strings vacíos se filtran fuera del Organization.sameAs automáticamente.
   social: {
     linkedin: '',
-    instagram: '',
+    instagram: 'https://www.instagram.com/belgrano.intelligence',
     x: '',
     youtube: '',
   },
